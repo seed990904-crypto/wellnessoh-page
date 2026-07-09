@@ -24,10 +24,10 @@ const sectionHtml = (img: typeof IMG) => `
 <section class="wa-ingredients" aria-label="원료와 기술">
   <style>
     .wa-ingredients{
-      --cobalt:#1A73E8; --cobalt-deep:#0E4FB0; --cobalt-soft:#EAF1FE;
-      --ink:#10233F; --slate:#556579; --paper:#F6F8FB; --card:#FFFFFF;
-      --line:#E4EAF3; --gold:#B98A2E;
-      --serif:'Noto Serif KR',serif; --sans:'Pretendard',-apple-system,sans-serif;
+      --cobalt:#0891B2; --cobalt-deep:#0E7490; --cobalt-soft:#E0F2FE;
+      --ink:#1e293b; --slate:#64748b; --paper:#ffffff; --card:#ffffff;
+      --line:#e2e8f0; --gold:#B98A2E;
+      --serif:'Inter',-apple-system,sans-serif; --sans:'Inter',-apple-system,sans-serif;
       background:var(--paper); color:var(--ink); font-family:var(--sans);
       padding:88px 24px; -webkit-font-smoothing:antialiased;
     }
@@ -49,7 +49,7 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-part-sub{color:var(--slate);font-size:14px;margin-top:3px}
 
     /* ── Hero ── */
-    .wa-hero{background:linear-gradient(160deg,#0E2647 0%,#123A73 55%,#0E4FB0 100%);
+    .wa-hero{background:linear-gradient(160deg,#0f172a 0%,#1e293b 55%,#0e7490 100%);
       border-radius:22px;overflow:hidden;color:#fff;position:relative;
       display:grid;grid-template-columns:1fr 340px}
     @media(max-width:860px){.wa-hero{grid-template-columns:1fr}}
@@ -61,7 +61,7 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-hero-img-panel img{width:100%;height:100%;object-fit:cover;
       filter:brightness(.55) saturate(.9)}
     .wa-hero-img-panel::after{content:"";position:absolute;inset:0;
-      background:linear-gradient(90deg,#123A73 0%,transparent 40%)}
+      background:linear-gradient(90deg,#1e293b 0%,transparent 40%)}
     @media(max-width:860px){.wa-hero-img-panel{display:none}}
 
     .wa-hero-top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:baseline}
