@@ -70,3 +70,64 @@
     @apply text-xs tracking-widest uppercase text-muted-foreground;
   }
 }
+
+/* WordPress 본문 스타일 */
+.wp-content {
+  color: #10233F;
+  font-size: 16.5px;
+  line-height: 1.9;
+  font-family: 'Pretendard', -apple-system, sans-serif;
+}
+.wp-content h1, .wp-content h2, .wp-content h3,
+.wp-content h4, .wp-content h5, .wp-content h6 {
+  font-family: 'Noto Serif KR', serif;
+  font-weight: 700;
+  color: #10233F;
+  margin-top: 2em;
+  margin-bottom: 0.6em;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+}
+.wp-content h2 { font-size: 1.55em; }
+.wp-content h3 { font-size: 1.25em; }
+.wp-content p  { margin-bottom: 1.2em; color: #2C3E55; }
+.wp-content strong, .wp-content b { color: #10233F; font-weight: 600; }
+.wp-content a  { color: #1A73E8; text-decoration: underline; }
+.wp-content ul, .wp-content ol {
+  padding-left: 1.5em;
+  margin-bottom: 1.2em;
+}
+.wp-content li { margin-bottom: 0.4em; color: #2C3E55; }
+.wp-content blockquote {
+  border-left: 3px solid #1A73E8;
+  padding: 12px 20px;
+  margin: 1.5em 0;
+  background: #EAF1FE;
+  border-radius: 0 10px 10px 0;
+  color: #556579;
+  font-style: italic;
+}
+.wp-content img {
+  max-width: 100%;
+  border-radius: 12px;
+  margin: 1.5em 0;
+}
+.wp-content hr {
+  border: none;
+  border-top: 1px solid #E4EAF3;
+  margin: 2em 0;
+}
+.wp-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5em;
+  font-size: 14px;
+}
+.wp-content th, .wp-content td {
+  border: 1px solid #E4EAF3;
+  padding: 10px 14px;
+  text-align: left;
+}
+.wp-content th { background: #F6F8FB; font-weight: 700; color: #10233F; }
+.wp-content figure { margin: 1.5em 0; }
+.wp-content figcaption { font-size: 13px; color: #8A98A8; text-align: center; margin-top: 6px; }
