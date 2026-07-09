@@ -2,23 +2,22 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 
-// 원료 이미지 URL 목록 — 실제 원료 사진으로 교체하세요
 const IMG = {
-  superVera7:  "https://images.unsplash.com/photo-1587049352846-4a222e784d38?w=900&h=500&fit=crop&q=80&auto=format",
-  epicor:      "https://images.unsplash.com/photo-1628771065518-0d82f1938462?w=600&h=360&fit=crop&q=80&auto=format",
-  larch:       "https://images.unsplash.com/photo-1448375240586-882707db888b?w=600&h=360&fit=crop&q=80&auto=format",
+  superVera7:  "/ingredients/ing-super-vera7.jpg",
+  epicor:      "/ingredients/ing-epicor.jpg",
+  larch:       "/ingredients/ing-larch.jpg",
   rgen:        "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=360&fit=crop&q=80&auto=format",
-  curcugen:    "https://images.unsplash.com/photo-1615485500704-8e3b4abe71ee?w=600&h=360&fit=crop&q=80&auto=format",
-  morikol:     "https://images.unsplash.com/photo-1498654896293-37aaa4b0f1ff?w=600&h=360&fit=crop&q=80&auto=format",
-  chlorella:   "https://images.unsplash.com/photo-1622476310074-6bbe0b826bd4?w=600&h=360&fit=crop&q=80&auto=format",
-  s7:          "https://images.unsplash.com/photo-1466637574441-749b8f19452f?w=600&h=360&fit=crop&q=80&auto=format",
-  xos:         "https://images.unsplash.com/photo-1551754655-cd27e38d2076?w=600&h=360&fit=crop&q=80&auto=format",
-  probioseb:   "https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=600&h=360&fit=crop&q=80&auto=format",
-  creavitalis: "https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=600&h=360&fit=crop&q=80&auto=format",
-  wheatgrass:  "https://images.unsplash.com/photo-1576673442511-7e39b6545c87?w=600&h=360&fit=crop&q=80&auto=format",
-  adaptogen:   "https://images.unsplash.com/photo-1518796745738-41048802f99a?w=600&h=360&fit=crop&q=80&auto=format",
-  coconut:     "https://images.unsplash.com/photo-1501889088093-90b27410d97e?w=600&h=360&fit=crop&q=80&auto=format",
-  bioperine:   "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=600&h=360&fit=crop&q=80&auto=format",
+  curcugen:    "/ingredients/ing-curcugen.jpg",
+  morikol:     "/ingredients/ing-morikol.jpg",
+  chlorella:   "/ingredients/ing-chlorella.jpg",
+  s7:          "/ingredients/ing-s7.jpg",
+  xos:         "/ingredients/ing-xos.jpg",
+  probioseb:   "/ingredients/ing-probioseb.jpg",
+  creavitalis: "/ingredients/ing-creavitalis.jpg",
+  wheatgrass:  "/ingredients/ing-wheatgrass.jpg",
+  adaptogen:   "/ingredients/ing-adaptogen.jpg",
+  coconut:     "/ingredients/ing-coconut.jpg",
+  bioperine:   "/ingredients/ing-bioperine.jpg",
 };
 
 const sectionHtml = (img: typeof IMG) => `
