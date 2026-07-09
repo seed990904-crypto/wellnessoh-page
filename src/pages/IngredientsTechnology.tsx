@@ -34,13 +34,13 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-ingredients *{box-sizing:border-box;margin:0;padding:0}
     .wa-wrap{max-width:1160px;margin:0 auto}
 
-    .wa-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:13px;
+    .wa-intro{text-align:center;margin-bottom:8px}
+    .wa-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:clamp(11px,1.2vw,13px);
       letter-spacing:.14em;color:var(--cobalt);font-weight:700;margin-bottom:16px}
-    .wa-eyebrow::before{content:"";width:22px;height:2px;background:var(--cobalt)}
-    .wa-h2{font-family:var(--serif);font-weight:900;font-size:clamp(28px,4.2vw,46px);
-      line-height:1.28;letter-spacing:-.01em;max-width:20ch}
-    .wa-lead{margin-top:18px;font-size:clamp(15px,1.6vw,17px);line-height:1.85;
-      color:var(--slate);max-width:58ch}
+    .wa-h2{font-weight:900;font-size:clamp(24px,4.2vw,46px);
+      line-height:1.28;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word}
+    .wa-lead{margin-top:18px;font-size:clamp(14px,1.6vw,17px);line-height:1.85;
+      color:var(--slate);max-width:58ch;margin-left:auto;margin-right:auto;word-break:keep-all;text-wrap:balance}
     .wa-part-label{display:flex;align-items:center;gap:14px;margin:64px 0 26px}
     .wa-part-num{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--cobalt);
       border:1.5px solid var(--cobalt);border-radius:999px;width:38px;height:38px;
@@ -164,9 +164,11 @@ const sectionHtml = (img: typeof IMG) => `
   <div class="wa-wrap">
 
     <!-- 헤더 -->
-    <span class="wa-eyebrow">원료와 기술 · INGREDIENTS &amp; TECHNOLOGY</span>
-    <h2 class="wa-h2">단순 배합이 아니라, 세포 수준에서 설계합니다.</h2>
-    <p class="wa-lead">우리는 좋은 원료의 목록에서 시작하지 않습니다. 몸이 그 원료를 "어떻게 받아들이는가"라는 질문에서 시작합니다. 모든 원료는 신체 회복의 4대 코너스톤 안에서 각자의 역할을 위해 선택됩니다.</p>
+    <div class="wa-intro">
+      <span class="wa-eyebrow">INGREDIENTS &amp; TECHNOLOGY</span>
+      <h2 class="wa-h2">단순 배합이 아니라, 세포 수준에서 설계합니다.</h2>
+      <p class="wa-lead">우리는 좋은 원료의 목록에서 시작하지 않습니다. 몸이 그 원료를 "어떻게 받아들이는가"라는 질문에서 시작합니다. 모든 원료는 신체 회복의 4대 코너스톤 안에서 각자의 역할을 위해 선택됩니다.</p>
+    </div>
 
     <!-- ============ PART 01 : 기술 ============ -->
     <div class="wa-part-label">
