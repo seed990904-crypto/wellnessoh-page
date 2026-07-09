@@ -44,7 +44,7 @@ const Header = () => {
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          <button onClick={() => scrollTo("#about")} className="flex flex-col items-start leading-none cursor-pointer">
+          <button onClick={() => { setMobileOpen(false); if (location.pathname !== "/") { navigate("/"); } else { window.scrollTo({ top: 0, behavior: "smooth" }); } }} className="flex flex-col items-start leading-none cursor-pointer">
             <span className="text-sm font-bold tracking-tight text-white drop-shadow-sm">
               Wellness Architect
             </span>
