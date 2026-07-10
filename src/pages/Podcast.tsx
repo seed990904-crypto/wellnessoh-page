@@ -112,8 +112,8 @@ const Podcast = () => {
             <div className="relative flex justify-center md:justify-end">
               <div className="relative w-72 md:w-full max-w-[360px]">
                 <div className="relative rounded-2xl overflow-hidden bg-muted/40 border border-border/60">
-                  <div className="absolute top-0 left-0 right-0 flex justify-center pt-4 z-10">
-                    <span className="text-[10px] font-bold tracking-[0.28em] uppercase text-foreground/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                    <span className="text-[13px] font-bold tracking-[0.28em] uppercase text-foreground/35" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       Wellness Architect
                     </span>
                   </div>
@@ -220,9 +220,9 @@ const Podcast = () => {
       {/* ─── Host Bio ─── */}
       <section className="py-16 bg-muted/30 border-t border-border">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
-          <div className="grid md:grid-cols-[220px_1fr] gap-10 items-start">
-            <div className="rounded-2xl overflow-hidden border border-border/60 bg-background">
-              <img src="/host-photo.png" alt="웰니스 아키텍트 오대표" className="w-full object-cover" />
+          <div className="grid md:grid-cols-[220px_1fr] gap-10 items-center">
+            <div className="rounded-2xl overflow-hidden border border-border/60 bg-background h-[260px]">
+              <img src="/host-photo.png" alt="웰니스 아키텍트 오대표" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
             </div>
             <div className="flex flex-col justify-center">
               <p className="font-mono-label mb-3">HOST</p>
