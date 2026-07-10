@@ -4,14 +4,14 @@ import FloatingCTA from "@/components/FloatingCTA";
 
 const IMG = {
   superVera7:  "/ingredients/ing-super-vera7.jpg",
-  epicor:      "/ingredients/ing-epicor.jpg",
+  epicor:      "/ingredients/ing-xos.jpg",
   larch:       "/ingredients/ing-larch.jpg",
   rgen:        "https://images.unsplash.com/photo-1610832958506-aa56368176cf?w=600&h=360&fit=crop&q=80&auto=format",
   curcugen:    "/ingredients/ing-curcugen.jpg",
   morikol:     "/ingredients/ing-morikol.jpg",
   chlorella:   "/ingredients/ing-chlorella.jpg",
   s7:          "/ingredients/ing-s7.jpg",
-  xos:         "/ingredients/ing-xos.jpg",
+  xos:         "/ingredients/ing-xos-oil.jpg",
   probioseb:   "/ingredients/ing-probioseb.jpg",
   creavitalis: "/ingredients/ing-creavitalis.jpg",
   wheatgrass:  "/ingredients/ing-wheatgrass.jpg",
@@ -447,8 +447,8 @@ const sectionHtml = (img: typeof IMG) => `
     <!-- 우리의 기준 : 무첨가 원칙 -->
     <div class="wa-standard">
       <span class="wa-eyebrow">우리의 기준</span>
-      <p class="wa-standard-quote">"어머님이 드셔도 되는 <span>것만</span>." 그 한 줄이 무엇을 넣지 '않을지'를 결정합니다.</p>
-      <p class="wa-standard-sub">프리미엄은 무엇을 넣느냐만큼 무엇을 거부하느냐의 문제입니다. 근거가 확실치 않은 곳에서, 우리는 편한 쪽이 아니라 신중한 쪽을 택합니다.</p>
+      <p class="wa-standard-quote">"어머님이 드셔도 되는 <span>것만</span>."<br>그 한 줄이 무엇을 넣지 '않을지'를 결정합니다.</p>
+      <p class="wa-standard-sub">프리미엄은 무엇을 넣느냐만큼 무엇을 거부하느냐의 문제입니다.<br>근거가 확실치 않은 곳에서, 우리는 편한 쪽이 아니라 신중한 쪽을 택합니다.</p>
       <div class="wa-no-grid">
         <div class="wa-no-item"><div class="wa-no-x">✕</div><div><h5>인공 향료 무첨가</h5><p>합성이나 곤충 유래가 아닌, 진짜 식물에서 향을 냅니다.</p></div></div>
         <div class="wa-no-item"><div class="wa-no-x">✕</div><div><h5>인공 감미료 무첨가</h5><p>합성 감미료는 절대 쓰지 않습니다. 아스파탐·수크랄로스·아세설팜K는 인체 연구에서 장내세균·혈당 조절 교란과 연결됩니다. 단맛이 필요할 땐 천연 나한과와 소량의 스테비아만 사용합니다.</p></div></div>
