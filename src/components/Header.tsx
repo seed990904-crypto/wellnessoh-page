@@ -8,7 +8,6 @@ const navItems = [
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "#biohacking-tools" },
-  { label: "1:1 상담", href: "#contact" },
 ];
 
 const Header = () => {
@@ -56,27 +55,27 @@ const Header = () => {
           </button>
         </div>
 
-        {/* Center Navigation – Desktop */}
-        <nav className="hidden lg:flex items-center gap-6 flex-1 justify-center">
+        {/* Center Navigation – md 이상에서 표시 */}
+        <nav className="hidden md:flex items-center gap-2 lg:gap-6 flex-1 justify-center">
           {navItems.map((item) => (
             <button
               key={item.href}
               onClick={() => scrollTo(item.href)}
-              className="text-[11px] font-medium uppercase tracking-wider text-foreground hover:text-muted-foreground transition-colors whitespace-nowrap"
+              className="text-[10px] lg:text-[11px] font-medium uppercase tracking-wider text-foreground hover:text-muted-foreground transition-colors whitespace-nowrap"
             >
               {item.label}
             </button>
           ))}
           <button
             onClick={() => scrollTo("#youth-reset")}
-            className="text-[11px] font-medium uppercase tracking-wider whitespace-nowrap text-foreground hover:text-muted-foreground transition-colors"
+            className="text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap text-foreground hover:text-muted-foreground transition-colors"
           >
             청춘리셋 참여
           </button>
         </nav>
 
-        {/* Right Section */}
-        <div className="hidden md:flex items-center gap-4 shrink-0">
+        {/* Right Section – lg 이상에서만 표시 */}
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
           <button className="flex items-center gap-1.5 text-xs font-medium border border-foreground/20 rounded-full px-4 py-1.5 text-foreground hover:bg-accent transition-colors">
             Ask Ai <Sparkles size={12} />
           </button>
@@ -91,7 +90,7 @@ const Header = () => {
       </div>
 
       {mobileOpen && (
-        <div className="fixed top-20 left-0 right-0 z-40 flex justify-center px-4 lg:hidden">
+        <div className="fixed top-20 left-0 right-0 z-40 flex justify-center px-4 md:hidden">
           <div className="w-[90%] max-w-[1200px] rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
             <nav className="flex flex-col py-5 px-8 gap-4">
               {navItems.map((item) => (

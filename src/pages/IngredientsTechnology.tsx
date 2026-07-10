@@ -35,16 +35,26 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-ingredients *{box-sizing:border-box;margin:0;padding:0}
     .wa-wrap{max-width:1160px;margin:0 auto}
 
-    .wa-intro-block{background:var(--cobalt-soft);border:1px solid #ccdcf8;
-      border-radius:22px;padding:clamp(32px,4vw,52px) clamp(24px,4vw,48px);margin-bottom:0}
-    .wa-intro{text-align:center;margin-bottom:0}
     .wa-eyebrow{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
       color:var(--cobalt);font-weight:700;margin-bottom:12px;
       font-family:'JetBrains Mono',monospace}
-    .wa-h2{font-weight:700;font-size:clamp(24px,3.5vw,40px);
-      line-height:1.3;letter-spacing:-.02em;word-break:keep-all;overflow-wrap:break-word;color:var(--ink)}
-    .wa-lead{margin-top:14px;font-size:clamp(13px,1.4vw,15px);line-height:1.85;
-      color:var(--slate);max-width:48ch;margin-left:auto;margin-right:auto;word-break:keep-all}
+
+    /* ── Page Hero (editorial header) ── */
+    .wa-page-hero{padding:12px 0 52px}
+    .wa-page-hero-grid{display:grid;grid-template-columns:1fr auto;gap:56px;align-items:flex-end}
+    .wa-page-kicker{display:block;font-size:12px;letter-spacing:.25em;text-transform:uppercase;
+      color:var(--cobalt);font-weight:700;margin-bottom:20px;
+      font-family:'JetBrains Mono',monospace}
+    .wa-page-h1{font-weight:800;font-size:clamp(28px,3.4vw,44px);line-height:1.15;
+      letter-spacing:-.03em;color:var(--ink);word-break:keep-all}
+    .wa-page-tagline{margin-top:18px;font-size:15px;line-height:1.9;
+      color:var(--slate);word-break:keep-all;max-width:46ch}
+    .wa-kpi-row{display:flex;flex-direction:column;gap:0;min-width:150px}
+    .wa-kpi{padding:12px 22px;border-top:1px solid var(--line)}
+    .wa-kpi:last-child{border-bottom:1px solid var(--line)}
+    .wa-kpi-num{font-weight:900;font-size:clamp(20px,2.4vw,28px);
+      color:var(--ink);letter-spacing:-.03em;line-height:1}
+    .wa-kpi-txt{font-size:11px;color:var(--slate);margin-top:4px;font-weight:500;line-height:1.4}
     .wa-part-label{display:flex;align-items:flex-start;gap:18px;margin:72px 0 30px;
       padding-bottom:22px;border-bottom:1.5px solid var(--line)}
     .wa-part-num{font-weight:900;font-size:13px;color:#fff;background:var(--cobalt);
@@ -79,9 +89,10 @@ const sectionHtml = (img: typeof IMG) => `
       padding:5px 11px;border-radius:999px}
     .wa-hero-desc{margin-top:18px;font-size:15px;line-height:2;color:#D7E3F7;
       word-break:keep-all;overflow-wrap:break-word}
+    .wa-hero-desc+.wa-hero-desc{margin-top:10px}
     .wa-hero-desc b{color:#fff;font-weight:600}
 
-    .wa-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:0;position:relative;z-index:1}
+    .wa-paths{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:0;position:relative;z-index:1;align-items:stretch}
     .wa-path{background:rgba(13,27,62,.56);border:1px solid rgba(255,255,255,.2);
       border-radius:16px;padding:26px 22px;display:flex;flex-direction:column;
       backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
@@ -90,7 +101,7 @@ const sectionHtml = (img: typeof IMG) => `
       color:#7AAAF5;font-weight:700;margin-top:7px;
       padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.12);
       min-height:2.8em;display:flex;align-items:center}
-    .wa-path-steps{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:8px;flex:1}
+    .wa-path-steps{margin-top:14px;list-style:none;display:flex;flex-direction:column;gap:8px}
     .wa-path-steps li{position:relative;padding-left:18px;font-size:13px;line-height:1.6;
       color:#DCE7F8;word-break:keep-all;overflow-wrap:break-word}
     .wa-path-steps li::before{content:"→";position:absolute;left:0;color:#6FA0EE;font-weight:700}
@@ -159,21 +170,14 @@ const sectionHtml = (img: typeof IMG) => `
 
     .wa-foot{margin-top:34px;font-size:12px;line-height:1.7;color:#8A98A8;max-width:80ch}
 
-    /* ── Key Stats Cards ── */
-    .wa-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:28px 0 0}
-    .wa-stat{background:#fff;border:1px solid var(--line);border-radius:18px;
-      padding:28px 22px 24px;display:flex;flex-direction:column;gap:0;
-      position:relative;overflow:hidden;
-      transition:transform .2s,box-shadow .2s}
-    .wa-stat:hover{transform:translateY(-3px);box-shadow:0 12px 32px rgba(26,115,232,.12)}
-    .wa-stat::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;
-      background:var(--cobalt);border-radius:0}
-    .wa-stat-num{font-weight:900;font-size:clamp(28px,3.2vw,42px);
-      color:var(--cobalt);letter-spacing:-.03em;line-height:1}
-    .wa-stat-title{font-size:13px;font-weight:700;color:var(--ink);margin-top:8px;line-height:1.3}
-    .wa-stat-label{font-size:12px;color:var(--slate);margin-top:4px;line-height:1.4}
-    @media(max-width:860px){.wa-stats{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:480px){.wa-stats{grid-template-columns:1fr 1fr;gap:10px}}
+    @media(max-width:860px){
+      .wa-page-hero-grid{grid-template-columns:1fr;gap:32px}
+      .wa-kpi-row{flex-direction:row;flex-wrap:wrap}
+      .wa-kpi{flex:1;min-width:100px;border-top:none;border-bottom:none;
+        border-left:1px solid var(--line);padding:0 20px}
+      .wa-kpi:first-child{border-left:none;padding-left:0}
+      .wa-kpi:last-child{border-bottom:none}
+    }
 
     /* ── Clinical Badge ── */
     .wa-clinical{display:inline-flex;align-items:center;gap:5px;font-size:11px;
@@ -216,33 +220,31 @@ const sectionHtml = (img: typeof IMG) => `
 
   <div class="wa-wrap">
 
-    <!-- 헤더 + 핵심 수치 통합 블록 -->
-    <div class="wa-intro-block">
-      <div class="wa-intro">
-        <span class="wa-eyebrow">INGREDIENTS &amp; TECHNOLOGY</span>
-        <h2 class="wa-h2">단순 배합이 아니라, 세포 수준에서 설계합니다.</h2>
-        <p class="wa-lead">우리는 좋은 원료의 목록에서 시작하지 않습니다. 몸이 그 원료를 "어떻게 받아들이는가"라는 질문에서 시작합니다. 모든 원료는 신체 회복의 4대 코너스톤 안에서 각자의 역할을 위해 선택됩니다.</p>
-      </div>
-      <div class="wa-stats">
-        <div class="wa-stat">
-          <div class="wa-stat-num">14종</div>
-          <div class="wa-stat-title">특허·독점 원료</div>
-          <div class="wa-stat-label">글로벌 특허 및 독점 공급 원료만 선별</div>
+    <!-- 페이지 헤더 (editorial style) -->
+    <div class="wa-page-hero">
+      <div class="wa-page-hero-grid">
+        <div>
+          <span class="wa-page-kicker">Ingredients &amp; Technology</span>
+          <h1 class="wa-page-h1">단순 배합이 아니라<br>세포 수준에서 설계합니다.</h1>
+          <p class="wa-page-tagline">우리는 좋은 원료의 목록에서 시작하지 않습니다. 몸이 그 원료를 "어떻게 받아들이는가"라는 질문에서 시작합니다. 모든 원료는 신체 회복의 4대 코너스톤 안에서 각자의 역할을 위해 선택됩니다.</p>
         </div>
-        <div class="wa-stat">
-          <div class="wa-stat-num">5건</div>
-          <div class="wa-stat-title">인체 임상시험</div>
-          <div class="wa-stat-label">무작위 대조 인체시험(RCT) 원료 포함</div>
-        </div>
-        <div class="wa-stat">
-          <div class="wa-stat-num">230%</div>
-          <div class="wa-stat-title">산화질소 최대 증가</div>
-          <div class="wa-stat-label">S7® 임상 데이터 기준</div>
-        </div>
-        <div class="wa-stat">
-          <div class="wa-stat-num">0가지</div>
-          <div class="wa-stat-title">인공 첨가물</div>
-          <div class="wa-stat-label">합성 부형제·인공 색소·방부제 전무</div>
+        <div class="wa-kpi-row">
+          <div class="wa-kpi">
+            <div class="wa-kpi-num">14종</div>
+            <div class="wa-kpi-txt">특허·독점 원료</div>
+          </div>
+          <div class="wa-kpi">
+            <div class="wa-kpi-num">5건</div>
+            <div class="wa-kpi-txt">인체 임상시험</div>
+          </div>
+          <div class="wa-kpi">
+            <div class="wa-kpi-num">230%</div>
+            <div class="wa-kpi-txt">산화질소 최대 증가</div>
+          </div>
+          <div class="wa-kpi">
+            <div class="wa-kpi-num">0</div>
+            <div class="wa-kpi-txt">인공 첨가물</div>
+          </div>
         </div>
       </div>
     </div>
@@ -268,12 +270,13 @@ const sectionHtml = (img: typeof IMG) => `
             <span class="wa-hero-name">SuperVera7<sup>®</sup></span>
             <span class="wa-hero-tag">독점 에이스매넌 추출물</span>
           </div>
-          <p class="wa-hero-desc">알로에 베라 속잎 젤에서 추출한 안정화·표준화 에이스매넌으로, 독점 공급으로 확보한 원료입니다. 에이스매넌은 몸이 <b>세포 간 소통·방어·복구·재생</b>에 사용하는 만노스 풍부 다당체입니다. 그 힘은 대부분의 추출물이 잃어버리는 디테일 — 전체 분자량 스펙트럼 — 에 있으며, 각 분자량 분획이 서로 다른 생리 경로를 동시에 타겟팅합니다.</p>
+          <p class="wa-hero-desc">알로에 베라 속잎 젤에서 추출한 안정화·표준화된 에이스매넌</p>
+          <p class="wa-hero-desc">에이스매넌은 몸이 <b>세포 간 소통·방어·복구·재생</b>에 사용하는 만노스 풍부 다당체입니다.<br>그 힘은 대부분의 추출물이 잃어버리는 디테일 [전체 분자량 스펙트럼]에 있으며<br>각 분자량 분획이 서로 다른 생리 경로를 동시에 타겟팅합니다.</p>
         </div>
 
         <div class="wa-paths">
           <div class="wa-path">
-            <div class="wa-path-kda">&lt; 50 kDa</div>
+            <div class="wa-path-kda">50 kDa 미만</div>
             <div class="wa-path-role">초저분자 · 흡수</div>
             <ul class="wa-path-steps">
               <li>소장 상피의 만노스 수용체를 통해 흡수</li>
@@ -293,7 +296,7 @@ const sectionHtml = (img: typeof IMG) => `
             <div class="wa-path-out">NK세포 활성 준비와 백혈구 신생 — 최고의 면역조절(&lt; 400 kDa).</div>
           </div>
           <div class="wa-path">
-            <div class="wa-path-kda">&gt; 400 kDa</div>
+            <div class="wa-path-kda">400 kDa 이상</div>
             <div class="wa-path-role">고분자 · 장 생태</div>
             <ul class="wa-path-steps">
               <li>대장까지 온전히 도달하는 프리바이오틱 섬유</li>
