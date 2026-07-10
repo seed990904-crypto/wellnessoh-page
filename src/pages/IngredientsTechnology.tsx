@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
@@ -35,12 +36,13 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-wrap{max-width:1160px;margin:0 auto}
 
     .wa-intro{text-align:center;margin-bottom:8px}
-    .wa-eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:clamp(11px,1.2vw,13px);
-      letter-spacing:.14em;color:var(--cobalt);font-weight:700;margin-bottom:16px}
-    .wa-h2{font-weight:900;font-size:clamp(24px,4.2vw,46px);
-      line-height:1.28;letter-spacing:-.01em;word-break:keep-all;overflow-wrap:break-word}
-    .wa-lead{margin-top:18px;font-size:clamp(14px,1.6vw,17px);line-height:1.85;
-      color:var(--slate);max-width:58ch;margin-left:auto;margin-right:auto;word-break:keep-all;text-wrap:balance}
+    .wa-eyebrow{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+      color:var(--slate);font-weight:700;margin-bottom:12px;
+      font-family:'JetBrains Mono',monospace}
+    .wa-h2{font-weight:700;font-size:clamp(24px,3.5vw,40px);
+      line-height:1.3;letter-spacing:-.02em;word-break:keep-all;overflow-wrap:break-word;color:var(--ink)}
+    .wa-lead{margin-top:14px;font-size:clamp(13px,1.4vw,15px);line-height:1.85;
+      color:var(--slate);max-width:48ch;margin-left:auto;margin-right:auto;word-break:keep-all}
     .wa-part-label{display:flex;align-items:center;gap:14px;margin:64px 0 26px}
     .wa-part-num{font-family:var(--serif);font-weight:700;font-size:15px;color:var(--cobalt);
       border:1.5px solid var(--cobalt);border-radius:999px;width:38px;height:38px;
@@ -132,8 +134,8 @@ const sectionHtml = (img: typeof IMG) => `
     .wa-delivery-text p b{color:var(--ink);font-weight:600}
 
     .wa-standard{margin-top:58px;border-top:1px solid var(--line);padding-top:48px}
-    .wa-standard-quote{font-family:var(--serif);font-weight:700;font-size:clamp(20px,2.7vw,29px);
-      line-height:1.5;letter-spacing:-.01em;color:var(--ink);margin-top:14px;max-width:26ch}
+    .wa-standard-quote{font-weight:700;font-size:clamp(20px,2.7vw,29px);
+      line-height:1.5;letter-spacing:-.01em;color:var(--ink);margin-top:14px;max-width:32ch;word-break:keep-all}
     .wa-standard-quote span{color:var(--cobalt)}
     .wa-standard-sub{margin-top:14px;color:var(--slate);font-size:15px;line-height:1.8;max-width:50ch}
     .wa-no-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
@@ -465,13 +467,16 @@ const sectionHtml = (img: typeof IMG) => `
 </section>
 `;
 
-const IngredientsTechnology = () => (
-  <div className="min-h-screen bg-background">
-    <Header />
-    <div className="pt-24" dangerouslySetInnerHTML={{ __html: sectionHtml(IMG) }} />
-    <Footer />
-    <FloatingCTA />
-  </div>
-);
+const IngredientsTechnology = () => {
+  useEffect(() => { window.scrollTo(0, 0); }, []);
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="pt-24" dangerouslySetInnerHTML={{ __html: sectionHtml(IMG) }} />
+      <Footer />
+      <FloatingCTA />
+    </div>
+  );
+};
 
 export default IngredientsTechnology;
