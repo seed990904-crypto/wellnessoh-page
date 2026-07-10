@@ -6,7 +6,7 @@ const navItems = [
   { label: "브랜드스토리", href: "#about" },
   { label: "원료&기술력", href: "/ingredients-technology" },
   { label: "블로그", href: "/blog" },
-  { label: "팟케스트", href: "#podcast" },
+  { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "#biohacking-tools" },
 ];
 

@@ -30,7 +30,7 @@ const sectionHtml = (img: typeof IMG) => `
       --line:#e2e8f0; --gold:#B98A2E;
       --serif:'Inter',-apple-system,sans-serif; --sans:'Inter',-apple-system,sans-serif;
       background:var(--paper); color:var(--ink); font-family:var(--sans);
-      padding:88px 24px; -webkit-font-smoothing:antialiased;
+      padding:28px 24px 88px; -webkit-font-smoothing:antialiased;
     }
     .wa-ingredients *{box-sizing:border-box;margin:0;padding:0}
     .wa-wrap{max-width:1160px;margin:0 auto}
