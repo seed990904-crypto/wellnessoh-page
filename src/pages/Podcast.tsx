@@ -80,29 +80,17 @@ const Podcast = () => {
             <div>
               <p className="font-mono-label mb-4">PODCAST</p>
               <h1 className="text-4xl md:text-5xl font-bold leading-tight tracking-tight text-foreground mb-5">
-                몸을 설계하는<br />대화
+                몸을 설계하는 대화
               </h1>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-lg mb-10">
                 웰니스 아키텍트 오대표와 함께하는 바이오해킹·장수 과학·최적 컨디션의 모든 것.
                 세포 수준의 과학을 일상 언어로 풀어드립니다.
               </p>
 
-              {/* Stats */}
-              <div className="flex items-center gap-8 mb-10">
-                <div>
-                  <div className="text-2xl font-bold text-foreground">48+</div>
-                  <div className="text-xs text-muted-foreground font-medium tracking-wide mt-0.5">에피소드</div>
-                </div>
-                <div className="w-px h-8 bg-border" />
-                <div>
-                  <div className="text-2xl font-bold text-foreground">12K+</div>
-                  <div className="text-xs text-muted-foreground font-medium tracking-wide mt-0.5">월간 청취자</div>
-                </div>
-                <div className="w-px h-8 bg-border" />
-                <div>
-                  <div className="text-2xl font-bold text-foreground">4.9★</div>
-                  <div className="text-xs text-muted-foreground font-medium tracking-wide mt-0.5">평균 평점</div>
-                </div>
+              {/* Coming soon notice */}
+              <div className="inline-flex items-center gap-2.5 mb-10 px-4 py-2.5 rounded-full bg-muted/60 border border-border">
+                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-none" />
+                <span className="text-xs text-muted-foreground">에피소드 및 청취자 통계 — <span className="text-foreground font-medium">곧 준비될 예정입니다.</span></span>
               </div>
 
               {/* Platform links */}
@@ -123,7 +111,12 @@ const Podcast = () => {
             {/* Right: host photo */}
             <div className="relative flex justify-center md:justify-end">
               <div className="relative w-72 md:w-full max-w-[360px]">
-                <div className="rounded-2xl overflow-hidden bg-muted/40 border border-border/60">
+                <div className="relative rounded-2xl overflow-hidden bg-muted/40 border border-border/60">
+                  <div className="absolute top-0 left-0 right-0 flex justify-center pt-4 z-10">
+                    <span className="text-[10px] font-bold tracking-[0.28em] uppercase text-foreground/40" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
+                      Wellness Architect
+                    </span>
+                  </div>
                   <img
                     src="/host-photo.png"
                     alt="웰니스 아키텍트 오대표"
