@@ -1,8 +1,36 @@
 import { Button } from "@/components/ui/button";
+import { toast } from "sonner";
+
+declare global {
+  interface Window {
+    Tally?: {
+      openPopup: (formId: string, options?: Record<string, unknown>) => void;
+    };
+  }
+}
 
 const HeroSection = () => {
-  const scrollToContact = () => {
-    document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+  const openLongevityScore = () => {
+    const options = {
+      width: 700,
+      onSubmit: () => {
+        toast("진단 완료!", {
+          description: "전문가의 도움이 필요하시면 1:1 컨설팅을 신청해 보세요.",
+          action: {
+            label: "상담 신청하기",
+            onClick: () =>
+              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }),
+          },
+          duration: 8000,
+        });
+      },
+    };
+
+    if (window.Tally) {
+      window.Tally.openPopup("ja9EEY", options);
+    } else {
+      window.open("https://tally.so/r/ja9EEY", "_blank");
+    }
   };
 
   return (
@@ -33,7 +61,7 @@ const HeroSection = () => {
 
         <Button
           size="lg"
-          onClick={scrollToContact}
+          onClick={openLongevityScore}
           className="mt-20 rounded-full text-base px-10 py-3 h-auto bg-transparent text-white border border-white hover:bg-white hover:text-black transition-all duration-300"
         >
           Longevity Score

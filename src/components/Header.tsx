@@ -8,6 +8,7 @@ const navItems = [
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "#biohacking-tools" },
+  { label: "1:1 상담", href: "#contact" },
 ];
 
 const Header = () => {

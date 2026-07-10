@@ -112,7 +112,7 @@ const Podcast = () => {
             <div className="relative flex justify-center md:justify-end">
               <div className="relative w-72 md:w-full max-w-[360px]">
                 <div className="relative rounded-2xl overflow-hidden bg-muted/40 border border-border/60">
-                  <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                  <div className="absolute top-[10%] left-0 right-0 flex justify-center z-10 pointer-events-none">
                     <span className="text-[13px] font-bold tracking-[0.28em] uppercase text-foreground/35" style={{ fontFamily: "'JetBrains Mono', monospace" }}>
                       Wellness Architect
                     </span>

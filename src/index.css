@@ -15,7 +15,7 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
 
-    --primary: 199 95% 60%;
+    --primary: 214 82% 51%;
     --primary-foreground: 0 0% 100%;
 
     --secondary: 150 10% 96%;
@@ -32,7 +32,7 @@
 
     --border: 220 13% 92%;
     --input: 220 13% 92%;
-    --ring: 199 95% 60%;
+    --ring: 214 82% 51%;
 
     --coral: 16 85% 60%;
     --coral-foreground: 0 0% 100%;
@@ -67,7 +67,7 @@
 @layer utilities {
   .font-mono-label {
     font-family: 'JetBrains Mono', monospace;
-    @apply text-xs tracking-widest uppercase text-muted-foreground;
+    @apply text-xs tracking-widest uppercase text-primary;
   }
 }
 

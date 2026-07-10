@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import productSuperImmune from "@/assets/product-super-immune.jpg";
 import productSuperGreens from "@/assets/product-super-greens.png";
 import productSuperGClean from "@/assets/product-super-gclean.png";
@@ -23,6 +24,7 @@ const products = [
     name: "슈퍼지클린 (SUPER G.CLEAN)",
     subtitle: "2시간의 마법, 장 상태 개선 클렌징 솔루션",
     bullets: ["900일 자연배양 생효소", "노폐물 가수분해 및 배출"],
+    detailPath: "/products/super-gclean",
   },
   {
     image: productSuperZyme,
@@ -67,37 +69,41 @@ const BioHackingToolsSection = () => (
   </section>
 );
 
-const ProductCard = ({ product }: { product: (typeof products)[number] }) => (
-  <div className="bg-muted/50 rounded-xl border p-6 flex flex-col">
-    <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-accent mb-5">
-      <img
-        src={product.image}
-        alt={product.name}
-        className="w-full h-full object-cover"
-        loading="lazy"
-      />
+const ProductCard = ({ product }: { product: (typeof products)[number] }) => {
+  const navigate = useNavigate();
+  return (
+    <div className="bg-muted/50 rounded-xl border p-6 flex flex-col">
+      <div className="w-full aspect-[4/3] rounded-lg overflow-hidden bg-accent mb-5">
+        <img
+          src={product.image}
+          alt={product.name}
+          className="w-full h-full object-cover"
+          loading="lazy"
+        />
+      </div>
+
+      <h3 className="font-semibold text-foreground mb-1">{product.name}</h3>
+      <p className="text-xs text-muted-foreground mb-4">{product.subtitle}</p>
+
+      <ul className="space-y-2 mb-6 flex-1">
+        {product.bullets.map((b) => (
+          <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
+            <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+            {b}
+          </li>
+        ))}
+      </ul>
+
+      <Button
+        variant="outline"
+        size="sm"
+        className="self-start rounded-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground"
+        onClick={() => product.detailPath && navigate(product.detailPath)}
+      >
+        자세히 보기
+      </Button>
     </div>
-
-    <h3 className="font-semibold text-foreground mb-1">{product.name}</h3>
-    <p className="text-xs text-muted-foreground mb-4">{product.subtitle}</p>
-
-    <ul className="space-y-2 mb-6 flex-1">
-      {product.bullets.map((b) => (
-        <li key={b} className="flex items-start gap-2 text-sm text-muted-foreground">
-          <span className="mt-1 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
-          {b}
-        </li>
-      ))}
-    </ul>
-
-    <Button
-      variant="outline"
-      size="sm"
-      className="self-start rounded-lg border-primary text-primary hover:bg-primary hover:text-primary-foreground"
-    >
-      자세히 보기
-    </Button>
-  </div>
-);
+  );
+};
 
 export default BioHackingToolsSection;

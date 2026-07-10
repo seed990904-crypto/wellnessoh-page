@@ -22,11 +22,12 @@ const ContactSection = () => {
       <div className="container max-w-xl">
         <div className="text-center mb-10">
           <p className="font-mono-label mb-3">1:1 CONSULTATION</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3 whitespace-nowrap">
             당신의 몸을 다시 설계할 준비가 되셨습니까?
           </h2>
           <p className="text-muted-foreground">
-            웰니스 아키텍트 오승우 대표와의 1:1 컨설팅을 신청하세요.
+            롱제비티 스코어 진단 후, 전문가의 도움이 필요하다고 느끼셨나요?<br />
+            웰니스 아키텍트 오승우 대표와 1:1로 직접 상담하세요.
           </p>
         </div>
 
