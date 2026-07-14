@@ -12,12 +12,14 @@ const products = [
     name: "슈퍼이뮨 (SUPER IMMUNE)",
     subtitle: "세포의 대화가 시작되는 면역조절 서포트",
     bullets: ["세포 통신망(당사슬) 리셋", "에이스매넌 및 초유 함유"],
+    detailPath: "/products/super-immune",
   },
   {
     image: productSuperGreens,
     name: "슈퍼그린 (SuperGreens)",
     subtitle: "식물의 혈액으로 마시는 초록빛 청춘 디톡스",
     bullets: ["체내 세포 디톡스 및 항산화", "유기농 엽록소 블렌드"],
+    detailPath: "/products/super-greens",
   },
   {
     image: productSuperGClean,
@@ -31,12 +33,14 @@ const products = [
     name: "슈퍼자임 (SUPER ZYME)",
     subtitle: "오토파지를 깨우는 마이크로바이옴 발효 솔루션",
     bullets: ["간헐적 단식 효율 극대화", "17가지 천연 초본 식단 솔루션"],
+    detailPath: "/products/super-zyme",
   },
   {
     image: productBetterSalt,
     name: "베러솔트 (Better Salt)",
     subtitle: "0.9%의 신비, 청춘을 위한 완벽한 밸런스",
     bullets: ["1200도 열처리 40종 활성 미네랄", "유해물질 0% 알칼리 소금"],
+    detailPath: "/products/better-salt",
   },
 ];
 

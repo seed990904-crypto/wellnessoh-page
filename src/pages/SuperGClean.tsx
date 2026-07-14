@@ -2,7 +2,20 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
-import PurchaseSection from "@/components/PurchaseSection";
+import PurchaseSection, { ProductConfig } from "@/components/PurchaseSection";
+
+const product: ProductConfig = {
+  brand: "청춘리셋",
+  name: "슈퍼지클린",
+  engName: "SUPER G.CLEAN",
+  tags: ["900일 자연배양 생효소", "장 상태 개선", "2시간의 마법"],
+  unitPrice: 27000,
+  freeShippingThreshold: 45000,
+  shippingFee: 3000,
+  origin: "국산",
+  manufacturer: "(주)효소세상",
+  purchaseUrl: "https://youthreset.kr/product/?idx=5",
+};
 
 const SuperGClean = () => {
   useEffect(() => {
@@ -38,7 +51,7 @@ const SuperGClean = () => {
 
             {/* 우측: 구매 섹션 (sticky) */}
             <div className="w-full md:w-[380px] shrink-0 md:sticky md:top-[96px]">
-              <PurchaseSection />
+              <PurchaseSection product={product} />
             </div>
 
           </div>

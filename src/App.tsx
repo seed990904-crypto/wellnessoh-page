@@ -9,6 +9,10 @@ import Blog from "./pages/Blog";
 import BlogPost from "./pages/BlogPost";
 import Podcast from "./pages/Podcast";
 import SuperGClean from "./pages/SuperGClean";
+import SuperImmune from "./pages/SuperImmune";
+import SuperGreens from "./pages/SuperGreens";
+import SuperZyme from "./pages/SuperZyme";
+import BetterSalt from "./pages/BetterSalt";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +30,10 @@ const App = () => (
           <Route path="/blog/:slug" element={<BlogPost />} />
           <Route path="/podcast" element={<Podcast />} />
           <Route path="/products/super-gclean" element={<SuperGClean />} />
+          <Route path="/products/super-immune" element={<SuperImmune />} />
+          <Route path="/products/super-greens" element={<SuperGreens />} />
+          <Route path="/products/super-zyme" element={<SuperZyme />} />
+          <Route path="/products/better-salt" element={<BetterSalt />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

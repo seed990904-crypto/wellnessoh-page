@@ -1,30 +1,41 @@
 import { useState } from "react";
 import { ShoppingCart, Zap } from "lucide-react";
 
-const UNIT_PRICE = 27000;
-const FREE_SHIPPING_THRESHOLD = 45000;
-const SHIPPING_FEE = 3000;
-const PURCHASE_URL = "https://youthreset.kr/product/?idx=5";
+export interface ProductConfig {
+  brand: string;
+  name: string;
+  engName: string;
+  tags: string[];
+  unitPrice: number;
+  freeShippingThreshold: number;
+  shippingFee: number;
+  origin: string;
+  manufacturer: string;
+  purchaseUrl: string;
+}
 
-const PurchaseSection = () => {
+const PurchaseSection = ({ product }: { product: ProductConfig }) => {
   const [qty, setQty] = useState(1);
 
-  const productTotal = UNIT_PRICE * qty;
-  const shipping = productTotal >= FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_FEE;
+  const productTotal = product.unitPrice * qty;
+  const isFree = product.freeShippingThreshold === 0 || productTotal >= product.freeShippingThreshold;
+  const shipping = isFree ? 0 : product.shippingFee;
   const finalTotal = productTotal + shipping;
 
   return (
     <div className="border rounded-2xl shadow-md px-6 py-8 bg-white">
 
       {/* 상품명 */}
-      <p className="text-xs text-muted-foreground mb-1 font-medium tracking-wide">청춘리셋</p>
+      <p className="text-xs text-muted-foreground mb-1 font-medium tracking-wide">
+        {product.brand}
+      </p>
       <h2 className="text-lg font-bold text-foreground leading-snug mb-3">
-        슈퍼지클린 <span className="whitespace-nowrap">SUPER G.CLEAN</span>
+        {product.name} <span className="whitespace-nowrap">{product.engName}</span>
       </h2>
 
       {/* 특징 태그 */}
       <div className="flex flex-wrap gap-2 mb-5">
-        {["900일 자연배양 생효소", "장 상태 개선", "2시간의 마법"].map((tag) => (
+        {product.tags.map((tag) => (
           <span
             key={tag}
             className="text-xs px-2.5 py-1 rounded-full bg-primary/10 text-primary font-medium"
@@ -38,7 +49,7 @@ const PurchaseSection = () => {
       <div className="flex items-baseline gap-2 mb-5">
         <span className="text-xs text-muted-foreground">판매가</span>
         <span className="text-3xl font-bold text-foreground">
-          {UNIT_PRICE.toLocaleString()}
+          {product.unitPrice.toLocaleString()}
         </span>
         <span className="text-lg font-semibold text-foreground">원</span>
       </div>
@@ -50,13 +61,15 @@ const PurchaseSection = () => {
         <div className="flex justify-between items-start">
           <span className="text-muted-foreground shrink-0">배송비</span>
           <span className="text-right font-medium">
-            {productTotal >= FREE_SHIPPING_THRESHOLD ? (
+            {product.freeShippingThreshold === 0 ? (
+              <span className="text-primary font-semibold">무료배송</span>
+            ) : productTotal >= product.freeShippingThreshold ? (
               <span className="text-primary font-semibold">무료배송</span>
             ) : (
               <span>
-                3,000원
+                {product.shippingFee.toLocaleString()}원
                 <span className="block text-xs text-muted-foreground font-normal">
-                  {FREE_SHIPPING_THRESHOLD.toLocaleString()}원 이상 무료
+                  {product.freeShippingThreshold.toLocaleString()}원 이상 무료
                 </span>
               </span>
             )}
@@ -64,7 +77,7 @@ const PurchaseSection = () => {
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground shrink-0">원산지</span>
-          <span className="text-right">국산 / (주)효소세상</span>
+          <span className="text-right">{product.origin} / {product.manufacturer}</span>
         </div>
         <div className="flex justify-between">
           <span className="text-muted-foreground shrink-0">결제</span>
@@ -112,7 +125,7 @@ const PurchaseSection = () => {
       {/* 구매 버튼 */}
       <div className="space-y-2.5">
         <a
-          href={PURCHASE_URL}
+          href={product.purchaseUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 w-full rounded-xl bg-primary text-primary-foreground py-3.5 text-sm font-bold hover:brightness-90 transition-all"
@@ -121,7 +134,7 @@ const PurchaseSection = () => {
           바로 구매하기
         </a>
         <a
-          href={PURCHASE_URL}
+          href={product.purchaseUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-2 w-full rounded-xl border border-primary text-primary py-3.5 text-sm font-semibold hover:bg-primary/5 transition-all"
@@ -130,7 +143,7 @@ const PurchaseSection = () => {
           장바구니 담기
         </a>
         <a
-          href={PURCHASE_URL}
+          href={product.purchaseUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="flex items-center justify-center gap-1.5 w-full rounded-xl text-white py-3.5 text-sm font-bold hover:brightness-90 transition-all"
