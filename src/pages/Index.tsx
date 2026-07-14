@@ -23,8 +23,8 @@ const Index = () => {
       <Header />
       <HeroSection />
       <AboutSection />
-      <YouthResetSection />
       <BioHackingToolsSection />
+      <YouthResetSection />
       <ContactSection />
       <Footer />
       <FloatingCTA />
