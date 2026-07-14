@@ -122,7 +122,7 @@ const cornerstones: Cornerstone[] = [
   {
     code: "C4",
     name: "정화와 재생",
-    sub: "다사리셋",
+    sub: "대사",
     colors: {
       accent: "bg-amber-500",
       badgeBg: "bg-amber-50",

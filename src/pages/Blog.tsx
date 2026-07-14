@@ -29,12 +29,21 @@ const formatDate = (date: string) =>
     day: "numeric",
   });
 
+// 4대 코너스톤 정의 (구조 카드용)
+const CORNERSTONE_DEFS = [
+  { code: "C1", name: "통신과 방어", sub: "면역" },
+  { code: "C2", name: "보존과 영양", sub: "항산화" },
+  { code: "C3", name: "제어와 연결", sub: "장뇌축" },
+  { code: "C4", name: "정화와 재생", sub: "대사" },
+];
+
 // C1~C4 카테고리 스타일 매핑
 const getCategoryMeta = (name: string) => {
   if (/^C1/i.test(name))
     return {
       topBar: "bg-blue-500",
       badge: "bg-blue-50 text-blue-700",
+      badgeLabel: "text-blue-600",
       activeBadge: "bg-blue-500 text-white border-blue-500",
       dot: "bg-blue-500",
       filterBase: "border-blue-200 text-blue-700 hover:bg-blue-50",
@@ -43,6 +52,7 @@ const getCategoryMeta = (name: string) => {
     return {
       topBar: "bg-teal-500",
       badge: "bg-teal-50 text-teal-700",
+      badgeLabel: "text-teal-600",
       activeBadge: "bg-teal-500 text-white border-teal-500",
       dot: "bg-teal-500",
       filterBase: "border-teal-200 text-teal-700 hover:bg-teal-50",
@@ -51,6 +61,7 @@ const getCategoryMeta = (name: string) => {
     return {
       topBar: "bg-violet-500",
       badge: "bg-violet-50 text-violet-700",
+      badgeLabel: "text-violet-600",
       activeBadge: "bg-violet-500 text-white border-violet-500",
       dot: "bg-violet-500",
       filterBase: "border-violet-200 text-violet-700 hover:bg-violet-50",
@@ -59,6 +70,7 @@ const getCategoryMeta = (name: string) => {
     return {
       topBar: "bg-amber-500",
       badge: "bg-amber-50 text-amber-700",
+      badgeLabel: "text-amber-600",
       activeBadge: "bg-amber-500 text-white border-amber-500",
       dot: "bg-amber-500",
       filterBase: "border-amber-200 text-amber-700 hover:bg-amber-50",
@@ -66,6 +78,7 @@ const getCategoryMeta = (name: string) => {
   return {
     topBar: "bg-muted-foreground/20",
     badge: "bg-muted text-muted-foreground",
+    badgeLabel: "text-muted-foreground",
     activeBadge: "bg-foreground text-background border-foreground",
     dot: "bg-muted-foreground",
     filterBase: "border-border text-muted-foreground hover:bg-muted",
@@ -136,51 +149,76 @@ const Blog = () => {
             </p>
           </div>
 
-          {/* 4대 코너스톤 컬러 범례 */}
-          {categories.filter((c) => /^C[1-4]/i.test(c.name)).length > 0 && (
-            <div className="flex justify-center gap-4 flex-wrap mb-6">
+          {/* 4대 코너스톤 구조 필터 */}
+          <div className="mb-12">
+            {/* 코너스톤 구조 카드 — C1~C4 */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+              {CORNERSTONE_DEFS.map((cs) => {
+                const cat = categories.find((c) => new RegExp(`^${cs.code}`, "i").test(c.name));
+                const isActive = cat ? activeCategory === cat.id : false;
+                const meta = getCategoryMeta(cs.code);
+                return (
+                  <button
+                    key={cs.code}
+                    onClick={() => cat && setActiveCategory(isActive ? null : cat.id)}
+                    disabled={!cat}
+                    className={`relative rounded-xl border text-left px-4 py-3 transition-all duration-200 overflow-hidden ${
+                      isActive
+                        ? `${meta.activeBadge} border-current shadow-sm`
+                        : cat
+                        ? `bg-white border-border hover:border-current/40 hover:shadow-sm ${meta.badge}`
+                        : "bg-muted/30 border-dashed border-border opacity-60 cursor-default"
+                    }`}
+                  >
+                    <div className={`absolute top-0 left-0 w-full h-0.5 ${meta.dot}`} />
+                    <p className={`font-mono text-[10px] font-bold tracking-widest mb-1 ${isActive ? "text-current/70" : meta.badgeLabel}`}>
+                      {cs.code}
+                    </p>
+                    <p className="text-xs font-semibold leading-snug mb-0.5">{cs.name}</p>
+                    <p className={`text-[10px] ${isActive ? "text-current/60" : "text-muted-foreground"}`}>· {cs.sub}</p>
+                    {cat && cat.count > 0 && (
+                      <span className={`absolute top-2.5 right-3 text-[10px] font-medium ${isActive ? "text-current/60" : "text-muted-foreground"}`}>
+                        {cat.count}
+                      </span>
+                    )}
+                    {!cat && (
+                      <span className="absolute top-2.5 right-3 text-[10px] text-muted-foreground/50">준비중</span>
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* 전체 보기 + 기타 카테고리 */}
+            <div className="flex flex-wrap gap-2">
+              <button
+                onClick={() => setActiveCategory(null)}
+                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
+                  activeCategory === null
+                    ? "bg-foreground text-background border-foreground"
+                    : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                }`}
+              >
+                전체
+              </button>
               {categories
-                .filter((c) => /^C[1-4]/i.test(c.name))
+                .filter((c) => !/^C[1-4]/i.test(c.name))
                 .map((cat) => {
                   const meta = getCategoryMeta(cat.name);
+                  const isActive = activeCategory === cat.id;
                   return (
-                    <div key={cat.id} className="flex items-center gap-1.5 text-xs text-muted-foreground">
-                      <span className={`w-2 h-2 rounded-full shrink-0 ${meta.dot}`} />
-                      <span>{cat.name}</span>
-                    </div>
+                    <button
+                      key={cat.id}
+                      onClick={() => setActiveCategory(cat.id)}
+                      className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
+                        isActive ? meta.activeBadge : `${meta.filterBase} bg-transparent`
+                      }`}
+                    >
+                      {cat.name}
+                    </button>
                   );
                 })}
             </div>
-          )}
-
-          {/* 카테고리 필터 */}
-          <div className="flex justify-center flex-wrap gap-2 mb-12">
-            <button
-              onClick={() => setActiveCategory(null)}
-              className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
-                activeCategory === null
-                  ? "bg-foreground text-background border-foreground"
-                  : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-              }`}
-            >
-              전체
-            </button>
-            {categories.map((cat) => {
-              const meta = getCategoryMeta(cat.name);
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => setActiveCategory(cat.id)}
-                  className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
-                    isActive ? meta.activeBadge : `${meta.filterBase} bg-transparent`
-                  }`}
-                >
-                  {!isActive && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dot}`} />}
-                  {cat.name}
-                </button>
-              );
-            })}
           </div>
 
           {/* 포스트 그리드 */}
