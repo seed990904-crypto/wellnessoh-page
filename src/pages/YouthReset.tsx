@@ -38,12 +38,12 @@ const phases = [
 ];
 
 const targets = [
-  { icon: "🔥", text: "40대 이후 갑자기 체력이 떨어진 분" },
-  { icon: "😴", text: "아무리 자도 피곤하고 회복이 안 되는 분" },
-  { icon: "🧠", text: "기억력·집중력이 예전 같지 않은 분" },
-  { icon: "⚖️", text: "식단 관리해도 체중이 변하지 않는 분" },
-  { icon: "💊", text: "건강기능식품을 먹어도 효과를 못 느끼는 분" },
-  { icon: "🌱", text: "근본적인 건강 회복을 원하는 분" },
+  { icon: "🔥", title: "체력 저하", text: "40대 이후 예전과 달리\n갑자기 체력이 떨어진 분" },
+  { icon: "😴", title: "만성 피로", text: "아무리 자도 피곤하고\n회복이 되지 않는 분" },
+  { icon: "🧠", title: "인지 기능 저하", text: "기억력·집중력이\n예전 같지 않은 분" },
+  { icon: "⚖️", title: "체중 정체", text: "식단을 관리해도\n체중이 변하지 않는 분" },
+  { icon: "💊", title: "보충제 무반응", text: "건강기능식품을 먹어도\n효과를 느끼지 못하는 분" },
+  { icon: "🌱", title: "루트케어 추구", text: "대증요법이 아닌\n근본적인 건강 회복을 원하는 분" },
 ];
 
 const includes = [
@@ -191,9 +191,15 @@ const YouthReset = () => {
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {targets.map((t) => (
-              <div key={t.text} className="bg-white rounded-xl border px-5 py-4 flex items-start gap-3">
-                <span className="text-xl shrink-0">{t.icon}</span>
-                <p className="text-sm text-foreground leading-relaxed">{t.text}</p>
+              <div
+                key={t.title}
+                className="bg-white rounded-2xl border border-border/60 px-6 py-5 flex flex-col gap-3 hover:shadow-sm hover:-translate-y-0.5 transition-all duration-200"
+              >
+                <span className="text-2xl">{t.icon}</span>
+                <div>
+                  <p className="font-semibold text-foreground text-sm mb-1.5">{t.title}</p>
+                  <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-line">{t.text}</p>
+                </div>
               </div>
             ))}
           </div>
