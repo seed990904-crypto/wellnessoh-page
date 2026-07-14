@@ -41,11 +41,11 @@ const SuperGClean = () => {
 
             {/* 좌측: 제품 이미지 + 소개 */}
             <div className="flex-1 min-w-0">
-              <div className="rounded-2xl bg-muted/20 flex items-center justify-center p-8 mb-6" style={{ minHeight: "340px" }}>
+              <div className="rounded-2xl bg-muted/20 flex items-center justify-center p-6 mb-6" style={{ minHeight: "480px" }}>
                 <img
                   src={productImg}
                   alt="슈퍼지클린"
-                  className="max-h-72 w-auto max-w-full object-contain"
+                  className="max-h-[420px] w-auto max-w-full object-contain"
                 />
               </div>
               <h1 className="text-2xl font-bold text-foreground mb-2">
@@ -80,7 +80,7 @@ const SuperGClean = () => {
           {/* 하단: 상품 상세 이미지 */}
           <div className="mt-16 border-t pt-12">
             <h2 className="text-xl font-bold text-foreground text-center mb-8">상품 상세</h2>
-            <div className="max-w-[860px] mx-auto">
+            <div className="max-w-[560px] mx-auto">
               <img
                 src="/super-gclean-detail-1.png"
                 alt="슈퍼지클린 상세 1"

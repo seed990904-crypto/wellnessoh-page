@@ -39,11 +39,11 @@ const SuperGreens = () => {
 
             {/* 좌측: 제품 이미지 + 소개 */}
             <div className="flex-1 min-w-0">
-              <div className="rounded-2xl bg-muted/20 flex items-center justify-center p-8 mb-6" style={{ minHeight: "340px" }}>
+              <div className="rounded-2xl bg-muted/20 flex items-center justify-center p-6 mb-6" style={{ minHeight: "480px" }}>
                 <img
                   src={productImg}
                   alt="슈퍼그린"
-                  className="max-h-72 w-auto max-w-full object-contain"
+                  className="max-h-[420px] w-auto max-w-full object-contain"
                 />
               </div>
               <h1 className="text-2xl font-bold text-foreground mb-2">
