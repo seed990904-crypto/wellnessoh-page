@@ -151,6 +151,13 @@ const Blog = () => {
 
           {/* 4대 코너스톤 구조 필터 */}
           <div className="mb-12">
+            {/* 섹션 라벨 */}
+            <div className="flex items-center gap-3 mb-4">
+              <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">4대 코너스톤</span>
+              <span className="flex-1 h-px bg-border" />
+              <span className="text-[10px] text-muted-foreground">카드를 클릭해 해당 주제만 모아보세요</span>
+            </div>
+
             {/* 코너스톤 구조 카드 — C1~C4 */}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
               {CORNERSTONE_DEFS.map((cs) => {
@@ -162,28 +169,41 @@ const Blog = () => {
                     key={cs.code}
                     onClick={() => cat && setActiveCategory(isActive ? null : cat.id)}
                     disabled={!cat}
-                    className={`relative rounded-xl border text-left px-4 py-3 transition-all duration-200 overflow-hidden ${
+                    className={`relative rounded-xl border text-left px-4 py-4 transition-all duration-200 overflow-hidden ${
                       isActive
                         ? `${meta.activeBadge} border-current shadow-sm`
                         : cat
-                        ? `bg-white border-border hover:border-current/40 hover:shadow-sm ${meta.badge}`
-                        : "bg-muted/30 border-dashed border-border opacity-60 cursor-default"
+                        ? `bg-white border-border hover:border-current/40 hover:shadow-sm`
+                        : "bg-muted/30 border-dashed border-border opacity-50 cursor-default"
                     }`}
                   >
-                    <div className={`absolute top-0 left-0 w-full h-0.5 ${meta.dot}`} />
-                    <p className={`font-mono text-[10px] font-bold tracking-widest mb-1 ${isActive ? "text-current/70" : meta.badgeLabel}`}>
-                      {cs.code}
+                    {/* 상단 컬러 바 */}
+                    <div className={`absolute top-0 left-0 w-full h-1 ${meta.dot}`} />
+
+                    {/* 한글 이름 (메인) */}
+                    <p className={`text-sm font-bold leading-snug mb-1 mt-1 ${isActive ? "text-white" : "text-foreground"}`}>
+                      {cs.name}
                     </p>
-                    <p className="text-xs font-semibold leading-snug mb-0.5">{cs.name}</p>
-                    <p className={`text-[10px] ${isActive ? "text-current/60" : "text-muted-foreground"}`}>· {cs.sub}</p>
-                    {cat && cat.count > 0 && (
-                      <span className={`absolute top-2.5 right-3 text-[10px] font-medium ${isActive ? "text-current/60" : "text-muted-foreground"}`}>
-                        {cat.count}
+
+                    {/* 키워드 */}
+                    <p className={`text-xs font-medium mb-2 ${isActive ? "text-white/80" : meta.badgeLabel}`}>
+                      {cs.sub}
+                    </p>
+
+                    {/* 하단 보조 정보 */}
+                    <div className="flex items-center justify-between">
+                      <span className={`font-mono text-[10px] font-semibold tracking-widest ${isActive ? "text-white/60" : "text-muted-foreground/50"}`}>
+                        {cs.code}
                       </span>
-                    )}
-                    {!cat && (
-                      <span className="absolute top-2.5 right-3 text-[10px] text-muted-foreground/50">준비중</span>
-                    )}
+                      {cat && cat.count > 0 && (
+                        <span className={`text-[10px] ${isActive ? "text-white/60" : "text-muted-foreground"}`}>
+                          {cat.count}편
+                        </span>
+                      )}
+                      {!cat && (
+                        <span className="text-[10px] text-muted-foreground/40">준비중</span>
+                      )}
+                    </div>
                   </button>
                 );
               })}
