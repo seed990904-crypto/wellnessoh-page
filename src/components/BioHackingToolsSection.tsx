@@ -197,7 +197,7 @@ const BioHackingToolsSection = () => (
               <div
                 className={`grid gap-5 ${
                   cs.products.length === 1
-                    ? "sm:grid-cols-1 max-w-[480px]"
+                    ? "sm:grid-cols-1 max-w-[480px] mx-auto"
                     : "sm:grid-cols-2"
                 }`}
               >
