@@ -149,17 +149,28 @@ const Blog = () => {
             </p>
           </div>
 
-          {/* 4대 코너스톤 구조 필터 */}
+          {/* 필터 바 */}
           <div className="mb-12">
-            {/* 섹션 라벨 */}
-            <div className="flex items-center gap-3 mb-4">
-              <span className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase">4대 코너스톤</span>
-              <span className="flex-1 h-px bg-border" />
-              <span className="text-[10px] text-muted-foreground">카드를 클릭해 해당 주제만 모아보세요</span>
-            </div>
+            {/* 4대 코너스톤 라벨 */}
+            <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase mb-3">
+              4대 코너스톤
+            </p>
 
-            {/* 코너스톤 구조 카드 — C1~C4 */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-5">
+            {/* 전체 + 코너스톤 필터 — 한 줄 */}
+            <div className="flex flex-wrap gap-2 mb-2">
+              {/* 전체 */}
+              <button
+                onClick={() => setActiveCategory(null)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
+                  activeCategory === null
+                    ? "bg-foreground text-background border-foreground"
+                    : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                }`}
+              >
+                전체
+              </button>
+
+              {/* 코너스톤 필 */}
               {CORNERSTONE_DEFS.map((cs) => {
                 const cat = categories.find((c) => new RegExp(`^${cs.code}`, "i").test(c.name));
                 const isActive = cat ? activeCategory === cat.id : false;
@@ -169,58 +180,26 @@ const Blog = () => {
                     key={cs.code}
                     onClick={() => cat && setActiveCategory(isActive ? null : cat.id)}
                     disabled={!cat}
-                    className={`relative rounded-xl border text-left px-4 py-4 transition-all duration-200 overflow-hidden ${
+                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
                       isActive
-                        ? `${meta.activeBadge} border-current shadow-sm`
+                        ? meta.activeBadge
                         : cat
-                        ? `bg-white border-border hover:border-current/40 hover:shadow-sm`
-                        : "bg-muted/30 border-dashed border-border opacity-50 cursor-default"
+                        ? `bg-transparent ${meta.filterBase}`
+                        : "border-dashed border-border text-muted-foreground/40 cursor-default"
                     }`}
                   >
-                    {/* 상단 컬러 바 */}
-                    <div className={`absolute top-0 left-0 w-full h-1 ${meta.dot}`} />
-
-                    {/* 한글 이름 (메인) */}
-                    <p className={`text-sm font-bold leading-snug mb-1 mt-1 ${isActive ? "text-white" : "text-foreground"}`}>
-                      {cs.name}
-                    </p>
-
-                    {/* 키워드 */}
-                    <p className={`text-xs font-medium mb-2 ${isActive ? "text-white/80" : meta.badgeLabel}`}>
-                      {cs.sub}
-                    </p>
-
-                    {/* 하단 보조 정보 */}
-                    <div className="flex items-center justify-between">
-                      <span className={`font-mono text-[10px] font-semibold tracking-widest ${isActive ? "text-white/60" : "text-muted-foreground/50"}`}>
-                        {cs.code}
-                      </span>
-                      {cat && cat.count > 0 && (
-                        <span className={`text-[10px] ${isActive ? "text-white/60" : "text-muted-foreground"}`}>
-                          {cat.count}편
-                        </span>
-                      )}
-                      {!cat && (
-                        <span className="text-[10px] text-muted-foreground/40">준비중</span>
-                      )}
-                    </div>
+                    {!isActive && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dot}`} />}
+                    <span>{cs.name}</span>
+                    <span className={`${isActive ? "opacity-70" : "opacity-50"} font-normal`}>· {cs.sub}</span>
+                    {cat && cat.count > 0 && !isActive && (
+                      <span className="text-[10px] text-muted-foreground/60">{cat.count}</span>
+                    )}
+                    {!cat && <span className="text-[10px] opacity-40">준비중</span>}
                   </button>
                 );
               })}
-            </div>
 
-            {/* 전체 보기 + 기타 카테고리 */}
-            <div className="flex flex-wrap gap-2">
-              <button
-                onClick={() => setActiveCategory(null)}
-                className={`px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
-                  activeCategory === null
-                    ? "bg-foreground text-background border-foreground"
-                    : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                }`}
-              >
-                전체
-              </button>
+              {/* 기타 카테고리 (C1~C4 외) */}
               {categories
                 .filter((c) => !/^C[1-4]/i.test(c.name))
                 .map((cat) => {
@@ -230,7 +209,7 @@ const Blog = () => {
                     <button
                       key={cat.id}
                       onClick={() => setActiveCategory(cat.id)}
-                      className={`inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium tracking-wide transition-colors border ${
+                      className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
                         isActive ? meta.activeBadge : `${meta.filterBase} bg-transparent`
                       }`}
                     >
