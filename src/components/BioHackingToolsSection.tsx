@@ -30,6 +30,7 @@ type Cornerstone = {
   sub: string;
   colors: Colors;
   products: Product[];
+  comingSoon?: string;
 };
 
 const cornerstones: Cornerstone[] = [
@@ -118,6 +119,21 @@ const cornerstones: Cornerstone[] = [
       },
     ],
   },
+  {
+    code: "C4",
+    name: "정화와 재생",
+    sub: "다사리셋",
+    colors: {
+      accent: "bg-amber-500",
+      badgeBg: "bg-amber-50",
+      badgeText: "text-amber-700",
+      dot: "bg-amber-500",
+      label: "text-amber-600",
+      cardBar: "bg-amber-500",
+    },
+    products: [],
+    comingSoon: "코어루틴 1.0 출시 예정",
+  },
 ];
 
 const BioHackingToolsSection = () => (
@@ -168,18 +184,28 @@ const BioHackingToolsSection = () => (
               </span>
             </div>
 
-            {/* 제품 카드 */}
-            <div
-              className={`grid gap-5 ${
-                cs.products.length === 1
-                  ? "sm:grid-cols-1 max-w-[480px]"
-                  : "sm:grid-cols-2"
-              }`}
-            >
-              {cs.products.map((p) => (
-                <ProductCard key={p.name} product={p} colors={cs.colors} />
-              ))}
-            </div>
+            {/* 제품 카드 or 출시 예정 */}
+            {cs.products.length === 0 ? (
+              <div className={`rounded-xl border border-dashed p-8 flex flex-col items-center justify-center text-center gap-3 ${cs.colors.badgeBg}`}>
+                <span className={`text-xs font-mono font-bold tracking-widest ${cs.colors.label}`}>{cs.code}</span>
+                <p className={`text-sm font-semibold ${cs.colors.badgeText}`}>{cs.comingSoon}</p>
+                <p className="text-xs text-muted-foreground max-w-xs leading-relaxed">
+                  {cs.name} 코너스톤의 제품이 곧 출시됩니다.
+                </p>
+              </div>
+            ) : (
+              <div
+                className={`grid gap-5 ${
+                  cs.products.length === 1
+                    ? "sm:grid-cols-1 max-w-[480px]"
+                    : "sm:grid-cols-2"
+                }`}
+              >
+                {cs.products.map((p) => (
+                  <ProductCard key={p.name} product={p} colors={cs.colors} />
+                ))}
+              </div>
+            )}
           </div>
         ))}
       </div>

@@ -100,7 +100,11 @@ const Blog = () => {
       setPosts(postsData.filter((p: WPPost) => !HIDDEN_SLUGS.includes(p.slug)));
       setCategories(
         sortCategories(
-          catsData.filter((c: WPCategory) => !HIDDEN_CATS.includes(c.name) && c.count > 0)
+          catsData.filter(
+            (c: WPCategory) =>
+              !HIDDEN_CATS.includes(c.name) &&
+              (c.count > 0 || /^C[1-4]/i.test(c.name))
+          )
         )
       );
       setLoading(false);
