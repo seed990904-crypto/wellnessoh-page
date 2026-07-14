@@ -8,6 +8,7 @@ const navItems = [
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "#biohacking-tools" },
+  { label: "청춘리셋 참여", href: "/youth-reset" },
 ];
 
 const Header = () => {
@@ -66,12 +67,6 @@ const Header = () => {
               {item.label}
             </button>
           ))}
-          <button
-            onClick={() => scrollTo("#youth-reset")}
-            className="text-[10px] lg:text-[11px] font-medium uppercase tracking-wider whitespace-nowrap text-foreground hover:text-muted-foreground transition-colors"
-          >
-            청춘리셋 참여
-          </button>
         </nav>
 
         {/* Right Section – lg 이상에서만 표시 */}
@@ -102,13 +97,6 @@ const Header = () => {
                   {item.label}
                 </button>
               ))}
-              <button
-                onClick={() => scrollTo("#youth-reset")}
-                className="text-xs font-medium uppercase tracking-wider text-foreground hover:text-muted-foreground text-left"
-              >
-                청춘리셋 참여
-              </button>
-
               <div className="flex items-center gap-4 pt-3 border-t border-border mt-2">
                 <button className="flex items-center gap-1.5 text-xs font-medium border border-foreground/20 rounded-full px-4 py-1.5 text-foreground">
                   Ask Ai <Sparkles size={12} />

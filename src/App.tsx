@@ -13,6 +13,7 @@ import SuperImmune from "./pages/SuperImmune";
 import SuperGreens from "./pages/SuperGreens";
 import SuperZyme from "./pages/SuperZyme";
 import BetterSalt from "./pages/BetterSalt";
+import YouthReset from "./pages/YouthReset";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/products/super-greens" element={<SuperGreens />} />
           <Route path="/products/super-zyme" element={<SuperZyme />} />
           <Route path="/products/better-salt" element={<BetterSalt />} />
+          <Route path="/youth-reset" element={<YouthReset />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

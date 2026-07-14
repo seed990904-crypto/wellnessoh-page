@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Check, ArrowRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const phases = [
   {
@@ -31,7 +32,9 @@ const phases = [
   },
 ];
 
-const YouthResetSection = () => (
+const YouthResetSection = () => {
+  const navigate = useNavigate();
+  return (
   <section id="youth-reset" className="bg-background py-24 md:py-32">
     <div className="container max-w-6xl">
       {/* Header */}
@@ -87,6 +90,7 @@ const YouthResetSection = () => (
       <div className="text-center mt-14">
         <Button
           size="lg"
+          onClick={() => navigate("/youth-reset#waitlist")}
           className="rounded-full px-10 py-4 h-auto text-base font-semibold bg-primary text-primary-foreground hover:bg-primary/90"
         >
           청춘리셋 다음 기수 대기자 등록하기
@@ -94,6 +98,7 @@ const YouthResetSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default YouthResetSection;
