@@ -2,15 +2,36 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Check } from "lucide-react";
+import { Check, ClipboardList } from "lucide-react";
 
 const ContactSection = () => {
   const [form, setForm] = useState({ name: "", phone: "", email: "", concern: "" });
+  const [longevityDone, setLongevityDone] = useState(false);
+  const [longevityError, setLongevityError] = useState(false);
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const openLongevityScore = () => {
+    const options = {
+      width: 700,
+      onSubmit: () => {
+        setLongevityDone(true);
+        setLongevityError(false);
+      },
+    };
+    if (window.Tally) {
+      window.Tally.openPopup("ja9EEY", options);
+    } else {
+      window.open("https://tally.so/r/ja9EEY", "_blank");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!form.name || !form.phone || !form.email) return;
+    if (!longevityDone) {
+      setLongevityError(true);
+      return;
+    }
     setStatus("sending");
     try {
       const res = await fetch("https://formsubmit.co/ajax/call2life@naver.com", {
@@ -21,12 +42,14 @@ const ContactSection = () => {
           연락처: form.phone,
           이메일: form.email,
           건강고민: form.concern || "없음",
+          롱제버티스코어진단: "완료",
           _subject: "1:1 웰니스 상담 신청",
         }),
       });
       if (res.ok) {
         setStatus("success");
         setForm({ name: "", phone: "", email: "", concern: "" });
+        setLongevityDone(false);
       } else {
         setStatus("error");
       }
@@ -61,6 +84,42 @@ const ContactSection = () => {
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
+
+            {/* 롱제버티 스코어 진단 */}
+            <div className={`rounded-xl border p-4 transition-colors ${longevityDone ? "bg-primary/5 border-primary/30" : longevityError ? "bg-red-50 border-red-200" : "bg-muted/40 border-border"}`}>
+              <div className="flex items-start gap-3">
+                <div className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${longevityDone ? "bg-primary/10" : "bg-muted"}`}>
+                  {longevityDone
+                    ? <Check className="w-5 h-5 text-primary" />
+                    : <ClipboardList className="w-5 h-5 text-muted-foreground" />
+                  }
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-sm font-semibold text-foreground mb-0.5">
+                    롱제버티 스코어 진단 <span className="text-primary">*</span>
+                  </p>
+                  <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
+                    {longevityDone
+                      ? "진단이 완료되었습니다. 아래 정보를 입력하고 상담을 신청해 주세요."
+                      : "상담 전 나의 건강 점수를 먼저 확인해 주세요. (필수)"}
+                  </p>
+                  {!longevityDone && (
+                    <Button
+                      type="button"
+                      size="sm"
+                      onClick={openLongevityScore}
+                      className="rounded-lg text-xs bg-primary text-primary-foreground hover:bg-primary/90 h-8 px-4"
+                    >
+                      지금 진단하기 →
+                    </Button>
+                  )}
+                </div>
+              </div>
+              {longevityError && (
+                <p className="text-red-500 text-xs mt-3 ml-12">롱제버티 스코어 진단을 먼저 완료해 주세요.</p>
+              )}
+            </div>
+
             <div>
               <label className="text-sm font-medium text-foreground mb-1.5 block">이름 <span className="text-primary">*</span></label>
               <Input
