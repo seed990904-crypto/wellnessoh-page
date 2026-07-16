@@ -63,7 +63,7 @@ const ContactSection = () => {
       <div className="container max-w-xl">
         <div className="text-center mb-10">
           <p className="font-mono-label mb-3">1:1 CONSULTATION</p>
-          <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 whitespace-nowrap">
             당신의 몸을 다시 설계할 준비가 되셨습니까?
           </h2>
           <p className="text-muted-foreground text-sm leading-relaxed">
