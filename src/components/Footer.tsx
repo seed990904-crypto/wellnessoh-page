@@ -6,7 +6,7 @@ const Footer = () => (
           Wellness Architect | 오승우
         </p>
         <div className="flex items-center gap-6 text-sm text-muted-foreground">
-          <a href="#" className="hover:text-foreground transition-colors">
+          <a href="https://www.instagram.com/wellness_architect.oh?igsh=MTNrMzIycG9xaXRsNQ==" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
             인스타그램
           </a>
           <a href="#" className="hover:text-foreground transition-colors">
