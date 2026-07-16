@@ -50,8 +50,8 @@ const Header = () => {
               Wellness Architect
             </span>
             <span className="w-full h-px bg-foreground/20 my-0.5" />
-            <span className="text-[10px] tracking-[0.25em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
-              웰니스 아키텍트 오대표
+            <span className="text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
+              웰니스 아키텍트
             </span>
           </button>
         </div>
