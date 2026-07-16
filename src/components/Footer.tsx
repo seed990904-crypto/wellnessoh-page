@@ -9,7 +9,7 @@ const Footer = () => (
           <a href="https://www.instagram.com/wellness_architect.oh?igsh=MTNrMzIycG9xaXRsNQ==" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
             인스타그램
           </a>
-          <a href="#" className="hover:text-foreground transition-colors">
+          <a href="https://cafe.naver.com/ccreset" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
             네이버 카페 (바이오해커 클럽)
           </a>
           <a href="#contact" className="hover:text-foreground transition-colors">
