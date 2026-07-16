@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, Search, User, Sparkles } from "lucide-react";
+import { Menu, X, User } from "lucide-react";
 
 const navItems = [
   { label: "브랜드스토리", href: "#about" },
@@ -71,12 +71,6 @@ const Header = () => {
 
         {/* Right Section – lg 이상에서만 표시 */}
         <div className="hidden lg:flex items-center gap-4 shrink-0">
-          <button className="flex items-center gap-1.5 text-xs font-medium border border-foreground/20 rounded-full px-4 py-1.5 text-foreground hover:bg-accent transition-colors">
-            Ask Ai <Sparkles size={12} />
-          </button>
-          <button className="p-1.5 text-foreground hover:text-muted-foreground transition-colors">
-            <Search size={18} />
-          </button>
           <button className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors">
             <User size={18} />
             <span>Login</span>
@@ -98,12 +92,6 @@ const Header = () => {
                 </button>
               ))}
               <div className="flex items-center gap-4 pt-3 border-t border-border mt-2">
-                <button className="flex items-center gap-1.5 text-xs font-medium border border-foreground/20 rounded-full px-4 py-1.5 text-foreground">
-                  Ask Ai <Sparkles size={12} />
-                </button>
-                <button className="p-1.5 text-foreground">
-                  <Search size={18} />
-                </button>
                 <button className="flex items-center gap-1.5 text-xs text-foreground">
                   <User size={18} />
                   <span>Login</span>
