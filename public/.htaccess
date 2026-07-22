@@ -1,0 +1,15 @@
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteBase /
+
+  # 물리적 파일/디렉토리는 직접 서빙 (wp-content, wp-admin, assets 등 포함)
+  RewriteCond %{REQUEST_FILENAME} -f [OR]
+  RewriteCond %{REQUEST_FILENAME} -d
+  RewriteRule ^ - [L]
+
+  # WordPress REST API는 WordPress로
+  RewriteRule ^wp-json(/.*)?$ /index.php [L]
+
+  # 나머지 모든 경로 → React SPA
+  RewriteRule ^ /index.html [L]
+</IfModule>
