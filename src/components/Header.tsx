@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Menu, X, User } from "lucide-react";
+import AuthModal from "@/components/AuthModal";
 
 const navItems = [
   { label: "브랜드스토리", href: "#about" },
@@ -13,6 +14,7 @@ const navItems = [
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [authOpen, setAuthOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -71,7 +73,10 @@ const Header = () => {
 
         {/* Right Section – lg 이상에서만 표시 */}
         <div className="hidden lg:flex items-center gap-4 shrink-0">
-          <button className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors">
+          <button
+            onClick={() => setAuthOpen(true)}
+            className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
+          >
             <User size={18} />
             <span>Login</span>
           </button>
@@ -92,7 +97,10 @@ const Header = () => {
                 </button>
               ))}
               <div className="flex items-center gap-4 pt-3 border-t border-border mt-2">
-                <button className="flex items-center gap-1.5 text-xs text-foreground">
+                <button
+                  onClick={() => { setMobileOpen(false); setAuthOpen(true); }}
+                  className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
+                >
                   <User size={18} />
                   <span>Login</span>
                 </button>
@@ -101,6 +109,8 @@ const Header = () => {
           </div>
         </div>
       )}
+
+      <AuthModal open={authOpen} onOpenChange={setAuthOpen} />
     </header>
   );
 };
