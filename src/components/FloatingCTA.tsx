@@ -1,9 +1,12 @@
 import { useState, useEffect, useRef } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { MessageCircle } from "lucide-react";
 
 const FloatingCTA = () => {
   const [expanded, setExpanded] = useState(false);
-  const ref = useRef<HTMLAnchorElement>(null);
+  const ref = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   // 외부 클릭 시 닫기
   useEffect(() => {
@@ -17,18 +20,23 @@ const FloatingCTA = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, [expanded]);
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleClick = () => {
     if (!expanded) {
-      e.preventDefault();
       setExpanded(true);
+      return;
     }
-    // 펼쳐진 상태에서 클릭하면 #contact로 이동
+    // 펼쳐진 상태: 홈이면 스크롤, 다른 페이지면 홈으로 이동 후 #contact
+    if (location.pathname === "/") {
+      document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
+    } else {
+      navigate("/#contact");
+    }
+    setExpanded(false);
   };
 
   return (
-    <a
+    <div
       ref={ref}
-      href="#contact"
       onClick={handleClick}
       className="fixed z-50 bottom-6 right-6 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground shadow-lg hover:brightness-90 overflow-hidden cursor-pointer"
       style={{
@@ -54,7 +62,7 @@ const FloatingCTA = () => {
       >
         1:1 웰니스 컨설팅 신청하기
       </span>
-    </a>
+    </div>
   );
 };
 
