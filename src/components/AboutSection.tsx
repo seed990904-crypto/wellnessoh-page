@@ -4,7 +4,7 @@ import heroPortrait from "@/assets/hero-portrait.jpg";
 
 const AboutSection = () => {
   return (
-    <section id="about" className="bg-background py-28 md:py-36">
+    <section id="about" className="bg-background py-20 md:py-36">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-center">
           {/* Left Column: Portrait */}

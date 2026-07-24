@@ -41,7 +41,7 @@ const YouthResetSection = () => {
   const navigate = useNavigate();
 
   return (
-    <section id="youth-reset" className="bg-foreground text-background py-24 md:py-32">
+    <section id="youth-reset" className="bg-foreground text-background py-16 md:py-32">
       <div className="max-w-6xl mx-auto px-6 md:px-12">
 
         {/* 헤더 */}

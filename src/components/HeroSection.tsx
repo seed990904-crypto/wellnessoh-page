@@ -95,7 +95,7 @@ const HeroSection = () => {
         </div>
 
         {/* Stats row — pinned to bottom */}
-        <div className="absolute bottom-14 left-6 md:left-16 lg:left-24 flex gap-8 md:gap-12">
+        <div className="absolute bottom-14 left-6 md:left-16 lg:left-24 flex gap-5 sm:gap-8 md:gap-12">
           {stats.map((stat) => (
             <div key={stat.label}>
               <p className="text-white font-bold text-xl md:text-2xl leading-none mb-1">

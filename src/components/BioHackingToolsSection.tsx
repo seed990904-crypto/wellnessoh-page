@@ -147,7 +147,7 @@ const ProductCard = ({ product }: { product: Product }) => {
 };
 
 const BioHackingToolsSection = () => (
-  <section id="biohacking-tools" className="py-24 bg-muted/25">
+  <section id="biohacking-tools" className="py-16 md:py-24 bg-muted/25">
     <div className="max-w-6xl mx-auto px-6 md:px-12">
 
       {/* 헤더 */}

@@ -5,7 +5,7 @@ const Footer = () => (
         <p className="font-semibold text-foreground">
           Wellness Architect | 오승우
         </p>
-        <div className="flex items-center gap-6 text-sm text-muted-foreground">
+        <div className="flex flex-wrap items-center justify-center md:justify-start gap-x-6 gap-y-2 text-sm text-muted-foreground">
           <a href="https://www.instagram.com/wellness_architect.oh?igsh=MTNrMzIycG9xaXRsNQ==" target="_blank" rel="noopener noreferrer" className="hover:text-foreground transition-colors">
             인스타그램
           </a>
