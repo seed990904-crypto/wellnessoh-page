@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import heroPortrait from "@/assets/hero-portrait.jpg";
 
 const AboutSection = () => {
@@ -45,9 +46,10 @@ const AboutSection = () => {
             </div>
 
             <Button
+              asChild
               className="rounded-full px-10 py-4 h-auto text-sm font-medium bg-primary text-primary-foreground hover:bg-primary/90 mt-4"
             >
-              Learn more →
+              <Link to="/about">Learn more →</Link>
             </Button>
           </div>
         </div>

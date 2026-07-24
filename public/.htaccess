@@ -2,14 +2,27 @@
   RewriteEngine On
   RewriteBase /
 
-  # 물리적 파일/디렉토리는 직접 서빙 (wp-content, wp-admin, assets 등 포함)
+  # 물리적 파일/디렉토리는 직접 서빙 (wp-content, wp-admin, assets 등)
   RewriteCond %{REQUEST_FILENAME} -f [OR]
   RewriteCond %{REQUEST_FILENAME} -d
   RewriteRule ^ - [L]
 
-  # WordPress REST API는 WordPress로
+  # WordPress REST API / 관리자
   RewriteRule ^wp-json(/.*)?$ /index.php [L]
+  RewriteRule ^wp-admin(/.*)?$ /index.php [L]
+  RewriteRule ^wp-login\.php$ /index.php [L]
 
-  # 나머지 모든 경로 → React SPA
-  RewriteRule ^ /index.html [L]
+  # React SPA 경로 (명시적으로 지정)
+  RewriteRule ^$ /index.html [L]
+  RewriteRule ^ingredients-technology(/.*)?$ /index.html [L]
+  RewriteRule ^blog(/.*)?$ /index.html [L]
+  RewriteRule ^podcast(/.*)?$ /index.html [L]
+  RewriteRule ^products(/.*)?$ /index.html [L]
+  RewriteRule ^youth-reset(/.*)?$ /index.html [L]
+  RewriteRule ^about(/.*)?$ /index.html [L]
+
+  # 나머지 모든 경로 → WordPress
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule . /index.php [L]
 </IfModule>

@@ -1,26 +1,48 @@
 import { useState } from "react";
-import { ShoppingCart, Zap } from "lucide-react";
+import { ShoppingCart, Zap, Check } from "lucide-react";
+import { useCart } from "@/context/CartContext";
+import { buyNowWithCafe24 } from "@/lib/cafe24";
 
 export interface ProductConfig {
+  id: string;
+  cafe24ProductNo?: number;
   brand: string;
   name: string;
   engName: string;
+  image: string;
   tags: string[];
   unitPrice: number;
   freeShippingThreshold: number;
   shippingFee: number;
   origin: string;
   manufacturer: string;
-  purchaseUrl: string;
 }
 
 const PurchaseSection = ({ product }: { product: ProductConfig }) => {
   const [qty, setQty] = useState(1);
+  const [added, setAdded] = useState(false);
+  const { addToCart, openCart } = useCart();
 
   const productTotal = product.unitPrice * qty;
   const isFree = product.freeShippingThreshold === 0 || productTotal >= product.freeShippingThreshold;
   const shipping = isFree ? 0 : product.shippingFee;
   const finalTotal = productTotal + shipping;
+
+  const handleAddToCart = () => {
+    addToCart({
+      id: product.id,
+      cafe24ProductNo: product.cafe24ProductNo,
+      name: product.name,
+      engName: product.engName,
+      brand: product.brand,
+      price: product.unitPrice,
+      image: product.image,
+      qty,
+    });
+    setAdded(true);
+    setTimeout(() => setAdded(false), 2000);
+    openCart();
+  };
 
   return (
     <div className="border rounded-2xl shadow-md px-6 py-8 bg-white">
@@ -124,34 +146,31 @@ const PurchaseSection = ({ product }: { product: ProductConfig }) => {
 
       {/* 구매 버튼 */}
       <div className="space-y-2.5">
-        <a
-          href={product.purchaseUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 w-full rounded-xl bg-primary text-primary-foreground py-3.5 text-sm font-bold hover:brightness-90 transition-all"
+        <button
+          onClick={() => product.cafe24ProductNo && buyNowWithCafe24(product.cafe24ProductNo, qty)}
+          disabled={!product.cafe24ProductNo}
+          className="flex items-center justify-center gap-2 w-full rounded-xl bg-primary text-primary-foreground py-3.5 text-sm font-bold hover:brightness-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Zap size={16} />
-          바로 구매하기
-        </a>
-        <a
-          href={product.purchaseUrl}
-          target="_blank"
-          rel="noopener noreferrer"
+          {product.cafe24ProductNo ? "바로 구매하기" : "스토어 등록 준비 중"}
+        </button>
+
+        <button
+          onClick={handleAddToCart}
           className="flex items-center justify-center gap-2 w-full rounded-xl border border-primary text-primary py-3.5 text-sm font-semibold hover:bg-primary/5 transition-all"
         >
-          <ShoppingCart size={16} />
-          장바구니 담기
-        </a>
-        <a
-          href={product.purchaseUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-center gap-1.5 w-full rounded-xl text-white py-3.5 text-sm font-bold hover:brightness-90 transition-all"
-          style={{ backgroundColor: "#03c75a" }}
-        >
-          <span className="font-extrabold text-base leading-none">N</span>
-          네이버페이 구매
-        </a>
+          {added ? (
+            <>
+              <Check size={16} className="text-primary" />
+              장바구니에 담겼습니다
+            </>
+          ) : (
+            <>
+              <ShoppingCart size={16} />
+              장바구니 담기
+            </>
+          )}
+        </button>
       </div>
 
       <p className="mt-5 text-xs text-muted-foreground text-center">

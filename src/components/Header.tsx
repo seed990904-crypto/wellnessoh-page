@@ -1,7 +1,9 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ShoppingBag } from "lucide-react";
 import AuthModal from "@/components/AuthModal";
+import CartDrawer from "@/components/CartDrawer";
+import { useCart } from "@/context/CartContext";
 
 const navItems = [
   { label: "브랜드스토리", href: "#about" },
@@ -17,6 +19,7 @@ const Header = () => {
   const [authOpen, setAuthOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { totalCount, openCart } = useCart();
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
@@ -37,7 +40,7 @@ const Header = () => {
 
   return (
     <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
-      <div className="w-[90%] max-w-[1200px] flex items-center justify-between h-14 px-8 rounded-full bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
+      <div className="w-[90%] max-w-[1200px] flex items-center justify-between h-14 px-5 md:px-8 rounded-full bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
         {/* Left Section */}
         <div className="flex items-center gap-4 shrink-0">
           <button
@@ -48,11 +51,11 @@ const Header = () => {
           </button>
 
           <button onClick={() => { setMobileOpen(false); if (location.pathname !== "/") { navigate("/"); } else { window.scrollTo({ top: 0, behavior: "smooth" }); } }} className="flex flex-col items-center leading-none cursor-pointer">
-            <span className="text-sm font-bold tracking-tight text-foreground">
+            <span className="text-xs md:text-sm font-bold tracking-tight text-foreground">
               Wellness Architect
             </span>
             <span className="w-full h-px bg-foreground/20 my-0.5" />
-            <span className="text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
+            <span className="text-[9px] md:text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
               웰니스 아키텍트
             </span>
           </button>
@@ -71,11 +74,26 @@ const Header = () => {
           ))}
         </nav>
 
-        {/* Right Section – lg 이상에서만 표시 */}
-        <div className="hidden lg:flex items-center gap-4 shrink-0">
+        {/* Right Section */}
+        <div className="flex items-center gap-3 shrink-0">
+          {/* 장바구니 아이콘 — 항상 표시 */}
+          <button
+            onClick={openCart}
+            className="relative p-1.5 text-foreground hover:text-muted-foreground transition-colors"
+            aria-label="장바구니"
+          >
+            <ShoppingBag size={20} />
+            {totalCount > 0 && (
+              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center leading-none">
+                {totalCount > 9 ? "9+" : totalCount}
+              </span>
+            )}
+          </button>
+
+          {/* 로그인 — lg 이상에서만 */}
           <button
             onClick={() => setAuthOpen(true)}
-            className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
+            className="hidden lg:flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
           >
             <User size={18} />
             <span>Login</span>
@@ -86,17 +104,17 @@ const Header = () => {
       {mobileOpen && (
         <div className="fixed top-20 left-0 right-0 z-40 flex justify-center px-4 md:hidden">
           <div className="w-[90%] max-w-[1200px] rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
-            <nav className="flex flex-col py-5 px-8 gap-4">
+            <nav className="flex flex-col py-5 px-6 gap-1">
               {navItems.map((item) => (
                 <button
                   key={item.href}
                   onClick={() => scrollTo(item.href)}
-                  className="text-xs font-medium uppercase tracking-wider text-foreground hover:text-muted-foreground text-left"
+                  className="text-sm font-medium text-foreground hover:text-primary transition-colors text-left py-2.5 border-b border-border/30 last:border-0"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="flex items-center gap-4 pt-3 border-t border-border mt-2">
+              <div className="flex items-center gap-4 pt-4">
                 <button
                   onClick={() => { setMobileOpen(false); setAuthOpen(true); }}
                   className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
@@ -111,6 +129,7 @@ const Header = () => {
       )}
 
       <AuthModal open={authOpen} onOpenChange={setAuthOpen} />
+      <CartDrawer />
     </header>
   );
 };

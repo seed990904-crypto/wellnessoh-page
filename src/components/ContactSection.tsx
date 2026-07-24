@@ -63,11 +63,11 @@ const ContactSection = () => {
       <div className="container max-w-xl">
         <div className="text-center mb-10">
           <p className="font-mono-label mb-3">1:1 CONSULTATION</p>
-          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3 whitespace-nowrap">
-            당신의 몸을 다시 설계할 준비가 되셨습니까?
+          <h2 className="text-xl md:text-2xl font-bold text-foreground mb-3">
+            당신의 몸을 다시 설계할<br className="hidden sm:block" /> 준비가 되셨습니까?
           </h2>
           <p className="text-muted-foreground text-sm leading-relaxed">
-            웰니스 아키텍트 오승우 대표와 1:1로 직접 상담하세요.<br />
+            웰니스 아키텍트 오승우 대표와 1:1로 직접 상담하세요.
             건강 고민을 남겨주시면 빠르게 연락드립니다.
           </p>
         </div>
