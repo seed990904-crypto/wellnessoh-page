@@ -51,11 +51,11 @@ const Header = () => {
           </button>
 
           <button onClick={() => { setMobileOpen(false); if (location.pathname !== "/") { navigate("/"); } else { window.scrollTo({ top: 0, behavior: "smooth" }); } }} className="flex flex-col items-center leading-none cursor-pointer">
-            <span className="text-xs md:text-sm font-bold tracking-tight text-foreground">
+            <span className="text-[10px] md:text-sm font-bold tracking-tight text-foreground">
               Wellness Architect
             </span>
-            <span className="w-full h-px bg-foreground/20 my-0.5" />
-            <span className="text-[9px] md:text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
+            <span className="w-full h-px bg-foreground/20 my-0.5 hidden md:block" />
+            <span className="hidden md:block text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
               웰니스 아키텍트
             </span>
           </button>
