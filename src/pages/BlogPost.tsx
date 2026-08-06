@@ -1,15 +1,20 @@
 import { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { useSEO } from "@/hooks/useSEO";
+import { blogToProducts } from "@/config/relatedContent";
+import { productCatalog } from "@/data/productCatalog";
 
 interface WPPost {
   id: number;
   title: { rendered: string };
   content: { rendered: string };
+  excerpt: { rendered: string };
   date: string;
   categories: number[];
+  yoast_head_json?: { og_image?: { url: string }[] };
 }
 
 interface WPCategory {
@@ -18,6 +23,39 @@ interface WPCategory {
 }
 
 const WP_BASE = "https://waoh.life/wp-json/wp/v2";
+
+// ─── 관련 제품 카드 (블로그 → 제품) ──────────────────────
+function RelatedProducts({ blogSlug }: { blogSlug: string }) {
+  const slugs = blogToProducts[blogSlug] ?? [];
+  const products = slugs.map((s) => productCatalog[s]).filter(Boolean).slice(0, 2);
+  if (products.length === 0) return null;
+
+  return (
+    <div className="mt-12 pt-10 border-t border-border">
+      <p className="font-mono-label mb-5">관련 제품</p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {products.map((p) => (
+          <Link
+            key={p.slug}
+            to={`/products/${p.slug}`}
+            className="flex items-center gap-4 bg-primary/5 border border-primary/15 rounded-2xl p-4 hover:bg-primary/8 hover:shadow-sm transition-all group"
+          >
+            <div className="w-14 h-14 rounded-xl overflow-hidden shrink-0 bg-muted/30">
+              <img src={p.image} alt={p.name} className="w-full h-full object-cover" />
+            </div>
+            <div className="flex-1 min-w-0">
+              <p className="text-[10px] font-mono tracking-[0.18em] text-muted-foreground/70 uppercase mb-0.5">
+                {p.engName}
+              </p>
+              <p className="text-sm font-bold text-foreground leading-snug">{p.name}</p>
+              <p className="text-xs text-primary font-semibold mt-1.5">자세히 보기 →</p>
+            </div>
+          </Link>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const formatDate = (date: string) =>
   new Date(date).toLocaleDateString("ko-KR", {
@@ -37,7 +75,7 @@ const BlogPost = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
     Promise.all([
-      fetch(`${WP_BASE}/posts?slug=${slug}&_fields=id,title,content,date,categories`).then((r) => r.json()),
+      fetch(`${WP_BASE}/posts?slug=${slug}&_fields=id,title,content,excerpt,date,categories,yoast_head_json`).then((r) => r.json()),
       fetch(`${WP_BASE}/categories?per_page=50`).then((r) => r.json()),
     ]).then(([postsData, catsData]) => {
       if (postsData.length > 0) setPost(postsData[0]);
@@ -46,6 +84,19 @@ const BlogPost = () => {
       setLoading(false);
     });
   }, [slug]);
+
+  const plainExcerpt = post?.excerpt?.rendered
+    ? post.excerpt.rendered.replace(/<[^>]+>/g, "").trim().slice(0, 160)
+    : undefined;
+  const ogImage = post?.yoast_head_json?.og_image?.[0]?.url;
+
+  useSEO({
+    title: post ? post.title.rendered.replace(/<[^>]+>/g, "") : undefined,
+    description: plainExcerpt,
+    image: ogImage,
+    url: `/blog/${slug}`,
+    type: "article",
+  });
 
   const getCatName = (catIds: number[]) =>
     categories.find((c) => catIds.includes(c.id))?.name ?? "";
@@ -101,8 +152,10 @@ const BlogPost = () => {
             {/* 본문 */}
             <div className="wp-content" dangerouslySetInnerHTML={{ __html: post.content.rendered }} />
 
+            <RelatedProducts blogSlug={slug ?? ""} />
+
             {/* 하단 */}
-            <div className="mt-16 pt-8 border-t border-border">
+            <div className="mt-12 pt-8 border-t border-border">
               <button
                 onClick={() => navigate("/blog")}
                 className="font-mono-label hover:text-foreground transition-colors"

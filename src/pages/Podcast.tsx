@@ -3,6 +3,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Mic, Play, Clock, Calendar, Headphones, ExternalLink } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
+import { useToast } from "@/hooks/use-toast";
 
 const EPISODES = [
   {
@@ -63,7 +65,17 @@ const PLATFORMS = [
 ];
 
 const Podcast = () => {
+  useSEO({
+    title: "팟캐스트 — 웰니스 심화 강의",
+    description: "텔로미어, NAD+, 장뇌축, 미토콘드리아… 웰니스 아키텍트 오승우의 과학 기반 건강 팟캐스트.",
+    url: "/podcast",
+  });
+  const { toast } = useToast();
   useEffect(() => { window.scrollTo(0, 0); }, []);
+
+  const handleComingSoon = () => {
+    toast({ title: "서비스 준비 중", description: "팟캐스트 청취 서비스를 곧 오픈합니다." });
+  };
 
   const [featured, ...rest] = EPISODES;
 
@@ -98,7 +110,8 @@ const Podcast = () => {
                 {PLATFORMS.map((p) => (
                   <button
                     key={p.name}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-border text-foreground hover:border-foreground/40 hover:bg-muted/50 transition-colors"
+                    onClick={handleComingSoon}
+                    className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-border text-muted-foreground hover:border-foreground/40 hover:bg-muted/50 transition-colors opacity-60"
                   >
                     <Headphones size={12} />
                     {p.name}
@@ -160,7 +173,10 @@ const Podcast = () => {
                   {featured.desc}
                 </p>
                 <div className="flex flex-wrap items-center gap-4">
-                  <button className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors">
+                  <button
+                    onClick={handleComingSoon}
+                    className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
+                  >
                     <Play size={13} fill="currentColor" />
                     재생하기
                   </button>
@@ -193,6 +209,7 @@ const Podcast = () => {
             {rest.map((ep) => (
               <article
                 key={ep.num}
+                onClick={handleComingSoon}
                 className="bg-muted/50 border border-border rounded-xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
               >
                 <div className="flex items-center justify-between mb-4">

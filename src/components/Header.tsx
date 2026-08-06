@@ -1,135 +1,162 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, User, ShoppingBag } from "lucide-react";
-import AuthModal from "@/components/AuthModal";
-import CartDrawer from "@/components/CartDrawer";
-import { useCart } from "@/context/CartContext";
+import { Menu, X, User } from "lucide-react";
+
+const CAFE24_LOGIN = "https://call2life2026.cafe24.com/member/login.html";
 
 const navItems = [
   { label: "브랜드스토리", href: "#about" },
   { label: "원료&기술력", href: "/ingredients-technology" },
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
-  { label: "바이오해킹 제품", href: "#biohacking-tools" },
+  { label: "바이오해킹 제품", href: "/products" },
   { label: "청춘리셋 참여", href: "/youth-reset" },
 ];
 
 const Header = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [authOpen, setAuthOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { totalCount, openCart } = useCart();
+
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", handler, { passive: true });
+    return () => window.removeEventListener("scroll", handler);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
+
+  const isActive = (href: string) => {
+    if (href.startsWith("#")) return false;
+    return location.pathname === href || location.pathname.startsWith(href + "/");
+  };
 
   const scrollTo = (href: string) => {
     setMobileOpen(false);
-
     if (!href.startsWith("#")) {
       navigate(href);
       return;
     }
-
     if (location.pathname !== "/") {
       navigate(`/${href}`);
       return;
     }
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+  };
 
-    const el = document.querySelector(href);
-    el?.scrollIntoView({ behavior: "smooth" });
+  const handleLogoClick = () => {
+    setMobileOpen(false);
+    if (location.pathname !== "/") navigate("/");
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <header className="fixed top-5 left-0 right-0 z-50 flex justify-center px-4">
-      <div className="w-[90%] max-w-[1200px] flex items-center justify-between h-14 px-5 md:px-8 rounded-full bg-white/50 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
-        {/* Left Section */}
-        <div className="flex items-center gap-4 shrink-0">
+      <div
+        className={`w-[90%] max-w-[1200px] flex items-center justify-between h-14 px-5 md:px-8 rounded-full border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] transition-all duration-300 backdrop-blur-xl ${
+          scrolled ? "bg-white/80" : "bg-white/50"
+        }`}
+      >
+        {/* Left */}
+        <div className="flex items-center gap-3 shrink-0">
           <button
-            className="p-1.5 text-foreground hover:text-muted-foreground transition-colors"
+            className="md:hidden p-1.5 text-foreground hover:text-muted-foreground transition-colors"
             onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="메뉴"
           >
             {mobileOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          <button onClick={() => { setMobileOpen(false); if (location.pathname !== "/") { navigate("/"); } else { window.scrollTo({ top: 0, behavior: "smooth" }); } }} className="flex flex-col items-center leading-none cursor-pointer">
-            <span className="text-[10px] md:text-sm font-bold tracking-tight text-foreground">
+          <button onClick={handleLogoClick} className="flex flex-col items-center leading-none cursor-pointer">
+            <span className="text-[11px] md:text-sm font-bold tracking-tight text-foreground">
               Wellness Architect
             </span>
             <span className="w-full h-px bg-foreground/20 my-0.5 hidden md:block" />
-            <span className="hidden md:block text-[10px] tracking-[0.45em] text-foreground/60 font-medium" style={{ fontFamily: "'Noto Sans KR', sans-serif" }}>
+            <span
+              className="hidden md:block text-[10px] tracking-[0.45em] text-foreground/60 font-medium"
+              style={{ fontFamily: "'Noto Sans KR', sans-serif" }}
+            >
               웰니스 아키텍트
             </span>
           </button>
         </div>
 
-        {/* Center Navigation – md 이상에서 표시 */}
-        <nav className="hidden md:flex items-center gap-2 lg:gap-6 flex-1 justify-center">
+        {/* Center Nav */}
+        <nav className="hidden md:flex items-center gap-2 lg:gap-5 flex-1 justify-center">
           {navItems.map((item) => (
             <button
               key={item.href}
               onClick={() => scrollTo(item.href)}
-              className="text-[10px] lg:text-[11px] font-medium uppercase tracking-wider text-foreground hover:text-muted-foreground transition-colors whitespace-nowrap"
+              className={`text-[10px] lg:text-[11px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap pb-0.5 ${
+                isActive(item.href)
+                  ? "text-primary border-b border-primary"
+                  : "text-foreground hover:text-primary"
+              }`}
             >
               {item.label}
             </button>
           ))}
         </nav>
 
-        {/* Right Section */}
-        <div className="flex items-center gap-3 shrink-0">
-          {/* 장바구니 아이콘 — 항상 표시 */}
-          <button
-            onClick={openCart}
-            className="relative p-1.5 text-foreground hover:text-muted-foreground transition-colors"
-            aria-label="장바구니"
-          >
-            <ShoppingBag size={20} />
-            {totalCount > 0 && (
-              <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-primary text-primary-foreground text-[10px] font-bold flex items-center justify-center leading-none">
-                {totalCount > 9 ? "9+" : totalCount}
-              </span>
-            )}
-          </button>
-
-          {/* 로그인 — lg 이상에서만 */}
-          <button
-            onClick={() => setAuthOpen(true)}
-            className="hidden lg:flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
+        {/* Right — 카페24 로그인 */}
+        <div className="flex items-center shrink-0">
+          <a
+            href={CAFE24_LOGIN}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="로그인"
+            className="flex items-center gap-1.5 p-1.5 text-xs text-foreground hover:text-primary transition-colors"
           >
             <User size={18} />
-            <span>Login</span>
-          </button>
+            <span className="hidden md:inline">로그인</span>
+          </a>
         </div>
       </div>
 
-      {mobileOpen && (
-        <div className="fixed top-20 left-0 right-0 z-40 flex justify-center px-4 md:hidden">
-          <div className="w-[90%] max-w-[1200px] rounded-2xl bg-white/70 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
-            <nav className="flex flex-col py-5 px-6 gap-1">
-              {navItems.map((item) => (
-                <button
-                  key={item.href}
-                  onClick={() => scrollTo(item.href)}
-                  className="text-sm font-medium text-foreground hover:text-primary transition-colors text-left py-2.5 border-b border-border/30 last:border-0"
-                >
-                  {item.label}
-                </button>
-              ))}
-              <div className="flex items-center gap-4 pt-4">
-                <button
-                  onClick={() => { setMobileOpen(false); setAuthOpen(true); }}
-                  className="flex items-center gap-1.5 text-xs text-foreground hover:text-muted-foreground transition-colors"
-                >
-                  <User size={18} />
-                  <span>Login</span>
-                </button>
-              </div>
-            </nav>
-          </div>
+      {/* 모바일 메뉴 */}
+      <div
+        className={`fixed top-20 left-0 right-0 z-40 flex justify-center px-4 md:hidden transition-all duration-200 ${
+          mobileOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"
+        }`}
+      >
+        <div className="w-[90%] max-w-[1200px] rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
+          <nav className="flex flex-col py-4 px-6">
+            {navItems.map((item) => (
+              <button
+                key={item.href}
+                onClick={() => scrollTo(item.href)}
+                className={`text-sm font-medium transition-colors text-left py-3 border-b border-border/30 last:border-0 ${
+                  isActive(item.href) ? "text-primary" : "text-foreground hover:text-primary"
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+            <a
+              href={CAFE24_LOGIN}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-primary transition-colors pt-4 mt-1"
+            >
+              <User size={16} />
+              로그인 (카페24 쇼핑몰)
+            </a>
+          </nav>
         </div>
-      )}
+      </div>
 
-      <AuthModal open={authOpen} onOpenChange={setAuthOpen} />
-      <CartDrawer />
+      {/* 모바일 메뉴 배경 딤 */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-30 bg-black/10 md:hidden"
+          onClick={() => setMobileOpen(false)}
+        />
+      )}
     </header>
   );
 };

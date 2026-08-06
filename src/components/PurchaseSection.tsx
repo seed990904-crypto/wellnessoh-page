@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { ShoppingCart, Zap, Check } from "lucide-react";
-import { useCart } from "@/context/CartContext";
+import { Zap } from "lucide-react";
 import { buyNowWithCafe24 } from "@/lib/cafe24";
+import { BuyButton } from "@/components/BuyButton";
+import type { ProductSlug } from "@/config/mall";
 
 export interface ProductConfig {
   id: string;
@@ -20,29 +21,11 @@ export interface ProductConfig {
 
 const PurchaseSection = ({ product }: { product: ProductConfig }) => {
   const [qty, setQty] = useState(1);
-  const [added, setAdded] = useState(false);
-  const { addToCart, openCart } = useCart();
 
   const productTotal = product.unitPrice * qty;
   const isFree = product.freeShippingThreshold === 0 || productTotal >= product.freeShippingThreshold;
   const shipping = isFree ? 0 : product.shippingFee;
   const finalTotal = productTotal + shipping;
-
-  const handleAddToCart = () => {
-    addToCart({
-      id: product.id,
-      cafe24ProductNo: product.cafe24ProductNo,
-      name: product.name,
-      engName: product.engName,
-      brand: product.brand,
-      price: product.unitPrice,
-      image: product.image,
-      qty,
-    });
-    setAdded(true);
-    setTimeout(() => setAdded(false), 2000);
-    openCart();
-  };
 
   return (
     <div className="border rounded-2xl shadow-md px-6 py-8 bg-white">
@@ -146,6 +129,12 @@ const PurchaseSection = ({ product }: { product: ProductConfig }) => {
 
       {/* 구매 버튼 */}
       <div className="space-y-2.5">
+        <BuyButton
+          product={product.id as ProductSlug}
+          size="lg"
+          label="카페24에서 구매하기"
+          className="w-full rounded-xl"
+        />
         <button
           onClick={() => product.cafe24ProductNo && buyNowWithCafe24(product.cafe24ProductNo, qty)}
           disabled={!product.cafe24ProductNo}
@@ -153,23 +142,6 @@ const PurchaseSection = ({ product }: { product: ProductConfig }) => {
         >
           <Zap size={16} />
           {product.cafe24ProductNo ? "바로 구매하기" : "스토어 등록 준비 중"}
-        </button>
-
-        <button
-          onClick={handleAddToCart}
-          className="flex items-center justify-center gap-2 w-full rounded-xl border border-primary text-primary py-3.5 text-sm font-semibold hover:bg-primary/5 transition-all"
-        >
-          {added ? (
-            <>
-              <Check size={16} className="text-primary" />
-              장바구니에 담겼습니다
-            </>
-          ) : (
-            <>
-              <ShoppingCart size={16} />
-              장바구니 담기
-            </>
-          )}
         </button>
       </div>
 

@@ -1,5 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useJsonLd } from "@/hooks/useJsonLd";
+import { brandSchemas } from "@/data/brandSchemas";
 import { ArrowRight, Compass, BookOpen, Shield, Activity } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -114,6 +116,7 @@ const timeline = [
 ];
 
 const BrandStory = () => {
+  useJsonLd(brandSchemas);
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);

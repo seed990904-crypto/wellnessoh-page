@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { useSEO } from "@/hooks/useSEO";
 
 const IMG = {
   superVera7:  "/ingredients/ing-super-vera7.jpg",
@@ -561,6 +562,11 @@ const sectionHtml = (img: typeof IMG) => `
 `;
 
 const IngredientsTechnology = () => {
+  useSEO({
+    title: "원료 & 기술력 — 과학적 근거",
+    description: "SuperVera7, EpiCor, Curcugen 등 세계 최고 수준의 특허 원료와 웰니스 아키텍트의 제품 기술력을 소개합니다.",
+    url: "/ingredients-technology",
+  });
   useEffect(() => { window.scrollTo(0, 0); }, []);
   return (
     <div className="min-h-screen bg-background">

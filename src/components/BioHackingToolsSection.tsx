@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import productSuperImmune from "@/assets/product-super-immune.jpg";
 import productSuperGreens from "@/assets/product-super-greens.png";
@@ -187,18 +187,31 @@ const BioHackingToolsSection = () => (
         ))}
 
         {/* Coming Soon */}
-        <div className="rounded-2xl border border-dashed border-border/50 bg-muted/20 flex flex-col items-center justify-center p-10 text-center gap-4 min-h-[260px]">
+        <Link
+          to="/products"
+          className="rounded-2xl border border-dashed border-border/50 bg-muted/20 flex flex-col items-center justify-center p-10 text-center gap-4 min-h-[260px] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200 cursor-pointer"
+        >
           <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-muted text-muted-foreground tracking-widest">
             COMING SOON
           </span>
           <div className="space-y-1.5">
-            <p className="font-bold text-foreground text-sm">슈퍼롱제비티</p>
+            <p className="font-bold text-foreground text-sm">슈퍼롱제비타</p>
             <p className="font-bold text-foreground text-sm">코어루틴</p>
           </div>
           <p className="text-xs text-muted-foreground leading-relaxed">
-            출시 예정
+            출시 예정 — 전체 목록에서 확인
           </p>
-        </div>
+        </Link>
+      </div>
+
+      {/* 전체 제품 보기 CTA */}
+      <div className="mt-10 text-center">
+        <Link
+          to="/products"
+          className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors"
+        >
+          전체 제품 보기 <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
 
     </div>

@@ -3,6 +3,7 @@ import { Check, ArrowRight, Clock, Users, Zap, Moon, Brain, Scale, Pill, Leaf, B
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { useSEO } from "@/hooks/useSEO";
 
 const phases = [
   {
@@ -79,6 +80,11 @@ type FormState = {
 };
 
 const YouthReset = () => {
+  useSEO({
+    title: "청춘리셋 12주 프로그램 참여 신청",
+    description: "40~60대를 위한 생물학적 나이 되돌리기 프로그램. 12주 간 호르몬, 대사, 세포를 리셋하는 웰니스 아키텍트 오승우의 청춘리셋.",
+    url: "/youth-reset",
+  });
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",

@@ -8,8 +8,11 @@ import BioHackingToolsSection from "@/components/BioHackingToolsSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { useJsonLd } from "@/hooks/useJsonLd";
+import { brandSchemas } from "@/data/brandSchemas";
 
 const Index = () => {
+  useJsonLd(brandSchemas);
   const location = useLocation();
 
   useEffect(() => {

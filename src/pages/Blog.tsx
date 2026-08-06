@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import { useSEO } from "@/hooks/useSEO";
 
 interface WPPost {
   id: number;
@@ -99,6 +100,12 @@ const sortCategories = (cats: WPCategory[]) =>
   });
 
 const Blog = () => {
+  useSEO({
+    title: "블로그 — 건강을 설계하는 지식",
+    description: "원료, 과학, 웰니스 라이프스타일에 관한 깊이 있는 이야기. 웰니스 아키텍트 오승우의 4대 코너스톤 블로그.",
+    url: "/blog",
+  });
+
   const navigate = useNavigate();
   const [posts, setPosts] = useState<WPPost[]>([]);
   const [categories, setCategories] = useState<WPCategory[]>([]);
