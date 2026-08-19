@@ -389,3 +389,55 @@ button { font-family: inherit; cursor: pointer; }
   border: 0; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
   height: 1px; margin: -1px; overflow: hidden; padding: 0; position: absolute; width: 1px; word-wrap: normal !important;
 }
+
+/* ============================================================
+   Author Page
+   ============================================================ */
+.author-page { padding-bottom: 5rem; }
+
+/* Hero */
+.author-hero { padding: 4rem 0 3rem; border-bottom: 1px solid var(--c-border, #e5e7eb); }
+.author-hero__inner { display: flex; gap: 3rem; align-items: flex-start; }
+.author-hero__photo-wrap { flex-shrink: 0; }
+.author-hero__photo { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; object-position: top; border: 3px solid var(--c-primary, #16a34a); }
+.author-hero__label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-primary, #16a34a); margin-bottom: 0.4rem; }
+.author-hero__name { font-size: 2rem; font-weight: 800; margin-bottom: 0.3rem; }
+.author-hero__title { font-size: 0.95rem; color: #6b7280; margin-bottom: 1.2rem; line-height: 1.6; }
+.author-hero__bio { font-size: 0.975rem; line-height: 1.8; color: #374151; max-width: 56ch; margin-bottom: 1.5rem; }
+.author-hero__links { display: flex; flex-wrap: wrap; gap: 0.75rem; align-items: center; }
+.author-hero__sns { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.875rem; font-weight: 500; color: #374151; border: 1px solid #d1d5db; border-radius: 9999px; padding: 0.45rem 1rem; transition: border-color 0.2s, color 0.2s; }
+.author-hero__sns:hover { border-color: var(--c-primary, #16a34a); color: var(--c-primary, #16a34a); }
+.author-hero__cta { display: inline-flex; align-items: center; font-size: 0.875rem; font-weight: 600; color: #fff; background: var(--c-primary, #16a34a); border-radius: 9999px; padding: 0.5rem 1.25rem; transition: filter 0.2s; }
+.author-hero__cta:hover { filter: brightness(0.9); }
+
+/* Credentials */
+.author-credentials { padding: 3rem 0; }
+.author-section__title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.5rem; }
+.author-credentials__list { list-style: none; display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 1.5rem; }
+.author-credentials__item { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.975rem; line-height: 1.7; }
+.author-credentials__check { color: var(--c-primary, #16a34a); font-weight: 700; flex-shrink: 0; margin-top: 0.1rem; }
+.author-credentials__disclaimer { font-size: 0.8rem; color: #9ca3af; line-height: 1.7; padding: 1rem; background: #f9fafb; border-radius: 0.5rem; border-left: 3px solid #e5e7eb; }
+
+/* Posts grid */
+.author-posts { padding: 3rem 0; }
+.author-posts__grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; }
+.author-post-card { border: 1px solid #e5e7eb; border-radius: 0.75rem; overflow: hidden; transition: box-shadow 0.2s; }
+.author-post-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+.author-post-card__thumb-link { display: block; aspect-ratio: 16/9; overflow: hidden; }
+.author-post-card__thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s; }
+.author-post-card:hover .author-post-card__thumb { transform: scale(1.04); }
+.author-post-card__body { padding: 1.1rem 1.25rem 1.4rem; }
+.author-post-card__date { font-size: 0.75rem; color: #9ca3af; display: block; margin-bottom: 0.5rem; }
+.author-post-card__title { font-size: 1rem; font-weight: 700; line-height: 1.5; margin-bottom: 0.5rem; }
+.author-post-card__title a { color: inherit; }
+.author-post-card__title a:hover { color: var(--c-primary, #16a34a); }
+.author-post-card__excerpt { font-size: 0.85rem; color: #6b7280; line-height: 1.65; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .author-hero__inner { flex-direction: column; align-items: center; text-align: center; }
+  .author-hero__photo { width: 140px; height: 140px; }
+  .author-hero__links { justify-content: center; }
+  .author-hero__bio { max-width: 100%; }
+  .author-posts__grid { grid-template-columns: 1fr; }
+}

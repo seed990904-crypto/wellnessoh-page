@@ -4,5 +4,35 @@ Disallow: /api/
 Disallow: /wp-admin/
 Disallow: /wp-login.php
 
+# AI 검색 크롤러 명시 허용
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-SearchBot
+Allow: /
+
+User-agent: Claude-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+# SPA 정적 페이지 사이트맵 (홈·제품·소개 등)
 Sitemap: https://waoh.life/sitemap.xml
+# WordPress 블로그 글 사이트맵 (Rank Math 생성)
 Sitemap: https://waoh.life/sitemap_index.xml
