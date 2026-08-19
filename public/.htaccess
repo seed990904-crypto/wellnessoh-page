@@ -45,10 +45,13 @@
   RewriteRule ^wp-admin(/.*)?$ /index.php [L]
   RewriteRule ^wp-login\.php$ /index.php [L]
 
+  # /blog/:slug → WordPress 정규 URL 301 리다이렉트 (크롤러·소셜 공유 대응)
+  RewriteRule ^blog/([^/]+)/?$ /$1/ [R=301,L]
+
   # React SPA 경로 (명시적으로 지정)
   RewriteRule ^$ /index.html [L]
   RewriteRule ^ingredients-technology(/.*)?$ /index.html [L]
-  RewriteRule ^blog(/.*)?$ /index.html [L]
+  RewriteRule ^blog/?$ /index.html [L]
   RewriteRule ^podcast(/.*)?$ /index.html [L]
   RewriteRule ^products(/.*)?$ /index.html [L]
   RewriteRule ^youth-reset(/.*)?$ /index.html [L]
