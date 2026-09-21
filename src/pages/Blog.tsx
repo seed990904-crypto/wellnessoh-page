@@ -30,7 +30,6 @@ const formatDate = (date: string) =>
     day: "numeric",
   });
 
-// 4대 코너스톤 정의 (구조 카드용)
 const CORNERSTONE_DEFS = [
   { code: "C1", name: "통신과 방어", sub: "면역" },
   { code: "C2", name: "보존과 영양", sub: "항산화" },
@@ -38,55 +37,18 @@ const CORNERSTONE_DEFS = [
   { code: "C4", name: "정화와 재생", sub: "대사" },
 ];
 
-// C1~C4 카테고리 스타일 매핑
 const getCategoryMeta = (name: string) => {
   if (/^C1/i.test(name))
-    return {
-      topBar: "bg-blue-500",
-      badge: "bg-blue-50 text-blue-700",
-      badgeLabel: "text-blue-600",
-      activeBadge: "bg-blue-500 text-white border-blue-500",
-      dot: "bg-blue-500",
-      filterBase: "border-blue-200 text-blue-700 hover:bg-blue-50",
-    };
+    return { accent: "bg-blue-500", badge: "bg-blue-50 text-blue-700", dot: "bg-blue-500", active: "bg-blue-500 text-white border-blue-500", filter: "border-blue-200 text-blue-700 hover:bg-blue-50" };
   if (/^C2/i.test(name))
-    return {
-      topBar: "bg-teal-500",
-      badge: "bg-teal-50 text-teal-700",
-      badgeLabel: "text-teal-600",
-      activeBadge: "bg-teal-500 text-white border-teal-500",
-      dot: "bg-teal-500",
-      filterBase: "border-teal-200 text-teal-700 hover:bg-teal-50",
-    };
+    return { accent: "bg-teal-500", badge: "bg-teal-50 text-teal-700", dot: "bg-teal-500", active: "bg-teal-500 text-white border-teal-500", filter: "border-teal-200 text-teal-700 hover:bg-teal-50" };
   if (/^C3/i.test(name))
-    return {
-      topBar: "bg-violet-500",
-      badge: "bg-violet-50 text-violet-700",
-      badgeLabel: "text-violet-600",
-      activeBadge: "bg-violet-500 text-white border-violet-500",
-      dot: "bg-violet-500",
-      filterBase: "border-violet-200 text-violet-700 hover:bg-violet-50",
-    };
+    return { accent: "bg-violet-500", badge: "bg-violet-50 text-violet-700", dot: "bg-violet-500", active: "bg-violet-500 text-white border-violet-500", filter: "border-violet-200 text-violet-700 hover:bg-violet-50" };
   if (/^C4/i.test(name))
-    return {
-      topBar: "bg-amber-500",
-      badge: "bg-amber-50 text-amber-700",
-      badgeLabel: "text-amber-600",
-      activeBadge: "bg-amber-500 text-white border-amber-500",
-      dot: "bg-amber-500",
-      filterBase: "border-amber-200 text-amber-700 hover:bg-amber-50",
-    };
-  return {
-    topBar: "bg-muted-foreground/20",
-    badge: "bg-muted text-muted-foreground",
-    badgeLabel: "text-muted-foreground",
-    activeBadge: "bg-foreground text-background border-foreground",
-    dot: "bg-muted-foreground",
-    filterBase: "border-border text-muted-foreground hover:bg-muted",
-  };
+    return { accent: "bg-amber-500", badge: "bg-amber-50 text-amber-700", dot: "bg-amber-500", active: "bg-amber-500 text-white border-amber-500", filter: "border-amber-200 text-amber-700 hover:bg-amber-50" };
+  return { accent: "bg-muted-foreground/30", badge: "bg-muted text-muted-foreground", dot: "bg-muted-foreground", active: "bg-foreground text-background border-foreground", filter: "border-border text-muted-foreground hover:bg-muted" };
 };
 
-// C1→C2→C3→C4 순 정렬, 나머지는 뒤로
 const sortCategories = (cats: WPCategory[]) =>
   [...cats].sort((a, b) => {
     const order = (n: string) => {
@@ -128,15 +90,57 @@ const Blog = () => {
         )
       );
       setLoading(false);
-    });
+    }).catch(() => setLoading(false));
   }, []);
 
-  const filteredPosts = activeCategory
-    ? posts.filter((p) => p.categories.includes(activeCategory))
-    : posts;
+  // C1~C4 코너스톤 카테고리
+  const cornerstoneCategories = CORNERSTONE_DEFS
+    .map((cs) => categories.find((c) => new RegExp(`^${cs.code}`, "i").test(c.name)))
+    .filter((c): c is WPCategory => !!c);
 
-  const getCatForPost = (catIds: number[]) =>
-    categories.find((c) => catIds.includes(c.id));
+  const cornerstoneCatIds = new Set(cornerstoneCategories.map((c) => c.id));
+
+  // "4대 코너스톤" 일반 카테고리 (C1~C4 아닌 것)
+  const generalPosts = posts.filter((p) => !p.categories.some((id) => cornerstoneCatIds.has(id)));
+
+  const SHOW_ALL = -1;
+
+  // 선택된 카테고리 포스트 (전체 = -1, 특정 카테고리 = id, 미선택 = null)
+  const filteredPosts =
+    activeCategory === SHOW_ALL
+      ? posts
+      : activeCategory
+      ? posts.filter((p) => p.categories.includes(activeCategory))
+      : [];
+
+  const activeCat = cornerstoneCategories.find((c) => c.id === activeCategory);
+
+  const PostCard = ({ post }: { post: WPPost }) => {
+    const cat = categories.find((c) => post.categories.includes(c.id));
+    const meta = getCategoryMeta(cat?.name ?? "");
+    return (
+      <article
+        onClick={() => navigate(`/blog/${post.slug}`)}
+        className="bg-white rounded-xl border overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col"
+      >
+        <div className={`h-1 w-full ${meta.accent}`} />
+        <div className="p-5 flex flex-col flex-1">
+          {cat && (
+            <span className={`text-xs px-2 py-0.5 rounded-full font-medium self-start mb-3 ${meta.badge}`}>
+              {cat.name}
+            </span>
+          )}
+          <h3 className="text-sm font-semibold text-foreground leading-snug line-clamp-3 flex-1 mb-4">
+            {post.title.rendered}
+          </h3>
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-semibold text-primary">읽기 →</span>
+            <span className="text-xs text-muted-foreground">{formatDate(post.date)}</span>
+          </div>
+        </div>
+      </article>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -146,7 +150,7 @@ const Blog = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-12">
 
           {/* 헤더 */}
-          <div className="text-center mb-12">
+          <div className="text-center mb-14">
             <p className="font-mono-label mb-3">BLOG</p>
             <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               건강을 설계하는 지식
@@ -156,126 +160,85 @@ const Blog = () => {
             </p>
           </div>
 
-          {/* 필터 바 */}
-          <div className="mb-12">
-            {/* 4대 코너스톤 라벨 */}
-            <p className="font-mono text-[10px] tracking-widest text-muted-foreground uppercase mb-3">
-              4대 코너스톤
-            </p>
-
-            {/* 전체 + 코너스톤 필터 — 한 줄 */}
-            <div className="flex flex-wrap gap-2 mb-2">
-              {/* 전체 */}
-              <button
-                onClick={() => setActiveCategory(null)}
-                className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
-                  activeCategory === null
-                    ? "bg-foreground text-background border-foreground"
-                    : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
-                }`}
-              >
-                전체
-              </button>
-
-              {/* 코너스톤 필 */}
-              {CORNERSTONE_DEFS.map((cs) => {
-                const cat = categories.find((c) => new RegExp(`^${cs.code}`, "i").test(c.name));
-                const isActive = cat ? activeCategory === cat.id : false;
-                const meta = getCategoryMeta(cs.code);
-                return (
-                  <button
-                    key={cs.code}
-                    onClick={() => cat && setActiveCategory(isActive ? null : cat.id)}
-                    disabled={!cat}
-                    className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
-                      isActive
-                        ? meta.activeBadge
-                        : cat
-                        ? `bg-transparent ${meta.filterBase}`
-                        : "border-dashed border-border text-muted-foreground/40 cursor-default"
-                    }`}
-                  >
-                    {!isActive && <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${meta.dot}`} />}
-                    <span>{cs.name}</span>
-                    <span className={`${isActive ? "opacity-70" : "opacity-50"} font-normal`}>· {cs.sub}</span>
-                    {cat && cat.count > 0 && !isActive && (
-                      <span className="text-[10px] text-muted-foreground/60">{cat.count}</span>
-                    )}
-                    {!cat && <span className="text-[10px] opacity-40">준비중</span>}
-                  </button>
-                );
-              })}
-
-              {/* 기타 카테고리 (C1~C4 외) */}
-              {categories
-                .filter((c) => !/^C[1-4]/i.test(c.name))
-                .map((cat) => {
-                  const meta = getCategoryMeta(cat.name);
-                  const isActive = activeCategory === cat.id;
-                  return (
-                    <button
-                      key={cat.id}
-                      onClick={() => setActiveCategory(cat.id)}
-                      className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
-                        isActive ? meta.activeBadge : `${meta.filterBase} bg-transparent`
-                      }`}
-                    >
-                      {cat.name}
-                    </button>
-                  );
-                })}
-            </div>
-          </div>
-
-          {/* 포스트 그리드 */}
           {loading ? (
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
               {[...Array(6)].map((_, i) => (
                 <div key={i} className="bg-muted/50 rounded-xl border h-52 animate-pulse" />
               ))}
             </div>
-          ) : filteredPosts.length === 0 ? (
-            <p className="text-center text-muted-foreground py-20">포스트가 없습니다.</p>
           ) : (
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-              {filteredPosts.map((post) => {
-                const cat = getCatForPost(post.categories);
-                const meta = getCategoryMeta(cat?.name ?? "");
-                return (
-                  <article
-                    key={post.id}
-                    onClick={() => navigate(`/blog/${post.slug}`)}
-                    className="bg-white rounded-xl border overflow-hidden hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer flex flex-col"
+            <div className="space-y-14">
+
+              {/* 1. 4대 코너스톤 일반 글 (항상 노출) */}
+              {generalPosts.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <h2 className="text-sm font-bold text-foreground">4대 코너스톤</h2>
+                    <div className="flex-1 h-px bg-border" />
+                    <span className="text-xs text-muted-foreground">{generalPosts.length}편</span>
+                  </div>
+                  <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+                    {generalPosts.map((post) => <PostCard key={post.id} post={post} />)}
+                  </div>
+                </div>
+              )}
+
+              {/* 2. 코너스톤별 필터 버튼 + 선택 시 글 노출 */}
+              <div>
+                <div className="flex items-center gap-3 mb-6">
+                  <h2 className="text-sm font-bold text-foreground">주제별로 보기</h2>
+                  <div className="flex-1 h-px bg-border" />
+                </div>
+
+                {/* 필터 버튼 */}
+                <div className="flex flex-wrap gap-2 mb-8">
+                  {/* 전체 */}
+                  <button
+                    onClick={() => setActiveCategory(activeCategory === SHOW_ALL ? null : SHOW_ALL)}
+                    className={`px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
+                      activeCategory === SHOW_ALL
+                        ? "bg-foreground text-background border-foreground"
+                        : "border-border text-muted-foreground hover:border-foreground/30 hover:text-foreground"
+                    }`}
                   >
-                    {/* 상단 컬러 accent 바 */}
-                    <div className={`h-1 w-full ${meta.topBar}`} />
+                    전체 {posts.length}
+                  </button>
 
-                    <div className="p-5 flex flex-col flex-1">
-                      {/* 카테고리 + 날짜 */}
-                      <div className="flex items-center justify-between mb-3">
-                        {cat && (
-                          <span className={`text-xs px-2 py-0.5 rounded-full font-medium ${meta.badge}`}>
-                            {cat.name}
-                          </span>
-                        )}
-                        <span className="text-xs text-muted-foreground ml-auto">
-                          {formatDate(post.date)}
-                        </span>
-                      </div>
+                  {cornerstoneCategories.map((cat) => {
+                    const cs = CORNERSTONE_DEFS.find((d) => new RegExp(`^${d.code}`, "i").test(cat.name));
+                    const isActive = activeCategory === cat.id;
+                    const meta = getCategoryMeta(cat.name);
+                    return (
+                      <button
+                        key={cat.id}
+                        onClick={() => setActiveCategory(isActive ? null : cat.id)}
+                        className={`inline-flex items-center gap-2 px-4 py-2 rounded-full text-xs font-semibold tracking-wide transition-colors border ${
+                          isActive ? meta.active : `bg-transparent ${meta.filter}`
+                        }`}
+                      >
+                        {!isActive && <span className={`w-1.5 h-1.5 rounded-full ${meta.dot}`} />}
+                        <span>{cat.name}</span>
+                        {cs && <span className="opacity-50 font-normal">· {cs.sub}</span>}
+                        <span className="opacity-50 font-normal">{cat.count}</span>
+                      </button>
+                    );
+                  })}
+                </div>
 
-                      {/* 제목 */}
-                      <h2 className="text-sm font-semibold text-foreground leading-snug line-clamp-3 flex-1 mb-4">
-                        {post.title.rendered}
-                      </h2>
-
-                      {/* 읽기 링크 */}
-                      <span className="text-xs font-semibold text-primary">
-                        읽기 →
-                      </span>
+                {/* 선택된 카테고리 글 */}
+                {activeCategory !== null && filteredPosts.length > 0 && (
+                  <div>
+                    <div className="flex items-center gap-3 mb-5">
+                      {activeCat && <span className={`w-2 h-2 rounded-full ${getCategoryMeta(activeCat.name).dot}`} />}
+                      <span className="text-xs text-muted-foreground">{filteredPosts.length}편</span>
                     </div>
-                  </article>
-                );
-              })}
+                    <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+                      {filteredPosts.map((post) => <PostCard key={post.id} post={post} />)}
+                    </div>
+                  </div>
+                )}
+              </div>
+
             </div>
           )}
         </div>

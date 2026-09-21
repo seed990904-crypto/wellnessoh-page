@@ -4,80 +4,35 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { Mic, Play, Clock, Calendar, Headphones, ExternalLink } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
-import { useToast } from "@/hooks/use-toast";
 
 const EPISODES = [
   {
-    num: "EP.48",
-    title: "세포 노화의 침묵 — 텔로미어와 NAD+의 실체",
-    desc: "텔로미어 단축이 노화의 원인인가, 결과인가? NAD+ 보충의 과학적 근거를 깊게 파헤칩니다. 왜 같은 나이도 생물학적 나이는 다른지, 그 핵심을 짚습니다.",
-    duration: "58분",
-    date: "2025.07.01",
-    category: "노화과학",
-  },
-  {
-    num: "EP.47",
-    title: "장 건강이 뇌를 지배한다 — 마이크로바이옴 완전 해부",
-    desc: "장-뇌 축(Gut-Brain Axis)의 최신 연구. 우울, 불안, 인지 기능에 미치는 장내세균의 영향과 실천 전략.",
-    duration: "52분",
-    date: "2025.06.24",
-    category: "마이크로바이옴",
-  },
-  {
-    num: "EP.46",
-    title: "수면 최적화의 과학 — 성장호르몬을 극대화하는 밤",
-    desc: "수면 중 분비되는 성장호르몬의 메커니즘과, 수면 질을 획기적으로 높이는 실천 프로토콜.",
-    duration: "47분",
-    date: "2025.06.17",
-    category: "수면",
-  },
-  {
-    num: "EP.45",
-    title: "단식의 역설 — 왜 굶어야 더 오래 사는가",
-    desc: "간헐적 단식과 오토파지의 연결고리. 언제, 얼마나, 어떻게 단식해야 효과적인가.",
-    duration: "61분",
-    date: "2025.06.10",
-    category: "바이오해킹",
-  },
-  {
-    num: "EP.44",
-    title: "만성 염증의 침묵 — 우리 몸이 조용히 타는 이유",
-    desc: "거의 모든 만성질환의 뿌리인 저강도 만성 염증의 정체. 일상에서 염증을 끄는 구체적인 방법.",
-    duration: "54분",
-    date: "2025.06.03",
-    category: "염증",
-  },
-  {
-    num: "EP.43",
-    title: "미토콘드리아를 깨워라 — 에너지 대사 완전 정복",
-    desc: "만성 피로의 근본 원인인 미토콘드리아 기능 저하. 세포 에너지 생산을 최적화하는 바이오해킹 전략.",
-    duration: "49분",
-    date: "2025.05.27",
-    category: "에너지",
+    num: "EP.1",
+    title: '"아이들은 신진대사가 빨라서 탄수화물이 더 필요한 것 아니에요?" 예.. 아닙니다..',
+    desc: "잘못된 유아식 탄단지 상식을 바로잡는 특집. 아이들이 신진대사가 빠르다는 이유로 탄수화물이 더 필요하다는 주장, 사실일까요? 웰니스 아키텍트 오승우가 과학적으로 짚어드립니다.",
+    duration: "21분",
+    date: "2026.09.12",
+    category: "유아식·탄수화물",
+    youtubeId: "fCZXigQEwdA",
   },
 ];
 
 const PLATFORMS = [
-  { name: "Spotify" },
-  { name: "Apple Podcasts" },
-  { name: "YouTube" },
-  { name: "네이버 팟캐스트" },
+  { name: "YouTube", url: "https://www.youtube.com/watch?v=fCZXigQEwdA" },
+  { name: "Spotify", url: null },
+  { name: "Apple Podcasts", url: null },
+  { name: "네이버 팟캐스트", url: null },
 ];
 
 const Podcast = () => {
   useSEO({
     title: "팟캐스트 — 웰니스 심화 강의",
-    description: "텔로미어, NAD+, 장뇌축, 미토콘드리아… 웰니스 아키텍트 오승우의 과학 기반 건강 팟캐스트.",
+    description: "웰니스 아키텍트 오승우의 과학 기반 건강 팟캐스트. 잘못된 건강 상식을 바로잡고 올바른 웰니스 설계를 이야기합니다.",
     url: "/podcast",
   });
-  const { toast } = useToast();
   useEffect(() => { window.scrollTo(0, 0); }, []);
 
-  const handleComingSoon = () => {
-    toast({ title: "서비스 준비 중", description: "팟캐스트 청취 서비스를 곧 오픈합니다." });
-  };
-
-  const [featured, ...rest] = EPISODES;
+  const [featured] = EPISODES;
 
   return (
     <div className="min-h-screen bg-background">
@@ -99,24 +54,31 @@ const Podcast = () => {
                 세포 수준의 과학을 일상 언어로 풀어드립니다.
               </p>
 
-              {/* Coming soon notice */}
-              <div className="inline-flex items-center gap-2.5 mb-10 px-4 py-2.5 rounded-full bg-muted/60 border border-border">
-                <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse flex-none" />
-                <span className="text-xs text-muted-foreground">에피소드 및 청취자 통계 — <span className="text-foreground font-medium">곧 준비될 예정입니다.</span></span>
-              </div>
-
               {/* Platform links */}
               <div className="flex flex-wrap gap-2.5">
                 {PLATFORMS.map((p) => (
-                  <button
-                    key={p.name}
-                    onClick={handleComingSoon}
-                    className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-border text-muted-foreground hover:border-foreground/40 hover:bg-muted/50 transition-colors opacity-60"
-                  >
-                    <Headphones size={12} />
-                    {p.name}
-                    <ExternalLink size={10} className="text-muted-foreground" />
-                  </button>
+                  p.url ? (
+                    <a
+                      key={p.name}
+                      href={p.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-border text-muted-foreground hover:border-foreground/40 hover:bg-muted/50 transition-colors"
+                    >
+                      <Headphones size={12} />
+                      {p.name}
+                      <ExternalLink size={10} className="text-muted-foreground" />
+                    </a>
+                  ) : (
+                    <span
+                      key={p.name}
+                      className="flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium border border-border text-muted-foreground opacity-40 cursor-default"
+                    >
+                      <Headphones size={12} />
+                      {p.name}
+                      <span className="text-[10px]">준비 중</span>
+                    </span>
+                  )
                 ))}
               </div>
             </div>
@@ -159,7 +121,7 @@ const Podcast = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <p className="font-mono-label mb-6">LATEST EPISODE</p>
           <div className="bg-background border border-border rounded-2xl overflow-hidden">
-            <div className="grid md:grid-cols-[1fr_180px] gap-0">
+            <div className="grid md:grid-cols-[1fr_280px] gap-0">
               <div className="p-8 md:p-10">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="font-mono-label">{featured.num}</span>
@@ -173,13 +135,15 @@ const Podcast = () => {
                   {featured.desc}
                 </p>
                 <div className="flex flex-wrap items-center gap-4">
-                  <button
-                    onClick={handleComingSoon}
+                  <a
+                    href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="flex items-center gap-2 bg-primary text-white px-5 py-2.5 rounded-full text-sm font-medium hover:bg-primary/90 transition-colors"
                   >
                     <Play size={13} fill="currentColor" />
-                    재생하기
-                  </button>
+                    YouTube에서 보기
+                  </a>
                   <span className="flex items-center gap-1.5 text-xs text-muted-foreground">
                     <Clock size={12} />{featured.duration}
                   </span>
@@ -188,48 +152,52 @@ const Podcast = () => {
                   </span>
                 </div>
               </div>
-              <div className="hidden md:flex items-center justify-center bg-muted/40 border-l border-border">
-                <div className="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                  <Mic size={28} className="text-primary" />
+              {/* YouTube 썸네일 */}
+              <a
+                href={`https://www.youtube.com/watch?v=${featured.youtubeId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:block relative border-l border-border overflow-hidden group"
+              >
+                <img
+                  src={`https://img.youtube.com/vi/${featured.youtubeId}/maxresdefault.jpg`}
+                  alt={featured.title}
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="w-12 h-12 rounded-full bg-white/90 flex items-center justify-center">
+                    <Play size={18} fill="currentColor" className="text-foreground ml-0.5" />
+                  </div>
                 </div>
-              </div>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ─── Episode Grid ─── */}
+      {/* ─── Next Episode ─── */}
       <section className="py-16 bg-background">
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="mb-10">
             <p className="font-mono-label mb-2">ALL EPISODES</p>
             <h2 className="text-2xl md:text-3xl font-bold text-foreground">모든 에피소드</h2>
           </div>
-          <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-            {rest.map((ep) => (
-              <article
-                key={ep.num}
-                onClick={handleComingSoon}
-                className="bg-muted/50 border border-border rounded-xl p-6 flex flex-col hover:shadow-md hover:-translate-y-0.5 transition-all duration-200 cursor-pointer"
-              >
-                <div className="flex items-center justify-between mb-4">
-                  <span className="font-mono-label">{ep.num}</span>
-                  <span className="text-[10px] text-muted-foreground px-2.5 py-1 rounded-full bg-background border border-border font-medium">
-                    {ep.category}
-                  </span>
-                </div>
-                <h3 className="font-semibold text-foreground mb-3 leading-snug flex-1 text-sm md:text-base">
-                  {ep.title}
-                </h3>
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-5">
-                  {ep.desc}
-                </p>
-                <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                  <span className="flex items-center gap-1"><Clock size={11} />{ep.duration}</span>
-                  <span className="flex items-center gap-1"><Calendar size={11} />{ep.date}</span>
-                </div>
-              </article>
-            ))}
+          <div className="flex items-center gap-4 p-8 rounded-2xl border border-dashed border-border bg-muted/20">
+            <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center flex-none">
+              <Mic size={18} className="text-muted-foreground" />
+            </div>
+            <div>
+              <p className="text-sm font-semibold text-foreground mb-0.5">새 에피소드를 준비하고 있습니다</p>
+              <p className="text-xs text-muted-foreground">YouTube 채널을 구독하시면 업로드 알림을 받을 수 있습니다.</p>
+            </div>
+            <a
+              href="https://www.youtube.com/watch?v=fCZXigQEwdA"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="ml-auto flex-none flex items-center gap-1.5 text-xs font-medium text-primary hover:underline"
+            >
+              YouTube 채널 <ExternalLink size={11} />
+            </a>
           </div>
         </div>
       </section>
