@@ -50,7 +50,7 @@ const targets = [
   { icon: Brain,  title: "인지 기능 저하", text: "기억력·집중력이\n예전 같지 않은 분" },
   { icon: Scale,  title: "체중 정체",     text: "식단을 관리해도\n체중이 변하지 않는 분" },
   { icon: Pill,   title: "보충제 무반응", text: "건강기능식품을 먹어도\n효과를 느끼지 못하는 분" },
-  { icon: Leaf,   title: "루트케어 추구", text: "대증요법이 아닌\n근본적인 건강 회복을 원하는 분" },
+  { icon: Leaf,   title: "생활 습관 재설계", text: "생활 습관부터\n다시 세우고 싶은 분" },
 ];
 
 const includes = [
@@ -142,8 +142,8 @@ const YouthReset = () => {
               <span className="text-primary">청춘리셋</span>
             </h1>
             <p className="text-background/60 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-              단순한 대증요법이 아닌 루트케어(근본치료)를 통해
-              신체의 자연치유력을 극대화하는 웰니스 아키텍트의 1:1 밀착 솔루션입니다.
+              식단 · 수면 · 생활 리듬을 6주 동안 함께 다시 설계하는
+              웰니스 아키텍트의 1:1 밀착 솔루션입니다.
             </p>
             <div className="flex flex-wrap gap-5 text-sm text-background/55">
               <span className="flex items-center gap-2"><Check className="w-4 h-4 text-primary" /> 6주 완성 프로그램</span>

@@ -13,7 +13,6 @@ declare global {
 const stats = [
   { num: "19년", label: "필드 경험" },
   { num: "1만+", label: "건강 코칭" },
-  { num: "3년", label: "임상 검증" },
   { num: "5종", label: "바이오해킹 제품" },
 ];
 

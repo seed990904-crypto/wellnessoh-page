@@ -55,7 +55,7 @@ const YouthResetSection = () => {
             </h2>
           </div>
           <p className="text-background/50 text-sm leading-relaxed max-w-xs md:text-right">
-            루트케어(근본치료)를 통해 신체의 자연치유력을 극대화하는
+            식단 · 수면 · 생활 리듬을 6주 동안 함께 다시 설계하는
             웰니스 아키텍트의 1:1 밀착 솔루션
           </p>
         </div>

@@ -1,4 +1,3 @@
-import { Network, Droplets, ShieldCheck } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-super-immune.jpg";
@@ -10,52 +9,34 @@ const product: ProductConfig = {
   brand: "청춘리셋",
   name: "슈퍼이뮨",
   engName: "SUPER IMMUNE",
-  tags: ["세포 통신망 리셋", "에이스매넌 & 초유", "면역 조절 서포트"],
+  tags: [],
   unitPrice: 160000,
   freeShippingThreshold: 0,
   shippingFee: 0,
   origin: "미국",
-  manufacturer: "텐액스랩스",
+  manufacturer: "라이벌 랩스",
 };
 
 const SuperImmune = () => (
   <ProductPage
     product={product}
-    tagline="세포의 대화가 시작되는 면역 조절 서포트. 당사슬 복원으로 몸의 방어 체계를 근본부터 리셋합니다."
-    features={[
-      {
-        icon: Network,
-        title: "세포 통신망(당사슬) 리셋",
-        desc: "손상된 세포 간 신호 체계를 복원하여 면역 반응을 정상화합니다.",
-      },
-      {
-        icon: Droplets,
-        title: "에이스매넌(Acemannan) 함유",
-        desc: "알로에 베라에서 추출한 핵심 성분으로 면역세포 활성화를 돕습니다.",
-      },
-      {
-        icon: ShieldCheck,
-        title: "초유(Colostrum) 블렌드",
-        desc: "성장인자와 면역 글로불린이 풍부한 초유로 세포 방어력을 강화합니다.",
-      },
-    ]}
+    tagline="출시 준비 중입니다."
+    features={[]}
     activeCornerstones={["01", "02"]}
     forWho={[
-      "면역력이 약하고 잦은 감기·바이러스에 노출되는 분",
-      "세포 노화가 빠르고 만성 피로를 느끼는 분",
-      "만성 염증과 자가면역 문제가 있는 분",
+      "환절기마다 컨디션 관리가 신경 쓰이는 분",
+      "장 건강과 피부 건강을 함께 챙기고 싶은 분",
+      "부모님께 드릴 제품을 직접 확인하고 고르는 분",
     ]}
-    howToUse="하루 2~4캡슐, 식사와 함께 충분한 물과 섭취하세요. 면역이 많이 저하된 경우 4캡슐로 시작하여 상태에 따라 조절하세요."
+    howToUse="1일 2회, 1회 1캡슐을 물과 함께 섭취하십시오."
     legalDisclosure={{
-      ingredients:
-        "에이스매넌(알로에 베라 추출물, 미국산), 초유 분말(뉴질랜드산), 면역 글로불린 G(IgG), 이산화규소, 식물성 캡슐 — 예시 표시이며 실제 전성분·함량은 포장 라벨을 참조하세요.",
+      ingredients: "",
       cautions: [
-        "유제품 또는 알로에 알레르기가 있는 분은 섭취 전 주의하세요 (초유·알로에 추출물 함유).",
-        "자가면역 질환으로 치료 중인 경우 반드시 주치의와 상담 후 섭취하세요.",
-        "임산부, 수유부, 어린이는 섭취 전 전문의와 상담하세요.",
-        "의약품을 복용 중인 경우 상호작용 여부를 전문가에게 확인하세요.",
+        "알로에·효모 등 원료에 알레르기가 있으신 분은 섭취하지 마십시오.",
+        "질병 치료 중이거나 약물을 복용 중이신 분은 의사와 상의하십시오.",
       ],
     }}
+    comingSoon
   />
 );
 

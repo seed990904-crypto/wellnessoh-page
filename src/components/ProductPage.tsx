@@ -98,6 +98,7 @@ interface ProductPageProps {
   howToUse: string;
   legalDisclosure: LegalDisclosure;
   detailImages?: string[];
+  comingSoon?: boolean;
 }
 
 const ProductPage = ({
@@ -109,6 +110,7 @@ const ProductPage = ({
   howToUse,
   legalDisclosure,
   detailImages,
+  comingSoon = false,
 }: ProductPageProps) => {
   useSEO({
     title: `${product.name} — ${product.engName}`,
@@ -163,16 +165,24 @@ const ProductPage = ({
                 </span>
               </h1>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{tagline}</p>
-              <div className="flex flex-wrap gap-2">
-                {product.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </div>
+              {comingSoon && (
+                <div className="inline-flex items-center gap-2 bg-amber-50 border border-amber-200 rounded-full px-4 py-1.5 mb-4">
+                  <span className="w-1.5 h-1.5 rounded-full bg-amber-400 shrink-0" />
+                  <span className="text-xs font-semibold text-amber-700 tracking-wide">출시 준비 중</span>
+                </div>
+              )}
+              {product.tags.length > 0 && (
+                <div className="flex flex-wrap gap-2">
+                  {product.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="text-xs px-3 py-1 rounded-full bg-primary/10 text-primary font-medium"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="w-full md:w-[380px] shrink-0 md:sticky md:top-[96px]">
@@ -181,25 +191,27 @@ const ProductPage = ({
           </div>
 
           {/* 핵심 작용 원리 */}
-          <section className="border-t pt-12 mb-14">
-            <h2 className="text-lg font-bold text-foreground mb-6">핵심 작용 원리</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              {features.map((f) => (
-                <div
-                  key={f.title}
-                  className="bg-muted/20 rounded-2xl p-6 border border-border/40"
-                >
-                  <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
-                    <f.icon className="w-5 h-5 text-primary" />
+          {features.length > 0 && (
+            <section className="border-t pt-12 mb-14">
+              <h2 className="text-lg font-bold text-foreground mb-6">핵심 작용 원리</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {features.map((f) => (
+                  <div
+                    key={f.title}
+                    className="bg-muted/20 rounded-2xl p-6 border border-border/40"
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center mb-4">
+                      <f.icon className="w-5 h-5 text-primary" />
+                    </div>
+                    <h3 className="font-bold text-foreground mb-2 text-sm leading-snug">
+                      {f.title}
+                    </h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
                   </div>
-                  <h3 className="font-bold text-foreground mb-2 text-sm leading-snug">
-                    {f.title}
-                  </h3>
-                  <p className="text-xs text-muted-foreground leading-relaxed">{f.desc}</p>
-                </div>
-              ))}
-            </div>
-          </section>
+                ))}
+              </div>
+            </section>
+          )}
 
           {/* 4대 코너스톤 */}
           <section className="border-t pt-12 mb-14">
@@ -245,7 +257,7 @@ const ProductPage = ({
                     <p className="text-[10px] font-mono text-muted-foreground/60 mb-2">
                       {cs.subtitle}
                     </p>
-                    {isActive && (
+                    {isActive && !comingSoon && (
                       <p className="text-xs text-muted-foreground leading-relaxed">{cs.desc}</p>
                     )}
                   </div>
@@ -293,37 +305,39 @@ const ProductPage = ({
           )}
 
           {/* 건강기능식품 법정 표시사항 */}
-          <section className="border-t pt-12 mb-10">
-            <h2 className="text-base font-bold text-foreground mb-1">건강기능식품 법정 표시사항</h2>
-            <p className="text-xs text-muted-foreground mb-5">
-              건강기능식품에 관한 법률 및 식품 등의 표시·광고에 관한 법률에 따른 표시 사항입니다.
-              아래 내용은 예시 형식이며, 정확한 전성분·함량은 제품 포장 라벨을 확인하세요.
-            </p>
-            <div className="bg-muted/25 rounded-2xl border border-border/50 divide-y divide-border/40 text-sm overflow-hidden">
-              <div className="px-6 py-5">
-                <p className="font-semibold text-foreground mb-2">원료명 및 함량</p>
-                <p className="text-muted-foreground leading-relaxed">{legalDisclosure.ingredients}</p>
+          {!comingSoon && (
+            <section className="border-t pt-12 mb-10">
+              <h2 className="text-base font-bold text-foreground mb-1">건강기능식품 법정 표시사항</h2>
+              <p className="text-xs text-muted-foreground mb-5">
+                건강기능식품에 관한 법률 및 식품 등의 표시·광고에 관한 법률에 따른 표시 사항입니다.
+                아래 내용은 예시 형식이며, 정확한 전성분·함량은 제품 포장 라벨을 확인하세요.
+              </p>
+              <div className="bg-muted/25 rounded-2xl border border-border/50 divide-y divide-border/40 text-sm overflow-hidden">
+                <div className="px-6 py-5">
+                  <p className="font-semibold text-foreground mb-2">원료명 및 함량</p>
+                  <p className="text-muted-foreground leading-relaxed">{legalDisclosure.ingredients}</p>
+                </div>
+                <div className="px-6 py-5">
+                  <p className="font-semibold text-foreground mb-3">섭취 시 주의사항</p>
+                  <ul className="space-y-2">
+                    {legalDisclosure.cautions.map((c, i) => (
+                      <li key={i} className="flex gap-2 text-muted-foreground">
+                        <span className="shrink-0 mt-px text-muted-foreground/50">·</span>
+                        <span className="leading-relaxed">{c}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div className="px-6 py-4 bg-amber-50/60">
+                  <p className="text-xs text-amber-800/80 leading-relaxed">
+                    ※ 이 제품은 질병의 예방 또는 치료를 위한 의약품이 아닙니다. 개인에 따라 섭취 효과의 차이가 있을 수 있으며, 질환이 있거나 의약품을 복용 중인 경우 섭취 전 반드시 전문의와 상담하시기 바랍니다.
+                  </p>
+                </div>
               </div>
-              <div className="px-6 py-5">
-                <p className="font-semibold text-foreground mb-3">섭취 시 주의사항</p>
-                <ul className="space-y-2">
-                  {legalDisclosure.cautions.map((c, i) => (
-                    <li key={i} className="flex gap-2 text-muted-foreground">
-                      <span className="shrink-0 mt-px text-muted-foreground/50">·</span>
-                      <span className="leading-relaxed">{c}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="px-6 py-4 bg-amber-50/60">
-                <p className="text-xs text-amber-800/80 leading-relaxed">
-                  ※ 이 제품은 질병의 예방 또는 치료를 위한 의약품이 아닙니다. 개인에 따라 섭취 효과의 차이가 있을 수 있으며, 질환이 있거나 의약품을 복용 중인 경우 섭취 전 반드시 전문의와 상담하시기 바랍니다.
-                </p>
-              </div>
-            </div>
-          </section>
+            </section>
+          )}
 
-          <RelatedPosts productId={product.id} />
+          {!comingSoon && <RelatedPosts productId={product.id} />}
 
           {/* 하단 구매 CTA */}
           <div className="border-t pt-10 pb-4 flex flex-col items-center gap-4">

@@ -348,6 +348,11 @@ const sectionHtml = (img: typeof IMG) => `
           <span><b>6.4%</b> → 탄수화물로 대사</span>
           <span><b>2%</b> → 배출</span>
         </div>
+        <a href="https://waoh.life/supervera7/" target="_blank" rel="noopener noreferrer"
+          style="display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:13px;font-weight:700;color:#1A73E8;text-decoration:none;border:1.5px solid #1A73E8;border-radius:8px;padding:8px 16px;transition:background .2s"
+          onmouseover="this.style.background='#E8F0FD'" onmouseout="this.style.background='transparent'">
+          SuperVera7® 자세히 보기 →
+        </a>
       </div>
     </div>
 
