@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const phases = [
   {
-    badge: "WEEKS 1–2",
+    badge: "DAY 1–14 · 함께 갑니다",
     label: "REBOOT",
     title: "리부트",
     sub: "호르몬 & 대사 리셋",
@@ -11,10 +11,11 @@ const phases = [
       "비우기 루틴 시작",
       "혈당을 덜 흔드는 식사 순서",
       "식사 시간과 리듬 정비",
+      "매일 식단 확인과 질문 답변",
     ],
   },
   {
-    badge: "WEEKS 3–4",
+    badge: "DAY 15–28 · 스스로, 가이드와 함께",
     label: "IMPACT",
     title: "임팩트",
     sub: "면역 시스템 리셋",
@@ -22,15 +23,16 @@ const phases = [
       "면역 설계 루틴",
       "장 건강을 위한 식단",
       "수면·스트레스 관리",
+      "28일 완주 리포트",
     ],
   },
   {
-    badge: "WEEKS 5–6",
+    badge: "DAY 29–42 · 습관으로",
     label: "MAINTAIN",
     title: "메인테인",
-    sub: "노화 진행 리셋",
+    sub: "몸의 리듬을 지키는 기간",
     points: [
-      "6주 동안 만든 습관 유지",
+      "2주 동안 만든 습관 유지",
       "나에게 맞는 루틴 정리",
       "다음 단계 계획",
     ],
@@ -51,12 +53,12 @@ const YouthResetSection = () => {
               Youth Reset Program
             </p>
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-background leading-tight">
-              6주간의<br />완벽한 생체 재건축
+              2주간 함께,<br />28일 완주까지
             </h2>
           </div>
           <p className="text-background/50 text-sm leading-relaxed max-w-xs md:text-right">
-            식단 · 수면 · 생활 리듬을 6주 동안 함께 다시 설계하는
-            웰니스 아키텍트의 1:1 밀착 솔루션
+            매일 함께 보는 2주로 시작해 28일 완주까지 갑니다.
+            식단은 6주차까지 이어집니다.
           </p>
         </div>
 
@@ -99,9 +101,14 @@ const YouthResetSection = () => {
 
         {/* CTA */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6 border-t border-white/10 pt-10">
-          <p className="text-background/45 text-sm leading-relaxed">
-            소수 정예 · 기수별 모집 · 1:1 맞춤 프로그램
-          </p>
+          <div>
+            <p className="text-background/45 text-sm leading-relaxed">
+              기수별 모집 · 28일 완주 · 중간 참여는 3일차까지
+            </p>
+            <p className="text-background/30 text-xs leading-relaxed mt-1">
+              1:1 집중 코칭이 포함된 오프라인 과정은 연 몇 차례 따로 공지합니다.
+            </p>
+          </div>
           <button
             onClick={() => navigate("/youth-reset#waitlist")}
             className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold hover:bg-primary/90 transition-colors shrink-0"

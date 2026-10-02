@@ -8,7 +8,7 @@ import { useSEO } from "@/hooks/useSEO";
 const phases = [
   {
     num: "01",
-    badge: "WEEKS 1–2",
+    badge: "DAY 1–14 · 함께 갑니다",
     label: "REBOOT",
     title: "리부트",
     sub: "호르몬 & 대사 리셋",
@@ -16,11 +16,12 @@ const phases = [
       "비우기 루틴 시작",
       "혈당을 덜 흔드는 식사 순서",
       "식사 시간과 리듬 정비",
+      "매일 식단 확인과 질문 답변",
     ],
   },
   {
     num: "02",
-    badge: "WEEKS 3–4",
+    badge: "DAY 15–28 · 스스로, 가이드와 함께",
     label: "IMPACT",
     title: "임팩트",
     sub: "면역 시스템 리셋",
@@ -28,16 +29,17 @@ const phases = [
       "면역 설계 루틴",
       "장 건강을 위한 식단",
       "수면·스트레스 관리",
+      "28일 완주 리포트",
     ],
   },
   {
     num: "03",
-    badge: "WEEKS 5–6",
+    badge: "DAY 29–42 · 습관으로",
     label: "MAINTAIN",
     title: "메인테인",
-    sub: "노화 진행 리셋",
+    sub: "몸의 리듬을 지키는 기간",
     points: [
-      "6주 동안 만든 습관 유지",
+      "2주 동안 만든 습관 유지",
       "나에게 맞는 루틴 정리",
       "다음 단계 계획",
     ],
@@ -56,8 +58,8 @@ const targets = [
 const includes = [
   {
     icon: Users,
-    title: "1:1 밀착 컨설팅",
-    desc: "웰니스 아키텍트 오승우 대표와 6주간 매주 1:1 진행 상황 점검 및 맞춤 피드백",
+    title: "1:1 집중 코칭",
+    desc: "처음 2주 동안 오승우 대표와 매일 식단·루틴을 점검하고 맞춤 피드백을 드립니다",
   },
   {
     icon: Zap,
@@ -142,8 +144,8 @@ const YouthReset = () => {
               <span className="text-primary">청춘리셋</span>
             </h1>
             <p className="text-background/60 text-base md:text-lg leading-relaxed mb-10 max-w-lg">
-              식단 · 수면 · 생활 리듬을 6주 동안 함께 다시 설계하는
-              웰니스 아키텍트의 1:1 밀착 솔루션입니다.
+              매일 함께 보는 2주로 시작해 28일 완주까지 갑니다.
+              식단은 6주차까지 이어집니다.
             </p>
             <div className="flex flex-wrap gap-5 text-sm text-background/55">
               <span className="flex items-center gap-2"><Check className="w-4 h-4 text-primary" /> 6주 완성 프로그램</span>

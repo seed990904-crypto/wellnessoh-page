@@ -7,30 +7,36 @@ Disallow: /wp-login.php
 # AI 검색 크롤러 명시 허용
 User-agent: GPTBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: OAI-SearchBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: ChatGPT-User
 Allow: /
 
 User-agent: ClaudeBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: Claude-SearchBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: Claude-User
 Allow: /
 
 User-agent: PerplexityBot
 Allow: /
+Crawl-delay: 10
 
 User-agent: Perplexity-User
 Allow: /
 
 User-agent: Google-Extended
 Allow: /
+Crawl-delay: 5
 
 # SPA 정적 페이지 사이트맵 (홈·제품·소개 등)
 Sitemap: https://waoh.life/sitemap.xml
