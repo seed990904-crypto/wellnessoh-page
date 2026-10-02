@@ -307,7 +307,7 @@ const sectionHtml = (img: typeof IMG) => `
         <div class="wa-hero-header">
           <div class="wa-hero-top">
             <span class="wa-hero-name">SuperVera7<sup>®</sup></span>
-            <span class="wa-hero-tag">독점 에이스매넌 추출물</span>
+            <span class="wa-hero-tag">Call2Life가 쓰는 알로에겔 원료</span>
           </div>
           <p class="wa-hero-desc">알로에 속잎 젤 유래 에이스매넌. <b>세포 소통·방어·복구·재생</b>에 쓰이는 만노스 다당체로, 전체 분자량 스펙트럼을 유지해 각 분획이 서로 다른 생리 경로를 동시에 타겟팅합니다.</p>
         </div>
@@ -379,7 +379,7 @@ const sectionHtml = (img: typeof IMG) => `
           <div class="wa-c-name">EpiCor<sup>®</sup></div>
           <div class="wa-c-badge">홀푸드 효모 발효물(포스트바이오틱)</div>
           <span class="wa-clinical">임상 연구</span>
-          <p class="wa-c-desc"><b>섭취 수 시간 내 NK세포 활성</b>과 점막 1차 방어(sIgA)를 서포트합니다.</p>
+          <p class="wa-c-desc">효모 발효물 · 미국</p>
         </div>
       </div>
 
@@ -393,7 +393,7 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C1</b> 통신과 방어</span>
           <div class="wa-c-name">낙엽송 아라비노갈락탄</div>
           <div class="wa-c-badge">면역-프리바이오틱 섬유</div>
-          <p class="wa-c-desc"><b>대식세포·NK세포 활성화</b> + 유익균 먹이 → <b>단쇄지방산</b> 생성. 면역과 장을 동시에 잇습니다.</p>
+          <p class="wa-c-desc">낙엽송 추출 다당체 · 미국</p>
         </div>
       </div>
 
@@ -588,13 +588,6 @@ const sectionHtml = (img: typeof IMG) => `
           </div>
         </div>
         <div class="wa-trust-item">
-          <div class="wa-trust-icon">🌿</div>
-          <div>
-            <span class="wa-trust-val">100%</span>
-            <div class="wa-trust-lbl">비GMO 원료</div>
-          </div>
-        </div>
-        <div class="wa-trust-item">
           <div class="wa-trust-icon">🔬</div>
           <div>
             <span class="wa-trust-val">14종</span>
@@ -635,18 +628,6 @@ const sectionHtml = (img: typeof IMG) => `
           <h5>합성 부형제 무첨가</h5>
           <p>스테아린산 마그네슘도, 이산화규소도 없습니다. 제조를 쉽게 하지만 몸엔 도움이 없습니다.</p>
         </div>
-        <div class="wa-no-item">
-          <div class="wa-no-x">✕</div>
-          <span class="wa-no-keyword">No Preservatives</span>
-          <h5>방부제 무첨가</h5>
-          <p>방부제 없이도 안정적이도록 설계하고 포장합니다.</p>
-        </div>
-        <div class="wa-no-item">
-          <div class="wa-no-x">✕</div>
-          <span class="wa-no-keyword">Non-GMO</span>
-          <h5>GMO 무사용</h5>
-          <p>단 하나의 원료도 예외 없이. 몸에 들어가는 것은 자연이 만든 그대로여야 합니다.</p>
-        </div>
       </div>
 
       <!-- 마무리 seal -->
@@ -666,7 +647,7 @@ const sectionHtml = (img: typeof IMG) => `
       <a href="/#contact" class="wa-cta-btn">1:1 전문가 상담 신청 →</a>
     </div>
 
-    <p class="wa-foot">† 본 문구는 미국 식품의약국(FDA)의 평가를 받지 않았으며, 질병의 진단·치료·완화·예방을 목적으로 하지 않습니다. SuperVera7®, EpiCor®, S7®, Curcugen®, Morikol®, ProbioSEB Duo®, Creavitalis®, BioPerine®, RGen™은 각 소유자의 상표입니다.</p>
+    <p class="wa-foot">건강기능식품은 질병의 예방 및 치료를 위한 의약품이 아닙니다. SuperVera7®, EpiCor®, S7®, Curcugen®, Morikol®, ProbioSEB Duo®, Creavitalis®, BioPerine®, RGen™은 각 소유자의 상표입니다.</p>
 
   </div>
 </section>
