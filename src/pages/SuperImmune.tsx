@@ -1,6 +1,7 @@
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-super-immune.jpg";
+import { useSEO } from "@/hooks/useSEO";
 
 const product: ProductConfig = {
   id: "super-immune",
@@ -17,7 +18,13 @@ const product: ProductConfig = {
   manufacturer: "라이벌 랩스",
 };
 
-const SuperImmune = () => (
+const SuperImmune = () => {
+  useSEO({
+    title: "슈퍼이뮨 — 면역 코너스톤 서포트",
+    description: "알로에겔 원료 SuperVera7®와 EpiCor® 기반 면역 코너스톤 서포트. 출시 준비 중.",
+    url: "/products/super-immune",
+  });
+  return (
   <ProductPage
     product={product}
     tagline="출시 준비 중입니다."
@@ -38,6 +45,7 @@ const SuperImmune = () => (
     }}
     comingSoon
   />
-);
+  );
+};
 
 export default SuperImmune;

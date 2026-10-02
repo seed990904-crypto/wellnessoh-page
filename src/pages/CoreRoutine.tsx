@@ -1,6 +1,13 @@
 import ComingSoonProductPage from "@/components/ComingSoonProductPage";
+import { useSEO } from "@/hooks/useSEO";
 
-const CoreRoutine = () => (
+const CoreRoutine = () => {
+  useSEO({
+    title: "코어루틴 — 4대 코너스톤 통합 패키지 (출시 예정)",
+    description: "C1~C4 코너스톤 4종 제품을 월 단위로 구성한 큐레이션 패키지. 하루 루틴으로 완성하는 바이오해킹. 출시 예정.",
+    url: "/products/core-routine",
+  });
+  return (
   <ComingSoonProductPage
     product={{
       slug: "core-routine",
@@ -17,6 +24,7 @@ const CoreRoutine = () => (
       // tallyUrl: "https://tally.so/embed/XXXXX?alignLeft=1&hideTitle=1",
     }}
   />
-);
+  );
+};
 
 export default CoreRoutine;

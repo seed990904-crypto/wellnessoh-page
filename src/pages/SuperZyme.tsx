@@ -2,6 +2,7 @@ import { RotateCcw, Clock, FlaskConical } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-super-zyme.jpg";
+import { useSEO } from "@/hooks/useSEO";
 
 const product: ProductConfig = {
   id: "super-zyme",
@@ -18,7 +19,13 @@ const product: ProductConfig = {
   manufacturer: "텐액스랩스",
 };
 
-const SuperZyme = () => (
+const SuperZyme = () => {
+  useSEO({
+    title: "슈퍼자임 — 오토파지 촉진 발효 솔루션",
+    description: "17가지 천연 초본 마이크로바이옴 발효 솔루션으로 오토파지를 깨워 세포를 갱신합니다.",
+    url: "/products/super-zyme",
+  });
+  return (
   <ProductPage
     product={product}
     tagline="오토파지를 깨우는 마이크로바이옴 발효 솔루션. 청춘을 되찾는 세포 자가청소 프로그램."
@@ -57,6 +64,7 @@ const SuperZyme = () => (
       ],
     }}
   />
-);
+  );
+};
 
 export default SuperZyme;

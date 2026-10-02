@@ -2,6 +2,7 @@ import { Sprout, Sparkles, Zap } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-super-greens.png";
+import { useSEO } from "@/hooks/useSEO";
 
 const product: ProductConfig = {
   id: "super-greens",
@@ -18,7 +19,13 @@ const product: ProductConfig = {
   manufacturer: "텐액스랩스",
 };
 
-const SuperGreens = () => (
+const SuperGreens = () => {
+  useSEO({
+    title: "슈퍼그린 — 유기농 엽록소 클렌징",
+    description: "유기농 엽록소 블렌드로 세포를 정화하는 초록빛 청춘 디톡스. 스피루리나·클로렐라·밀잎·보리잎 복합 설계.",
+    url: "/products/super-greens",
+  });
+  return (
   <ProductPage
     product={product}
     tagline="식물의 혈액으로 마시는 초록빛 청춘 디톡스. 유기농 엽록소로 세포를 깨끗하게 리셋합니다."
@@ -57,6 +64,7 @@ const SuperGreens = () => (
       ],
     }}
   />
-);
+  );
+};
 
 export default SuperGreens;

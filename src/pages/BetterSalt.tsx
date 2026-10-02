@@ -2,6 +2,7 @@ import { Flame, ShieldCheck, Activity } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-better-salt.jpg";
+import { useSEO } from "@/hooks/useSEO";
 
 const product: ProductConfig = {
   id: "better-salt",
@@ -18,7 +19,13 @@ const product: ProductConfig = {
   manufacturer: "(주)효소세상",
 };
 
-const BetterSalt = () => (
+const BetterSalt = () => {
+  useSEO({
+    title: "베러솔트 — 신안 40종 활성 미네랄 소금",
+    description: "전라남도 신안군 천일염 40종 활성 미네랄 소금. 1200도 열처리 정제. 칼륨·마그네슘 등 천연 전해질 공급.",
+    url: "/products/better-salt",
+  });
+  return (
   <ProductPage
     product={product}
     tagline="0.9%의 신비, 청춘을 위한 완벽한 밸런스. 신안 천일염의 정수를 담은 활성 미네랄 소금."
@@ -57,6 +64,7 @@ const BetterSalt = () => (
       ],
     }}
   />
-);
+  );
+};
 
 export default BetterSalt;

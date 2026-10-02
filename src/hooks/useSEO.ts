@@ -9,7 +9,7 @@ interface SEOOptions {
 }
 
 const BASE_TITLE = "웰니스 아키텍트 오대표 | Wellness Architect";
-const BASE_DESC = "19년 경력 웰니스 아키텍트 오승우. 세포 단위의 자연치유력을 복원하는 생물학적 건축물 설계.";
+const BASE_DESC = "웰니스 아키텍트 오승우. 4대 코너스톤 기반으로 원료를 고르고 설계한 청춘리셋 웰니스 브랜드.";
 const BASE_IMAGE = "https://waoh.life/host-photo.png";
 const BASE_URL = "https://waoh.life";
 
@@ -21,6 +21,16 @@ function setMeta(name: string, content: string, attr: "name" | "property" = "nam
     document.head.appendChild(el);
   }
   el.content = content;
+}
+
+function setCanonical(href: string) {
+  let el = document.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+  if (!el) {
+    el = document.createElement("link");
+    el.setAttribute("rel", "canonical");
+    document.head.appendChild(el);
+  }
+  el.href = href;
 }
 
 export function useSEO({ title, description, image, url, type = "website" }: SEOOptions) {
@@ -43,6 +53,8 @@ export function useSEO({ title, description, image, url, type = "website" }: SEO
     setMeta("twitter:title", fullTitle);
     setMeta("twitter:description", desc);
     setMeta("twitter:image", img);
+
+    setCanonical(pageUrl);
 
     return () => {
       document.title = BASE_TITLE;

@@ -2,6 +2,7 @@ import { Leaf, Clock, Recycle } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
 import productImg from "@/assets/product-super-gclean.png";
+import { useSEO } from "@/hooks/useSEO";
 
 const product: ProductConfig = {
   id: "super-gclean",
@@ -18,7 +19,13 @@ const product: ProductConfig = {
   manufacturer: "(주)효소세상",
 };
 
-const SuperGClean = () => (
+const SuperGClean = () => {
+  useSEO({
+    title: "슈퍼지클린 — 900일 자연배양 생효소",
+    description: "900일 자연배양 생효소로 장 환경을 정화하는 2시간의 마법. 노폐물 가수분해 및 배출 지원.",
+    url: "/products/super-gclean",
+  });
+  return (
   <ProductPage
     product={product}
     tagline="2시간의 마법, 몸을 리셋하다. 900일 자연배양 생효소로 장 환경을 정화하는 클렌징 솔루션."
@@ -62,6 +69,7 @@ const SuperGClean = () => (
       "/super-gclean-detail-3.png",
     ]}
   />
-);
+  );
+};
 
 export default SuperGClean;

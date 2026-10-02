@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useJsonLd } from "@/hooks/useJsonLd";
 import { brandSchemas } from "@/data/brandSchemas";
+import { useSEO } from "@/hooks/useSEO";
 import { ArrowRight, Compass, BookOpen, Shield, Activity } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -116,6 +117,11 @@ const timeline = [
 ];
 
 const BrandStory = () => {
+  useSEO({
+    title: "브랜드 스토리",
+    description: "웰니스 아키텍트 오승우의 19년 건강 현장 이야기. 근거가 확인된 원료만 쓰는 4대 코너스톤 설계 철학.",
+    url: "/about",
+  });
   useJsonLd(brandSchemas);
   useEffect(() => {
     window.scrollTo(0, 0);

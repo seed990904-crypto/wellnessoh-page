@@ -1,6 +1,13 @@
 import ComingSoonProductPage from "@/components/ComingSoonProductPage";
+import { useSEO } from "@/hooks/useSEO";
 
-const SuperLongeVita = () => (
+const SuperLongeVita = () => {
+  useSEO({
+    title: "슈퍼롱제비타 — 항노화 솔루션 (출시 예정)",
+    description: "텔로미어 보호·NAD+·아스타잔틴 등 검증된 장수 연구 성분 기반 항노화 솔루션. 출시 예정.",
+    url: "/products/super-longe-vita",
+  });
+  return (
   <ComingSoonProductPage
     product={{
       slug: "super-longe-vita",
@@ -17,6 +24,7 @@ const SuperLongeVita = () => (
       // tallyUrl: "https://tally.so/embed/XXXXX?alignLeft=1&hideTitle=1",
     }}
   />
-);
+  );
+};
 
 export default SuperLongeVita;

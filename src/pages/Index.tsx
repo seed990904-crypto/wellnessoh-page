@@ -10,8 +10,10 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { useJsonLd } from "@/hooks/useJsonLd";
 import { brandSchemas } from "@/data/brandSchemas";
+import { useSEO } from "@/hooks/useSEO";
 
 const Index = () => {
+  useSEO({ url: "/" });
   useJsonLd(brandSchemas);
   const location = useLocation();
 
