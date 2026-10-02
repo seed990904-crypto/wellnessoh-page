@@ -13,7 +13,7 @@ const cornerstones = [
     id: "01",
     title: "세포 통신망 복구",
     subtitle: "Glycan Network Restoration",
-    desc: "세포 표면의 당사슬(Glycan) 안테나를 복구해 끊어진 세포 간 통신을 정상화합니다. 건강의 가장 깊은 기초.",
+    desc: "면역 설계의 출발점",
     products: [
       { label: "Super Immune", path: "/products/super-immune" },
       { label: "Super Greens", path: "/products/super-greens" },
@@ -23,7 +23,7 @@ const cornerstones = [
     id: "02",
     title: "면역 보안 시스템",
     subtitle: "Immune Defense System",
-    desc: "만성 염증을 억제하고 대식세포·NK세포 등 1차 면역 방어막을 강화해 외부 공격에 흔들리지 않는 몸을 만듭니다.",
+    desc: "산화 관리와 영양 공급",
     products: [
       { label: "Super Immune", path: "/products/super-immune" },
       { label: "SuperVera7 원료", path: "/products/super-immune" },
@@ -33,7 +33,7 @@ const cornerstones = [
     id: "03",
     title: "인지·Gut-Brain Axis",
     subtitle: "Brain & Gut Optimization",
-    desc: "장과 뇌의 양방향 소통(GBA)을 강화하고 장내 미생물 환경을 안정화해 집중력과 인지 명료함을 최적화합니다.",
+    desc: "장 환경과 컨디션",
     products: [
       { label: "Super GClean", path: "/products/super-gclean" },
       { label: "Super Greens", path: "/products/super-greens" },
@@ -43,7 +43,7 @@ const cornerstones = [
     id: "04",
     title: "대사·호르몬 리셋",
     subtitle: "Metabolic & Hormonal Reset",
-    desc: "체내 독소를 배출하고 막혀있던 대사와 호르몬 밸런스를 복구합니다. 신체를 근본부터 최적의 상태로 리셋.",
+    desc: "비움과 대사 리듬",
     products: [
       { label: "Super GClean", path: "/products/super-gclean" },
       { label: "Super Zyme", path: "/products/super-zyme" },
@@ -83,7 +83,7 @@ const personalities = [
     Icon: Activity,
     color: "text-rose-600 bg-rose-50",
     tagline: "이론이 아닌 결과로 증명",
-    desc: "1만 명 코칭, 3년 임상, S서울병원 팀장. 현장에서 직접 검증된 결과만을 이야기합니다.",
+    desc: "1만 명 코칭, S서울병원 팀장. 현장에서 직접 검증된 결과만을 이야기합니다.",
   },
 ];
 
@@ -96,22 +96,22 @@ const timeline = [
   {
     period: "Chapter 02",
     title: "1만 명의 삶 앞에 서다",
-    desc: "말단 세일즈맨에서 국제기업 최연소 자문위원까지. 1만 명 이상을 직접 건강 코칭하며 현대의학이 해결하지 못하는 문제들을 자연치유 솔루션으로 풀어나갔습니다.",
+    desc: "말단 세일즈맨에서 국제기업 최연소 자문위원까지. 1만 명 이상을 직접 건강 코칭하며 생활과 식단을 함께 설계했습니다.",
   },
   {
     period: "Chapter 03",
     title: "전 세계를 돌며 답을 찾다",
-    desc: "Glycobiology와 세포학을 공부하며 세계 각국의 천연원료를 탐구했습니다. 그 끝에서 면역특화 생리활성 물질 SuperVera7을 독점 확보했습니다.",
+    desc: "Glycobiology와 세포학을 공부하며 세계 각국의 천연원료를 탐구했습니다. 그 끝에서 알로에겔 원료 SuperVera7®을 독점 확보했습니다.",
   },
   {
     period: "Chapter 04",
     title: "Call2Life 창립, 청춘리셋 탄생",
-    desc: "SuperVera7을 시그니처 원료로 웰니스 제품 라인을 개발하고, 바이오해킹 프로그램 청춘리셋을 출시했습니다. 3년간의 임상이 그 효과를 증명했습니다.",
+    desc: "SuperVera7을 시그니처 원료로 웰니스 제품 라인을 개발하고, 바이오해킹 프로그램 청춘리셋을 출시했습니다.",
   },
   {
     period: "Chapter 05",
     title: "의사들과 함께 일하는 사람",
-    desc: "현재 S서울병원 통합면역·치매예방센터 팀장으로 재직 중입니다. 현대의학과 자연치유의 접점에서 양쪽의 한계를 보완하는 통합 솔루션을 설계합니다.",
+    desc: "현재 S서울병원 통합면역·치매예방센터 팀장으로 재직 중입니다. 의료진과 협업하며 생활·영양 설계를 맡고 있습니다.",
   },
 ];
 
@@ -190,11 +190,10 @@ const BrandStory = () => {
               <p className="text-[16px] leading-[1.85] text-muted-foreground mb-10">
                 건축가가 건물을 설계하듯, 오승우 대표는 사람의 몸과 삶을 설계합니다. 단순한 영양제가 아닌, 세포 수준에서 시너지를 내는 통합 건강 솔루션입니다.
               </p>
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 gap-3">
                 {[
                   { num: "19년", label: "필드 경험" },
                   { num: "1만+", label: "건강 코칭" },
-                  { num: "3년", label: "임상 검증" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center bg-muted/40 border border-border/50 rounded-xl py-5">
                     <p className="text-2xl font-bold text-primary mb-1">{stat.num}</p>
@@ -245,7 +244,7 @@ const BrandStory = () => {
               코로나 백신 부작용으로 어머님에게 치매가 찾아왔습니다. 19년간 수많은 사람의 건강을 돌봤지만, 정작 가장 사랑하는 사람은 지키지 못했다는 죄책감.
             </p>
             <p>
-              그 아픔이 결심이 됐습니다. 지금까지 쌓아온 모든 지식과 경험을 어머님 한 분을 위해 총동원하겠다고. 가장 최고의 원료로, 가장 까다로운 기준으로, 임상이 있는 원료로만.
+              그 아픔이 결심이 됐습니다. 지금까지 쌓아온 모든 지식과 경험을 어머님 한 분을 위해 총동원하겠다고. 가장 최고의 원료로, 가장 까다로운 기준으로, 근거가 확인된 원료로만.
             </p>
           </div>
           <div className="mt-14 pt-12 border-t border-background/10">
