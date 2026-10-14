@@ -1,12 +1,20 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import { Menu, X, User } from "lucide-react";
+import { Menu, X, User, ChevronDown } from "lucide-react";
 
 const CAFE24_LOGIN = "https://call2life2026.cafe24.com/member/login.html";
 
-const navItems = [
+type SubItem = { label: string; href: string };
+type NavItem = { label: string; href: string; sub?: SubItem[] };
+
+const navItems: NavItem[] = [
   { label: "브랜드스토리", href: "#about" },
-  { label: "원료&기술력", href: "/ingredients-technology" },
+  {
+    label: "원료&기술력",
+    href: "/ingredients-technology",
+    sub: [{ label: "SuperVera7®", href: "https://waoh.life/supervera7/" }],
+  },
+  { label: "에이스매넌", href: "https://waoh.life/acemannan/" },
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "/products" },
@@ -31,12 +39,16 @@ const Header = () => {
   }, [mobileOpen]);
 
   const isActive = (href: string) => {
-    if (href.startsWith("#")) return false;
+    if (href.startsWith("#") || href.startsWith("http")) return false;
     return location.pathname === href || location.pathname.startsWith(href + "/");
   };
 
-  const scrollTo = (href: string) => {
+  const handleClick = (href: string) => {
     setMobileOpen(false);
+    if (href.startsWith("http")) {
+      window.location.href = href;
+      return;
+    }
     if (!href.startsWith("#")) {
       navigate(href);
       return;
@@ -87,19 +99,49 @@ const Header = () => {
 
         {/* Center Nav */}
         <nav className="hidden md:flex items-center gap-2 lg:gap-5 flex-1 justify-center">
-          {navItems.map((item) => (
-            <button
-              key={item.href}
-              onClick={() => scrollTo(item.href)}
-              className={`text-[10px] lg:text-[11px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap pb-0.5 ${
-                isActive(item.href)
-                  ? "text-primary border-b border-primary"
-                  : "text-foreground hover:text-primary"
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
+          {navItems.map((item) => {
+            const baseClass = "text-[10px] lg:text-[11px] font-medium uppercase tracking-wider transition-colors whitespace-nowrap pb-0.5";
+            const activeClass = isActive(item.href)
+              ? "text-primary border-b border-primary"
+              : "text-foreground hover:text-primary";
+
+            if (item.sub) {
+              return (
+                <div key={item.href} className="relative group/dd">
+                  <button
+                    onClick={() => handleClick(item.href)}
+                    className={`${baseClass} ${activeClass} flex items-center gap-0.5`}
+                  >
+                    {item.label}
+                    <ChevronDown size={9} className="opacity-40 group-hover/dd:opacity-70 transition-opacity" />
+                  </button>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 hidden group-hover/dd:block pt-3 z-50">
+                    <div className="bg-white/95 backdrop-blur-xl rounded-xl border border-white/60 shadow-lg py-1.5 min-w-[130px]">
+                      {item.sub.map((sub) => (
+                        <button
+                          key={sub.href}
+                          onClick={() => handleClick(sub.href)}
+                          className="block w-full text-left px-4 py-2 text-[10px] lg:text-[11px] font-medium uppercase tracking-wider text-foreground hover:text-primary hover:bg-muted/30 transition-colors whitespace-nowrap"
+                        >
+                          {sub.label}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              );
+            }
+
+            return (
+              <button
+                key={item.href}
+                onClick={() => handleClick(item.href)}
+                className={`${baseClass} ${activeClass}`}
+              >
+                {item.label}
+              </button>
+            );
+          })}
         </nav>
 
         {/* Right — 카페24 로그인 */}
@@ -126,15 +168,25 @@ const Header = () => {
         <div className="w-[90%] max-w-[1200px] rounded-2xl bg-white/90 backdrop-blur-xl border border-white/60 shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)]">
           <nav className="flex flex-col py-4 px-6">
             {navItems.map((item) => (
-              <button
-                key={item.href}
-                onClick={() => scrollTo(item.href)}
-                className={`text-sm font-medium transition-colors text-left py-3 border-b border-border/30 last:border-0 ${
-                  isActive(item.href) ? "text-primary" : "text-foreground hover:text-primary"
-                }`}
-              >
-                {item.label}
-              </button>
+              <div key={item.href}>
+                <button
+                  onClick={() => handleClick(item.href)}
+                  className={`text-sm font-medium transition-colors text-left py-3 border-b border-border/30 w-full ${
+                    isActive(item.href) ? "text-primary" : "text-foreground hover:text-primary"
+                  }`}
+                >
+                  {item.label}
+                </button>
+                {item.sub?.map((sub) => (
+                  <button
+                    key={sub.href}
+                    onClick={() => handleClick(sub.href)}
+                    className="block w-full text-left py-2 pl-4 text-sm font-medium text-muted-foreground hover:text-primary transition-colors border-b border-border/20"
+                  >
+                    └ {sub.label}
+                  </button>
+                ))}
+              </div>
             ))}
             <a
               href={CAFE24_LOGIN}
