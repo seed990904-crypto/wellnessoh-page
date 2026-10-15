@@ -267,24 +267,6 @@ const sectionHtml = (img: typeof IMG) => `
           <h1 class="wa-page-h1">단순 배합이 아니라<br>세포 수준에서 설계합니다.</h1>
           <p class="wa-page-tagline">몸이 원료를 "어떻게 받아들이는가"라는 질문에서 시작합니다. 모든 원료는 4대 코너스톤 안에서 세포 수준의 역할을 위해 선택됩니다.</p>
         </div>
-        <div class="wa-kpi-row">
-          <div class="wa-kpi">
-            <div class="wa-kpi-num">14종</div>
-            <div class="wa-kpi-txt">특허·독점 원료</div>
-          </div>
-          <div class="wa-kpi">
-            <div class="wa-kpi-num">5건</div>
-            <div class="wa-kpi-txt">인체 임상시험</div>
-          </div>
-          <div class="wa-kpi">
-            <div class="wa-kpi-num">230%</div>
-            <div class="wa-kpi-txt">산화질소 최대 증가</div>
-          </div>
-          <div class="wa-kpi">
-            <div class="wa-kpi-num">0</div>
-            <div class="wa-kpi-txt">인공 첨가물</div>
-          </div>
-        </div>
       </div>
     </div>
 
