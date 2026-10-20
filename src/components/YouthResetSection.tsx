@@ -110,10 +110,10 @@ const YouthResetSection = () => {
             </p>
           </div>
           <button
-            onClick={() => navigate("/youth-reset#waitlist")}
+            onClick={() => navigate("/youth-reset")}
             className="inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground px-8 py-3.5 text-sm font-semibold hover:bg-primary/90 transition-colors shrink-0"
           >
-            다음 기수 대기자 등록 <ArrowRight className="w-4 h-4" />
+            청춘리셋 자세히 보기 <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
