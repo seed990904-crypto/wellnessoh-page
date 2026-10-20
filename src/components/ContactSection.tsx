@@ -96,11 +96,11 @@ const ContactSection = () => {
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm font-semibold text-foreground mb-0.5">
-                    롱제버티 스코어 진단 <span className="text-primary">*</span>
+                    롱제비티 스코어 셀프 체크 <span className="text-primary">*</span>
                   </p>
                   <p className="text-xs text-muted-foreground mb-3 leading-relaxed">
                     {longevityDone
-                      ? "진단이 완료되었습니다. 아래 정보를 입력하고 상담을 신청해 주세요."
+                      ? "셀프 체크가 완료되었습니다. 아래 정보를 입력하고 상담을 신청해 주세요."
                       : "상담 전 나의 건강 점수를 먼저 확인해 주세요. (필수)"}
                   </p>
                   {!longevityDone && (
@@ -110,13 +110,13 @@ const ContactSection = () => {
                       onClick={openLongevityScore}
                       className="rounded-lg text-xs bg-primary text-primary-foreground hover:bg-primary/90 h-8 px-4"
                     >
-                      지금 진단하기 →
+                      지금 셀프 체크하기 →
                     </Button>
                   )}
                 </div>
               </div>
               {longevityError && (
-                <p className="text-red-500 text-xs mt-3 ml-12">롱제버티 스코어 진단을 먼저 완료해 주세요.</p>
+                <p className="text-red-500 text-xs mt-3 ml-12">롱제비티 스코어 셀프 체크를 먼저 완료해 주세요.</p>
               )}
             </div>
 

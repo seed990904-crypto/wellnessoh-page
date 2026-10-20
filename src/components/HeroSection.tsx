@@ -13,7 +13,7 @@ declare global {
 const stats = [
   { num: "19년", label: "필드 경험" },
   { num: "1만+", label: "건강 코칭" },
-  { num: "5종", label: "바이오해킹 제품" },
+  { num: "2,000명", label: "청춘리셋 3년" },
 ];
 
 const HeroSection = () => {
@@ -21,7 +21,7 @@ const HeroSection = () => {
     const options = {
       width: 700,
       onSubmit: () => {
-        toast("진단 완료!", {
+        toast("셀프 체크 완료!", {
           description: "전문가의 도움이 필요하시면 1:1 컨설팅을 신청해 보세요.",
           action: {
             label: "상담 신청하기",
@@ -61,20 +61,20 @@ const HeroSection = () => {
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto">
 
         {/* Brand label */}
-        <p className="text-white/45 text-[11px] font-mono tracking-[0.25em] uppercase mb-6">
-          Wellness Architecture · 청춘리셋
+        <p className="text-white/55 text-[11px] font-mono tracking-[0.22em] uppercase mb-6">
+          웰니스 아키텍트 오승우 · WELLNESS ARCHITECT
         </p>
 
         {/* Headline */}
-        <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-[80px] font-bold text-white leading-[1.08] tracking-tight mb-6 max-w-2xl">
-          Live Better<br />
-          Live Younger<br />
-          Live Longer
+        <h1 className="text-[26px] sm:text-[38px] md:text-[50px] lg:text-[60px] font-bold text-white leading-[1.25] tracking-[-0.045em] mb-6 whitespace-nowrap">
+          기초가 단단해야,<br />
+          내일이 흔들리지 않습니다.
         </h1>
 
         {/* Sub copy */}
         <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10">
-          세포 수준의 바이오해킹으로 당신의 건강을 기초부터 설계합니다.
+          19년 동안 1만 명의 몸을 설계했습니다.<br />
+          <strong className="text-white font-bold">지금은 단 한 사람, 엄마의 하루를 설계합니다.</strong>
         </p>
 
         {/* CTAs */}
@@ -83,7 +83,7 @@ const HeroSection = () => {
             onClick={openLongevityScore}
             className="inline-flex items-center justify-center rounded-full bg-white text-black text-sm font-semibold px-8 py-3.5 hover:bg-white/90 transition-all duration-200"
           >
-            Longevity Score 측정하기
+            무료 · 나의 롱제비티 스코어 셀프 체크
           </button>
           <Link
             to="/about"

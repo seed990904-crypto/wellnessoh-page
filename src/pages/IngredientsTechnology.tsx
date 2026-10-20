@@ -360,7 +360,6 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C1</b> 통신과 방어</span>
           <div class="wa-c-name">EpiCor<sup>®</sup></div>
           <div class="wa-c-badge">홀푸드 효모 발효물(포스트바이오틱)</div>
-          <span class="wa-clinical">임상 연구</span>
           <p class="wa-c-desc">효모 발효물 · 미국</p>
         </div>
       </div>
@@ -403,7 +402,6 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C2</b> 보존과 영양</span>
           <div class="wa-c-name">Curcugen<sup>®</sup></div>
           <div class="wa-c-badge">홀-라이좀 강황</div>
-          <span class="wa-clinical">임상 연구</span>
           <p class="wa-c-desc">강황 뿌리 전체 프로파일 유지. 커큐민 95% 단독 대비 <b>39–52.5배 생체이용률</b> 임상 연구.</p>
         </div>
       </div>
@@ -418,7 +416,6 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C2</b> 보존과 영양</span>
           <div class="wa-c-name">Morikol<sup>®</sup></div>
           <div class="wa-c-badge">트리펩타이드 마린 콜라겐 · 임상 연구</div>
-          <span class="wa-clinical">12주 이중맹검 RCT</span>
           <p class="wa-c-desc"><b>Gly-Pro-Hyp 트리펩타이드</b>가 피부 섬유아세포에 직접 작용. <b>12주 이중맹검 RCT</b>에서 단 1g/day로 눈가 주름 위약 대비 10배 개선.</p>
         </div>
       </div>
@@ -447,7 +444,6 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C4</b> 정화와 재생</span>
           <div class="wa-c-name">S7<sup>®</sup></div>
           <div class="wa-c-badge">산화질소 부스터</div>
-          <span class="wa-clinical">임상 연구</span>
           <p class="wa-c-desc">7종 식물 블렌드로 체내 산화질소 <b>최대 230% 증가</b>. 혈관 이완 → 산소·영양 전달 극대화.</p>
         </div>
       </div>
@@ -476,7 +472,6 @@ const sectionHtml = (img: typeof IMG) => `
           <span class="wa-c-tag"><b>C3</b> 제어와 연결</span>
           <div class="wa-c-name">ProbioSEB Duo<sup>®</sup></div>
           <div class="wa-c-badge">포자형 프로바이오틱 · Bacillus</div>
-          <span class="wa-clinical">무작위 인체시험</span>
           <p class="wa-c-desc">포자 보호로 열·위산 통과 후 장까지 생존. 무작위 인체시험에서 <b>소화 편안함·NK세포 균형</b> 확인.</p>
         </div>
       </div>

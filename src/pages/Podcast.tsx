@@ -50,7 +50,7 @@ const Podcast = () => {
                 몸을 설계하는 대화
               </h1>
               <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-lg mb-10">
-                웰니스 아키텍트 오대표와 함께하는 바이오해킹·장수 과학·최적 컨디션의 모든 것.
+                웰니스 아키텍트 오승우와 함께하는 바이오해킹·장수 과학·최적 컨디션의 모든 것.
                 세포 수준의 과학을 일상 언어로 풀어드립니다.
               </p>
 
@@ -94,7 +94,7 @@ const Podcast = () => {
                   </div>
                   <img
                     src="/host-photo.png"
-                    alt="웰니스 아키텍트 오대표"
+                    alt="웰니스 아키텍트 오승우"
                     className="w-full object-cover object-top"
                   />
                 </div>
@@ -106,7 +106,7 @@ const Podcast = () => {
                     </div>
                     <div>
                       <div className="text-xs font-bold text-foreground leading-none mb-0.5">웰니스 아키텍트</div>
-                      <div className="text-[10px] text-muted-foreground">오대표 호스트</div>
+                      <div className="text-[10px] text-muted-foreground">오승우 호스트</div>
                     </div>
                   </div>
                 </div>
@@ -207,14 +207,14 @@ const Podcast = () => {
         <div className="max-w-6xl mx-auto px-6 md:px-12">
           <div className="grid md:grid-cols-[220px_1fr] gap-10 items-center">
             <div className="rounded-2xl overflow-hidden border border-border/60 bg-background h-[260px]">
-              <img src="/host-photo.png" alt="웰니스 아키텍트 오대표" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
+              <img src="/host-photo.png" alt="웰니스 아키텍트 오승우" className="w-full h-full object-cover" style={{ objectPosition: "center 30%" }} />
             </div>
             <div className="flex flex-col justify-center">
               <p className="font-mono-label mb-3">HOST</p>
-              <h2 className="text-2xl font-bold text-foreground mb-1">웰니스 아키텍트 오대표</h2>
+              <h2 className="text-2xl font-bold text-foreground mb-1">웰니스 아키텍트 오승우</h2>
               <p className="text-sm text-muted-foreground mb-6">Wellness Architect · 바이오해킹 전문가</p>
               <p className="text-sm text-muted-foreground leading-relaxed max-w-2xl">
-                "어머님이 드셔도 되는 것만"이라는 기준으로 건강 설계를 시작한 웰니스 아키텍트 오대표.
+                "어머님이 드셔도 되는 것만"이라는 기준으로 건강 설계를 시작한 웰니스 아키텍트 오승우.
                 세포 수준의 과학을 일상 언어로 번역하는 것을 사명으로, 바이오해킹·장수 과학·최적 컨디션에 관한
                 깊이 있는 이야기를 매주 청취자들과 나눕니다.
                 단순한 건강 정보가 아니라, 몸을 이해하고 직접 설계하는 관점을 공유합니다.

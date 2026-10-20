@@ -33,7 +33,7 @@ const products: Product[] = [
     engName: "SUPER IMMUNE",
     subtitle: "출시 준비 중",
     price: 160000,
-    cornerstones: ["C1", "C2"],
+    cornerstones: ["C1", "C3"],
     path: "/products/super-immune",
     isPhoto: true,
   },
@@ -41,9 +41,9 @@ const products: Product[] = [
     image: productSuperGreens,
     name: "슈퍼그린",
     engName: "SUPER GREENS",
-    subtitle: "유기농 엽록소 블렌드 · 세포 디톡스",
+    subtitle: "유기농 엽록소 블렌드",
     price: 150000,
-    cornerstones: ["C1", "C3"],
+    cornerstones: ["C2", "C3"],
     path: "/products/super-greens",
     isPhoto: true,
   },
@@ -51,7 +51,7 @@ const products: Product[] = [
     image: productSuperZyme,
     name: "슈퍼자임",
     engName: "SUPER ZYME",
-    subtitle: "오토파지 촉진 · 장내 마이크로바이옴",
+    subtitle: "점심과 저녁, 발효로 시작되는 5일",
     price: 75000,
     cornerstones: ["C3", "C4"],
     path: "/products/super-zyme",
@@ -161,8 +161,8 @@ const BioHackingToolsSection = () => (
           </h2>
         </div>
         <p className="text-sm text-muted-foreground max-w-xs leading-relaxed md:text-right">
-          4대 코너스톤으로 설계된<br className="hidden md:block" />
-          5가지 생체 복원 솔루션
+          매일의 기초를 위해 설계한<br className="hidden md:block" />
+          5가지 제품
         </p>
       </div>
 

@@ -8,8 +8,8 @@ interface SEOOptions {
   type?: "website" | "article";
 }
 
-const BASE_TITLE = "웰니스 아키텍트 오대표 | Wellness Architect";
-const BASE_DESC = "웰니스 아키텍트 오승우. 4대 코너스톤 기반으로 원료를 고르고 설계한 청춘리셋 웰니스 브랜드.";
+const BASE_TITLE = "웰니스 아키텍트 오승우 | Wellness Architect";
+const BASE_DESC = "19년 필드 경험의 웰니스 아키텍트 오승우. 1만 명을 설계했고, 지금은 엄마의 하루를 설계합니다. 4대 코너스톤 기반 생활 설계와 청춘리셋, Call2Life.";
 const BASE_IMAGE = "https://waoh.life/host-photo.png";
 const BASE_URL = "https://waoh.life";
 
