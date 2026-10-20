@@ -18,7 +18,7 @@ const navItems: NavItem[] = [
   { label: "블로그", href: "/blog" },
   { label: "팟케스트", href: "/podcast" },
   { label: "바이오해킹 제품", href: "/products" },
-  { label: "청춘리셋 참여", href: "/youth-reset" },
+  { label: "청춘리셋", href: "/youth-reset" },
 ];
 
 const Header = () => {
