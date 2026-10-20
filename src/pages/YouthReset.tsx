@@ -608,7 +608,7 @@ export default function YouthReset() {
               <span className="text-white/75 font-normal">@youthreset_official</span>
             </a>
             <p className="text-muted-foreground text-xs mt-3">
-              실제 변화 후기, 일상 루틴, 건강 정보를 인스타그램에서 먼저 공유합니다.
+              청춘리셋 프로그램 일정, 일상 루틴, 건강 정보를 먼저 공유합니다.
             </p>
           </div>
 
