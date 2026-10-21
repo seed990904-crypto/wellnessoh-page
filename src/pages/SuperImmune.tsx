@@ -118,7 +118,7 @@ export default function SuperImmune() {
                   </span>
                 </h1>
                 <span className="inline-flex items-center gap-1 bg-primary/10 text-primary text-xs font-bold px-3 py-1 rounded-full">
-                  ✦ 3세대 리뉴얼
+                  ✦ 리뉴얼
                 </span>
               </div>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">
@@ -222,12 +222,10 @@ export default function SuperImmune() {
                 Immune Architecture
               </p>
               <h2 className="text-2xl font-bold text-foreground mb-2">
-                함량보다 먼저,<br />
-                <span className="text-primary">무엇이 온전한지를 봤습니다.</span>
+                좋은 원료를 고르는 기준이 있습니다
               </h2>
               <p className="text-muted-foreground text-sm leading-relaxed max-w-lg">
-                어디서 수확하고, 어떻게 추출했으며, 어떻게 안정화시켰는지 보고 골랐습니다.<br />
-                에이스매넌은 분자량에 따라 달라집니다.
+                어디서, 어떻게 만들었는지가 효과를 결정합니다.
               </p>
             </div>
 
@@ -235,62 +233,33 @@ export default function SuperImmune() {
               {[
                 {
                   no: "01",
-                  title: "화산 토양 유기농 알로에겔",
-                  rows: [
-                    { label: "수확", desc: "화산 토양 유기농 재배 · 새벽에 손으로 거둠" },
-                    { label: "추출", desc: "그날 아침 가공 · 고온 농축·알코올 침전 없이" },
-                    { label: "안정화", desc: "SUPERVERA7® 안정화 기술" },
-                  ],
-                  note: "안정화된 기술력은 에이스매넌의 성분을 유지시켜 줍니다.",
+                  title: "유기농 알로에겔",
+                  desc: "새벽에 손으로 거둬 그날 아침 바로 가공합니다. SUPERVERA7® 기술로 에이스매넌 성분을 온전히 보존합니다.",
                 },
                 {
                   no: "02",
-                  title: "구아바잎에서 얻은 천연 아연",
-                  rows: [
-                    { label: "원료", desc: "합성 아연 대신 구아바잎 추출물 (RGen-Zn™)" },
-                    { label: "추출", desc: "물로만 추출 · 물에 녹는 수용성" },
-                    { label: "함량", desc: "천연 아연 4% 이상 표준화" },
-                  ],
-                  note: "합성 아연과의 차이는 흡수력 — 식품 결합 아연은 흡수량 40%↑",
+                  title: "구아바잎 천연 아연",
+                  desc: "합성 아연 대신 구아바잎에서 얻은 천연 아연(RGen-Zn™)을 사용했습니다. 물로만 추출한 수용성 형태입니다.",
                 },
                 {
                   no: "03",
-                  title: "사람 연구가 있는 배합 원료",
-                  rows: [
-                    { label: "EpiCor®", desc: "효모 발효물 — 사람 대상 연구 있음" },
-                    { label: "아라비노갈락탄", desc: "낙엽송 추출 — 사람 대상 연구 있음" },
-                  ],
-                  note: "두 원료 모두 사람을 대상으로 한 연구가 있습니다.",
+                  title: "사람 연구로 검증된 배합",
+                  desc: "EpiCor®(효모 발효물)와 낙엽송 아라비노갈락탄 — 두 원료 모두 사람 대상 연구가 있습니다.",
                 },
                 {
                   no: "04",
-                  title: "매일 먹는 형태까지",
-                  rows: [
-                    { label: "캡슐", desc: "식물성 캡슐 사용" },
-                    { label: "첨가물", desc: "인공향료 · 합성감미료 · 인공색소 없음" },
-                    { label: "복용", desc: "돌리면 한 알씩" },
-                  ],
-                  note: "매일 먹어도 안심할 수 있는 형태로 만들었습니다.",
+                  title: "인공 첨가물 없이, 식물성 캡슐",
+                  desc: "인공향료·합성감미료·인공색소 없이, 식물성 캡슐에 담았습니다. 매일 드셔도 안심입니다.",
                 },
               ].map((item) => (
                 <div key={item.no} className="bg-muted/20 border border-border/40 rounded-2xl p-6">
-                  <div className="flex items-center gap-2.5 mb-4">
+                  <div className="flex items-center gap-2.5 mb-3">
                     <span className="w-8 h-8 rounded-lg bg-primary text-primary-foreground text-[11px] font-mono font-bold flex items-center justify-center shrink-0">
                       {item.no}
                     </span>
                     <h3 className="font-bold text-foreground text-sm leading-snug">{item.title}</h3>
                   </div>
-                  <div className="space-y-2 mb-4">
-                    {item.rows.map((row) => (
-                      <div key={row.label} className="flex gap-2 text-xs">
-                        <span className="text-primary font-semibold shrink-0 w-16">{row.label}</span>
-                        <span className="text-muted-foreground leading-relaxed">{row.desc}</span>
-                      </div>
-                    ))}
-                  </div>
-                  <p className="text-xs font-semibold text-primary border-t border-border/30 pt-3 leading-relaxed">
-                    {item.note}
-                  </p>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
                 </div>
               ))}
             </div>
@@ -299,7 +268,7 @@ export default function SuperImmune() {
             <div className="mt-6 bg-foreground/5 border border-border/40 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
               <div>
                 <p className="font-semibold text-foreground text-sm mb-0.5">그저 알로에겔이 아닙니다.</p>
-                <p className="text-xs text-muted-foreground">에이스매넌과 만노스에 대해 더 알고 싶으신가요?</p>
+                <p className="text-xs text-muted-foreground">에이스매넌에 대해 더 알고 싶으신가요?</p>
               </div>
               <a
                 href="https://waoh.life/acemannan/"
@@ -307,7 +276,7 @@ export default function SuperImmune() {
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-1.5 bg-primary text-primary-foreground text-xs font-semibold px-5 py-2.5 rounded-xl hover:bg-primary/90 transition-colors shrink-0"
               >
-                에이스매넌 교육 페이지 <ArrowRight className="w-3.5 h-3.5" />
+                에이스매넌 자세히 보기 <ArrowRight className="w-3.5 h-3.5" />
               </a>
             </div>
           </section>
@@ -317,7 +286,7 @@ export default function SuperImmune() {
             <div className="flex flex-col md:flex-row gap-10 items-start">
               <div className="flex-1">
                 <p className="font-mono text-[11px] tracking-[0.25em] text-primary uppercase mb-4">
-                  Architect's Note · 세 번째 설계
+                  Architect's Note
                 </p>
                 <blockquote className="text-xl md:text-2xl font-bold text-foreground leading-snug mb-3">
                   "어머님이 드셔도 되는가?"
@@ -329,14 +298,9 @@ export default function SuperImmune() {
 
                 <div className="space-y-5">
                   {[
-                    { year: "2022", gen: "1세대", desc: "기능성 원료 알로에겔 1종으로 시작", active: false },
-                    { year: "2024", gen: "2세대", desc: "EpiCor®를 더함", active: false },
-                    {
-                      year: "2026",
-                      gen: "3세대 프리미어",
-                      desc: "식물 유래 아연과 낙엽송 아라비노갈락탄을 더한 프리미어",
-                      active: true,
-                    },
+                    { year: "2022", desc: "알로에겔 1종으로 시작", active: false },
+                    { year: "2024", desc: "EpiCor®(효모 발효물) 추가", active: false },
+                    { year: "2026", desc: "구아바잎 천연 아연 + 낙엽송 아라비노갈락탄 추가 · 프리미어 출시", active: true },
                   ].map((t) => (
                     <div key={t.year} className={`flex gap-4 items-start ${t.active ? "" : "opacity-45"}`}>
                       <div
@@ -350,17 +314,13 @@ export default function SuperImmune() {
                             t.active ? "text-primary" : "text-muted-foreground"
                           }`}
                         >
-                          {t.year} · {t.gen}
+                          {t.year}
                         </p>
                         <p className="text-sm text-foreground leading-relaxed">{t.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
-
-                <p className="text-[10px] text-muted-foreground/50 mt-5">
-                  * 세대 표기는 슈퍼이뮨의 개정 이력이며, 다른 제품과의 비교가 아닙니다.
-                </p>
               </div>
 
               {/* 숫자 카드 */}
@@ -384,43 +344,29 @@ export default function SuperImmune() {
 
           {/* ── 4대 코너스톤 ──────────────────────────────────── */}
           <section className="border-t pt-12 mb-14">
-            <div className="mb-7">
+            <div className="mb-5">
               <p className="text-[10px] font-mono tracking-[0.2em] text-primary uppercase mb-2">4 Cornerstones</p>
-              <h2 className="text-lg font-bold text-foreground mb-1">이 제품이 작용하는 코너스톤</h2>
-              <p className="text-sm text-muted-foreground">
-                웰니스 아키텍트가 설계한 4대 생물학적 기둥 중 이 제품이 담당하는 영역입니다.
-              </p>
+              <h2 className="text-lg font-bold text-foreground">이 제품이 작용하는 코너스톤</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+            <div className="flex gap-3">
               {cornerstones.map((cs) => {
                 const isActive = ACTIVE_CS.includes(cs.id);
                 return (
                   <div
                     key={cs.id}
-                    className={`rounded-2xl p-5 border transition-all ${
+                    className={`w-14 h-14 rounded-xl border flex items-center justify-center transition-all ${
                       isActive
-                        ? "bg-primary/5 border-primary/25 shadow-sm"
-                        : "bg-muted/15 border-border/20 opacity-35"
+                        ? "bg-primary border-primary/30 shadow-sm"
+                        : "bg-muted/20 border-border/20 opacity-30"
                     }`}
                   >
                     <span
-                      className={`text-[11px] font-mono font-bold rounded-lg w-8 h-8 flex items-center justify-center mb-3 ${
-                        isActive ? "bg-primary text-primary-foreground" : "bg-muted text-muted-foreground"
+                      className={`text-sm font-mono font-bold ${
+                        isActive ? "text-primary-foreground" : "text-muted-foreground"
                       }`}
                     >
                       {cs.id}
                     </span>
-                    <h3
-                      className={`text-sm font-bold mb-0.5 leading-snug ${
-                        isActive ? "text-foreground" : "text-muted-foreground"
-                      }`}
-                    >
-                      {cs.title}
-                    </h3>
-                    <p className="text-[10px] font-mono text-muted-foreground/60 mb-2">{cs.subtitle}</p>
-                    {isActive && (
-                      <p className="text-xs text-muted-foreground leading-relaxed">{cs.desc}</p>
-                    )}
                   </div>
                 );
               })}
@@ -430,22 +376,22 @@ export default function SuperImmune() {
           {/* ── 이런 분께 추천 ────────────────────────────────── */}
           <section className="border-t pt-12 mb-14">
             <h2 className="text-lg font-bold text-foreground mb-6">이런 분께 추천합니다</h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
+            <div className="flex flex-col gap-2.5">
               {[
-                "환절기마다 컨디션 관리가 신경 쓰이는 분",
+                "환절기 컨디션 관리가 필요한 분",
                 "장 건강과 피부 건강을 함께 챙기고 싶은 분",
-                "부모님께 드릴 제품을 직접 확인하고 고르는 분",
-                "합성 첨가물 없는 건강기능식품을 찾는 분",
+                "부모님께 드릴 믿을 수 있는 제품을 찾는 분",
+                "합성 첨가물 없는 건강기능식품을 원하는 분",
                 "온 가족이 함께 먹을 수 있는 면역 루틴을 원하는 분",
               ].map((item) => (
                 <div
                   key={item}
-                  className="flex items-start gap-3 bg-muted/20 rounded-xl p-4 border border-border/30"
+                  className="flex items-center gap-3 bg-muted/20 rounded-xl px-4 py-3 border border-border/30"
                 >
-                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                  <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0">
                     <Check className="w-3 h-3 text-primary" />
                   </div>
-                  <p className="text-sm text-foreground leading-relaxed">{item}</p>
+                  <p className="text-sm text-foreground">{item}</p>
                 </div>
               ))}
             </div>
