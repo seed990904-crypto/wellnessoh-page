@@ -391,7 +391,7 @@ const ProductPage = ({
             <BuyButton
               product={product.id as ProductSlug}
               size="lg"
-              label="카페24에서 구매하기"
+              label="구매하기"
               className="min-w-[220px]"
             />
           </div>

@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { Zap } from "lucide-react";
 import { buyNowWithCafe24 } from "@/lib/cafe24";
-import { BuyButton } from "@/components/BuyButton";
-import type { ProductSlug } from "@/config/mall";
+
 
 export interface ProductConfig {
   id: string;
@@ -129,19 +128,13 @@ const PurchaseSection = ({ product }: { product: ProductConfig }) => {
 
       {/* 구매 버튼 */}
       <div className="space-y-2.5">
-        <BuyButton
-          product={product.id as ProductSlug}
-          size="lg"
-          label="카페24에서 구매하기"
-          className="w-full rounded-xl"
-        />
         <button
           onClick={() => product.cafe24ProductNo && buyNowWithCafe24(product.cafe24ProductNo, qty)}
           disabled={!product.cafe24ProductNo}
           className="flex items-center justify-center gap-2 w-full rounded-xl bg-primary text-primary-foreground py-3.5 text-sm font-bold hover:brightness-90 disabled:opacity-40 disabled:cursor-not-allowed transition-all"
         >
           <Zap size={16} />
-          {product.cafe24ProductNo ? "바로 구매하기" : "스토어 등록 준비 중"}
+          {product.cafe24ProductNo ? "구매하기" : "스토어 등록 준비 중"}
         </button>
       </div>
 

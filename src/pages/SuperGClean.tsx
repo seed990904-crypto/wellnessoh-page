@@ -11,7 +11,7 @@ const product: ProductConfig = {
   brand: "청춘리셋",
   name: "슈퍼지클린",
   engName: "SUPER G.CLEAN",
-  tags: ["900일 자연배양 생효소", "장 상태 개선", "2시간의 마법"],
+  tags: ["900일 자연배양 생효소", "장 상태 개선", "장비움"],
   unitPrice: 27000,
   freeShippingThreshold: 45000,
   shippingFee: 3000,
