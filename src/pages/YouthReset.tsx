@@ -109,8 +109,8 @@ const formulaProducts = [
   {
     step: "04",
     image: imgImmune,
-    name: "슈퍼이뮨",
-    engName: "SUPER IMMUNE",
+    name: "슈퍼이뮨 프리미어",
+    engName: "SUPER IMMUNE PREMIER",
     role: "면역 체계 강화",
     cornerstones: ["C1", "C3"],
     keyIngredient: "에이스매넌 · 초유",

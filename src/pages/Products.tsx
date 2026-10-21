@@ -45,10 +45,10 @@ interface ComingSoonProduct {
 // ─── 데이터 ──────────────────────────────────────────────
 const catalog: CatalogProduct[] = [
   {
-    slug: "super-immune", name: "슈퍼이뮨", engName: "SUPER IMMUNE",
+    slug: "super-immune", name: "슈퍼이뮨 프리미어", engName: "SUPER IMMUNE PREMIER",
     price: 160000,
-    subtitle: "세포 통신망 리셋 · 면역 조절 서포트",
-    tags: ["에이스매넌 & 초유", "면역 조절"],
+    subtitle: "2가지 원료 · 5가지 기능성",
+    tags: ["에이스매넌", "천연 아연", "식물성 캡슐"],
     cornerstones: ["01", "03"],
     image: imgImmune,
   },

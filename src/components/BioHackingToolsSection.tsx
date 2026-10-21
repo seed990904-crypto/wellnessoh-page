@@ -29,9 +29,9 @@ interface Product {
 const products: Product[] = [
   {
     image: productSuperImmune,
-    name: "슈퍼이뮨",
-    engName: "SUPER IMMUNE",
-    subtitle: "출시 준비 중",
+    name: "슈퍼이뮨 프리미어",
+    engName: "SUPER IMMUNE PREMIER",
+    subtitle: "2가지 원료 · 5가지 기능성",
     price: 160000,
     cornerstones: ["C1", "C3"],
     path: "/products/super-immune",
