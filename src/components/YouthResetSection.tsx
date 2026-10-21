@@ -57,7 +57,7 @@ const YouthResetSection = () => {
             </h2>
           </div>
           <p className="text-background/50 text-sm leading-relaxed max-w-xs md:text-right">
-            매일 함께 보는 2주로 시작해 28일 완주까지 갑니다.
+            매일 함께 보는 2주로 시작해 28일 완주까지 갑니다.<br />
             식단은 6주차까지 이어집니다.
           </p>
         </div>
