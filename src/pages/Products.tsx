@@ -34,6 +34,7 @@ interface CatalogProduct {
   tags:        string[];
   image:       string;
   cornerstones: CsId[];
+  imgPos?:     string;
 }
 interface ComingSoonProduct {
   slug:    ProductSlug;
@@ -51,6 +52,7 @@ const catalog: CatalogProduct[] = [
     tags: ["에이스매넌", "천연 아연", "식물성 캡슐"],
     cornerstones: ["01", "03"],
     image: imgImmune,
+    imgPos: "object-top",
   },
   {
     slug: "super-greens", name: "슈퍼그린", engName: "SUPER GREENS",
@@ -129,7 +131,7 @@ function ProductCard({ p }: { p: CatalogProduct }) {
           <img
             src={p.image}
             alt={p.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-300 ${p.imgPos ?? ""}`}
           />
         </div>
 
