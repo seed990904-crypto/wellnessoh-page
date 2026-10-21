@@ -28,7 +28,7 @@ const SuperGClean = () => {
   return (
   <ProductPage
     product={product}
-    tagline="2시간의 마법, 몸을 리셋하다. 900일 자연배양 생효소로 장 환경을 정화하는 클렌징 솔루션."
+    tagline="900일 자연배양 생효소로 장 환경을 정화하는 클렌징 솔루션."
     features={[
       {
         icon: Leaf,
