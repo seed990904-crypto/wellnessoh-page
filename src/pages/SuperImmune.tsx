@@ -162,13 +162,13 @@ export default function SuperImmune() {
                   <span className="font-bold text-foreground">알로에겔</span>
                   <span className="text-xs text-blue-500 font-mono">SUPERVERA7®</span>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-2.5">
                   {["피부 건강", "장 건강", "면역력 증진"].map((f) => (
-                    <div key={f} className="flex flex-col items-center gap-2 flex-1">
-                      <div className="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center">
-                        <Check className="w-4 h-4 text-blue-600" />
+                    <div key={f} className="flex items-center gap-2.5">
+                      <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
+                        <Check className="w-3.5 h-3.5 text-blue-600" />
                       </div>
-                      <p className="text-xs text-foreground font-medium text-center leading-snug">{f}</p>
+                      <p className="text-sm text-foreground font-medium">{f}</p>
                     </div>
                   ))}
                 </div>
@@ -176,21 +176,21 @@ export default function SuperImmune() {
 
               {/* 아연 */}
               <div className="bg-emerald-50/60 border border-emerald-100 rounded-2xl p-7">
-                <div className="flex items-center gap-2 mb-1">
+                <div className="flex items-center gap-2 mb-5">
                   <span className="text-[10px] font-mono font-bold bg-emerald-100 text-emerald-700 px-2.5 py-1 rounded-full">
                     02
                   </span>
                   <span className="font-bold text-foreground">아연</span>
                   <span className="text-xs text-emerald-600 font-mono">구아바잎 · RGen-Zn™</span>
+                  <span className="ml-auto text-xs text-emerald-600 font-bold whitespace-nowrap">기준치 141%</span>
                 </div>
-                <p className="text-xs text-emerald-600 font-bold mb-5">기준치 141%</p>
-                <div className="flex gap-4">
+                <div className="flex flex-col gap-2.5">
                   {["정상적인 면역기능", "정상적인 세포분열"].map((f) => (
-                    <div key={f} className="flex flex-col items-center gap-2 flex-1">
-                      <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center">
-                        <Check className="w-4 h-4 text-emerald-600" />
+                    <div key={f} className="flex items-center gap-2.5">
+                      <div className="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center shrink-0">
+                        <Check className="w-3.5 h-3.5 text-emerald-600" />
                       </div>
-                      <p className="text-xs text-foreground font-medium text-center leading-snug">{f}</p>
+                      <p className="text-sm text-foreground font-medium">{f}</p>
                     </div>
                   ))}
                 </div>
