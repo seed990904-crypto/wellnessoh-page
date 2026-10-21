@@ -47,6 +47,7 @@ const SuperGreens = () => {
       },
     ]}
     activeCornerstones={["01", "03"]}
+    compactCornerstones={true}
     forWho={[
       "세포 수준의 디톡스와 항산화가 필요한 분",
       "집중력과 뇌 기능 향상을 원하는 분",

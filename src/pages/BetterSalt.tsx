@@ -47,6 +47,7 @@ const BetterSalt = () => {
       },
     ]}
     activeCornerstones={["02", "04"]}
+    compactCornerstones={true}
     forWho={[
       "일상에서 미네랄 보충이 필요한 분",
       "체내 pH 균형과 알칼리화를 원하는 분",

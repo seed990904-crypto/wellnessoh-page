@@ -47,6 +47,7 @@ const SuperZyme = () => {
       },
     ]}
     activeCornerstones={["03", "04"]}
+    compactCornerstones={true}
     forWho={[
       "간헐적 단식을 실천하거나 시작하려는 분",
       "세포 자가청소(오토파지) 효율을 높이고 싶은 분",
