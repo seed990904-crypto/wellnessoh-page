@@ -163,7 +163,7 @@ export default function SuperImmune() {
                   <span className="text-xs text-blue-500 font-mono">SUPERVERA7®</span>
                 </div>
                 <div className="flex flex-col gap-2.5">
-                  {["피부 건강", "장 건강", "면역력 증진"].map((f) => (
+                  {["면역력 증진", "장 건강", "피부 건강"].map((f) => (
                     <div key={f} className="flex items-center gap-2.5">
                       <div className="w-6 h-6 rounded-full bg-blue-100 flex items-center justify-center shrink-0">
                         <Check className="w-3.5 h-3.5 text-blue-600" />
