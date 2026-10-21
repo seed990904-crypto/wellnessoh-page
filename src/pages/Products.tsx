@@ -52,7 +52,7 @@ const catalog: CatalogProduct[] = [
     tags: ["에이스매넌", "천연 아연", "식물성 캡슐"],
     cornerstones: ["01", "03"],
     image: imgImmune,
-    imgPos: "object-top",
+    imgPos: "object-[center_25%]",
   },
   {
     slug: "super-greens", name: "슈퍼그린", engName: "SUPER GREENS",

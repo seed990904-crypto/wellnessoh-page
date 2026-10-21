@@ -63,11 +63,14 @@ const SuperGClean = () => {
         "개봉 후에는 밀봉하여 빠른 시일 내에 섭취하세요.",
       ],
     }}
-    detailImages={[
-      "/super-gclean-detail-1.png",
-      "/super-gclean-detail-2.png",
-      "/super-gclean-detail-3.png",
+    galleryImages={[
+      "/super-gclean-main.jpg",
+      "/super-gclean-pour.jpg",
+      "/super-gclean-lemon.jpg",
+      "/super-gclean-bottle.png",
+      "/super-gclean-anim.gif",
     ]}
+    compactCornerstones={true}
   />
   );
 };

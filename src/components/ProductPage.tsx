@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import type { LucideIcon } from "lucide-react";
 import { Check } from "lucide-react";
+import { Play } from "lucide-react";
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -98,6 +99,8 @@ interface ProductPageProps {
   howToUse: string;
   legalDisclosure: LegalDisclosure;
   detailImages?: string[];
+  galleryImages?: string[];
+  compactCornerstones?: boolean;
   comingSoon?: boolean;
 }
 
@@ -110,8 +113,11 @@ const ProductPage = ({
   howToUse,
   legalDisclosure,
   detailImages,
+  galleryImages,
+  compactCornerstones = false,
   comingSoon = false,
 }: ProductPageProps) => {
+  const [activeImg, setActiveImg] = useState(galleryImages?.[0] ?? product.image);
   useSEO({
     title: `${product.name} — ${product.engName}`,
     description: tagline,
@@ -145,16 +151,43 @@ const ProductPage = ({
           {/* 상단: 이미지 + 구매 섹션 */}
           <div className="flex flex-col md:flex-row gap-8 items-start mb-16">
             <div className="flex-1 min-w-0">
+              {/* 메인 이미지 */}
               <div
-                className="rounded-2xl bg-muted/20 flex items-center justify-center p-6 mb-6"
-                style={{ minHeight: "480px" }}
+                className="rounded-2xl bg-muted/20 overflow-hidden flex items-center justify-center mb-3"
+                style={{ minHeight: "460px" }}
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
-                  className="max-h-[420px] w-auto max-w-full object-contain"
-                />
+                {activeImg.endsWith(".gif") ? (
+                  <img src={activeImg} alt={product.name} className="w-full h-full object-contain" style={{ maxHeight: "500px" }} />
+                ) : activeImg.endsWith(".mp4") ? (
+                  <video src={activeImg} className="w-full object-cover" style={{ maxHeight: "500px" }} controls autoPlay muted loop playsInline />
+                ) : (
+                  <img src={activeImg} alt={product.name} className="w-full h-full object-contain" style={{ maxHeight: "500px" }} />
+                )}
               </div>
+
+              {/* 썸네일 (galleryImages 있을 때만) */}
+              {galleryImages && galleryImages.length > 1 && (
+                <div className="flex gap-2 mb-5">
+                  {galleryImages.map((img, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setActiveImg(img)}
+                      className={`w-16 h-16 rounded-xl overflow-hidden border-2 shrink-0 transition-all ${
+                        activeImg === img ? "border-primary shadow-sm" : "border-transparent opacity-55 hover:opacity-90"
+                      }`}
+                    >
+                      {img.endsWith(".gif") ? (
+                        <div className="w-full h-full bg-muted/30 flex items-center justify-center">
+                          <Play className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                      ) : (
+                        <img src={img} alt="" className="w-full h-full object-cover" />
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+
               <p className="text-xs text-muted-foreground font-medium tracking-wide mb-1">
                 {product.brand}
               </p>
@@ -215,55 +248,68 @@ const ProductPage = ({
 
           {/* 4대 코너스톤 */}
           <section className="border-t pt-12 mb-14">
-            <div className="mb-7">
+            <div className="mb-5">
               <p className="text-[10px] font-mono tracking-[0.2em] text-primary uppercase mb-2">
                 4 Cornerstones
               </p>
-              <h2 className="text-lg font-bold text-foreground mb-1">
+              <h2 className="text-lg font-bold text-foreground">
                 이 제품이 작용하는 코너스톤
               </h2>
-              <p className="text-sm text-muted-foreground">
-                웰니스 아키텍트가 설계한 4대 생물학적 기둥 중 이 제품이 담당하는 영역입니다.
-              </p>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-              {cornerstones.map((cs) => {
-                const isActive = activeCornerstones.includes(cs.id);
-                return (
-                  <div
-                    key={cs.id}
-                    className={`rounded-2xl p-5 border transition-all ${
-                      isActive
-                        ? "bg-primary/5 border-primary/25 shadow-sm"
-                        : "bg-muted/15 border-border/20 opacity-35"
-                    }`}
-                  >
-                    <span
-                      className={`text-[11px] font-mono font-bold rounded-lg w-8 h-8 flex items-center justify-center mb-3 ${
+            {compactCornerstones ? (
+              <div className="flex gap-3">
+                {cornerstones.map((cs) => {
+                  const isActive = activeCornerstones.includes(cs.id);
+                  return (
+                    <div
+                      key={cs.id}
+                      className={`w-14 h-14 rounded-xl border flex items-center justify-center transition-all ${
                         isActive
-                          ? "bg-primary text-primary-foreground"
-                          : "bg-muted text-muted-foreground"
+                          ? "bg-primary border-primary/30 shadow-sm"
+                          : "bg-muted/20 border-border/20 opacity-30"
                       }`}
                     >
-                      {cs.id}
-                    </span>
-                    <h3
-                      className={`text-sm font-bold mb-0.5 leading-snug ${
-                        isActive ? "text-foreground" : "text-muted-foreground"
+                      <span className={`text-sm font-mono font-bold ${isActive ? "text-primary-foreground" : "text-muted-foreground"}`}>
+                        {cs.id}
+                      </span>
+                    </div>
+                  );
+                })}
+              </div>
+            ) : (
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {cornerstones.map((cs) => {
+                  const isActive = activeCornerstones.includes(cs.id);
+                  return (
+                    <div
+                      key={cs.id}
+                      className={`rounded-2xl p-5 border transition-all ${
+                        isActive
+                          ? "bg-primary/5 border-primary/25 shadow-sm"
+                          : "bg-muted/15 border-border/20 opacity-35"
                       }`}
                     >
-                      {cs.title}
-                    </h3>
-                    <p className="text-[10px] font-mono text-muted-foreground/60 mb-2">
-                      {cs.subtitle}
-                    </p>
-                    {isActive && !comingSoon && (
-                      <p className="text-xs text-muted-foreground leading-relaxed">{cs.desc}</p>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+                      <span
+                        className={`text-[11px] font-mono font-bold rounded-lg w-8 h-8 flex items-center justify-center mb-3 ${
+                          isActive
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted text-muted-foreground"
+                        }`}
+                      >
+                        {cs.id}
+                      </span>
+                      <h3 className={`text-sm font-bold mb-0.5 leading-snug ${isActive ? "text-foreground" : "text-muted-foreground"}`}>
+                        {cs.title}
+                      </h3>
+                      <p className="text-[10px] font-mono text-muted-foreground/60 mb-2">{cs.subtitle}</p>
+                      {isActive && !comingSoon && (
+                        <p className="text-xs text-muted-foreground leading-relaxed">{cs.desc}</p>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </section>
 
           {/* 이런 분께 추천 */}

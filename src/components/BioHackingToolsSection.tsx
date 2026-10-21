@@ -37,7 +37,7 @@ const products: Product[] = [
     cornerstones: ["C1", "C3"],
     path: "/products/super-immune",
     isPhoto: true,
-    imgPos: "object-top",
+    imgPos: "object-[center_25%]",
   },
   {
     image: productSuperGreens,
