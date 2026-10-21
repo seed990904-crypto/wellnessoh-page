@@ -24,6 +24,7 @@ interface Product {
   cornerstones: CsKey[];
   path: string;
   isPhoto?: boolean;
+  imgPos?: string;
 }
 
 const products: Product[] = [
@@ -36,6 +37,7 @@ const products: Product[] = [
     cornerstones: ["C1", "C3"],
     path: "/products/super-immune",
     isPhoto: true,
+    imgPos: "object-top",
   },
   {
     image: productSuperGreens,
@@ -101,7 +103,7 @@ const ProductCard = ({ product }: { product: Product }) => {
           alt={product.name}
           className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
             product.isPhoto
-              ? "object-cover"
+              ? `object-cover ${product.imgPos ?? ""}`
               : "object-contain p-4"
           }`}
           loading="lazy"
