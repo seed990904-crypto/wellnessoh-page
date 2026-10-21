@@ -10,7 +10,7 @@ import type { ProductSlug } from "@/config/mall";
 import imgImmune  from "@/assets/product-super-immune.jpg";
 import imgGreens  from "@/assets/product-super-greens.png";
 import imgSalt    from "@/assets/product-better-salt.jpg";
-import imgGclean  from "@/assets/product-super-gclean.png";
+const imgGclean = "/super-gclean-main.jpg";
 import imgZyme    from "@/assets/product-super-zyme.jpg";
 
 // ─── 코너스톤 스타일 ──────────────────────────────────────

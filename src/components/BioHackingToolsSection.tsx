@@ -2,7 +2,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import productSuperImmune from "@/assets/product-super-immune.jpg";
 import productSuperGreens from "@/assets/product-super-greens.png";
-import productSuperGClean from "@/assets/product-super-gclean.png";
+const productSuperGClean = "/super-gclean-main.jpg";
 import productSuperZyme from "@/assets/product-super-zyme.jpg";
 import productBetterSalt from "@/assets/product-better-salt.jpg";
 
