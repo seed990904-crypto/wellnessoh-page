@@ -6,6 +6,7 @@ import AboutSection from "@/components/AboutSection";
 import YouthResetSection from "@/components/YouthResetSection";
 import BioHackingToolsSection from "@/components/BioHackingToolsSection";
 import ContactSection from "@/components/ContactSection";
+import ReelsSection from "@/components/ReelsSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { useJsonLd } from "@/hooks/useJsonLd";
@@ -30,6 +31,7 @@ const Index = () => {
       <AboutSection />
       <BioHackingToolsSection />
       <YouthResetSection />
+      <ReelsSection />
       <ContactSection />
       <Footer />
       <FloatingCTA />
