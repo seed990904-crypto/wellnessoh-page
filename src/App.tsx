@@ -19,6 +19,7 @@ import BrandStory from "./pages/BrandStory";
 import Products from "./pages/Products";
 import SuperLongeVita from "./pages/SuperLongeVita";
 import CoreRoutine from "./pages/CoreRoutine";
+import Consulting from "./pages/Consulting";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/products/core-routine" element={<CoreRoutine />} />
           <Route path="/youth-reset" element={<YouthReset />} />
           <Route path="/about" element={<BrandStory />} />
+          <Route path="/consulting" element={<Consulting />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

@@ -127,7 +127,7 @@ const formulaProducts = [
     cornerstones: ["C3", "C4"],
     keyIngredient: "17가지 초본 발효 효소",
     desc: "식사 후 소화를 돕고 영양 흡수율을 높입니다. 장내 환경을 꾸준히 유지해 루틴의 효과를 끝까지 지켜줍니다.",
-    price: "75,000원",
+    price: "125,000원",
     path: "/products/super-zyme",
   },
 ];

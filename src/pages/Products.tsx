@@ -80,7 +80,7 @@ const catalog: CatalogProduct[] = [
   },
   {
     slug: "super-zyme", name: "슈퍼자임", engName: "SUPER ZYME",
-    price: 75000,
+    price: 125000,
     subtitle: "점심과 저녁, 발효로 시작되는 5일",
     tags: ["17가지 초본", "발효 효소"],
     cornerstones: ["03", "04"],

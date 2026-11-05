@@ -54,7 +54,7 @@ const products: Product[] = [
     name: "슈퍼자임",
     engName: "SUPER ZYME",
     subtitle: "점심과 저녁, 발효로 시작되는 5일",
-    price: 75000,
+    price: 125000,
     cornerstones: ["C3", "C4"],
     path: "/products/super-zyme",
     isPhoto: true,

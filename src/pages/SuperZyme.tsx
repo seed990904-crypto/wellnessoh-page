@@ -12,7 +12,7 @@ const product: ProductConfig = {
   name: "슈퍼자임",
   engName: "SUPER ZYME",
   tags: ["간헐적 단식 효율", "오토파지 촉진", "17가지 천연 초본"],
-  unitPrice: 75000,
+  unitPrice: 125000,
   freeShippingThreshold: 0,
   shippingFee: 0,
   origin: "미국",

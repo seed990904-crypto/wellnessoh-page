@@ -3,10 +3,12 @@ import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
-import YouthResetSection from "@/components/YouthResetSection";
-import BioHackingToolsSection from "@/components/BioHackingToolsSection";
-import ContactSection from "@/components/ContactSection";
+import ScienceSection from "@/components/ScienceSection";
 import ReelsSection from "@/components/ReelsSection";
+import BioHackingToolsSection from "@/components/BioHackingToolsSection";
+import YouthResetSection from "@/components/YouthResetSection";
+import OfferSection from "@/components/OfferSection";
+import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import { useJsonLd } from "@/hooks/useJsonLd";
@@ -29,9 +31,11 @@ const Index = () => {
       <Header />
       <HeroSection />
       <AboutSection />
+      <ScienceSection />
+      <ReelsSection />
       <BioHackingToolsSection />
       <YouthResetSection />
-      <ReelsSection />
+      <OfferSection />
       <ContactSection />
       <Footer />
       <FloatingCTA />

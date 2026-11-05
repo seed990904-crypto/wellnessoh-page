@@ -1,14 +1,7 @@
 import { Link } from "react-router-dom";
-import { ChevronDown } from "lucide-react";
-import { toast } from "sonner";
+import { ChevronDown, Sparkles } from "lucide-react";
 
-declare global {
-  interface Window {
-    Tally?: {
-      openPopup: (formId: string, options?: Record<string, unknown>) => void;
-    };
-  }
-}
+const KAKAO_URL = "http://pf.kakao.com/_VxdWxhG";
 
 const stats = [
   { num: "19년", label: "필드 경험" },
@@ -17,29 +10,6 @@ const stats = [
 ];
 
 const HeroSection = () => {
-  const openLongevityScore = () => {
-    const options = {
-      width: 700,
-      onSubmit: () => {
-        toast("셀프 체크 완료!", {
-          description: "전문가의 도움이 필요하시면 1:1 컨설팅을 신청해 보세요.",
-          action: {
-            label: "상담 신청하기",
-            onClick: () =>
-              document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" }),
-          },
-          duration: 8000,
-        });
-      },
-    };
-
-    if (window.Tally) {
-      window.Tally.openPopup("ja9EEY", options);
-    } else {
-      window.open("https://tally.so/r/ja9EEY", "_blank");
-    }
-  };
-
   return (
     <section id="hero" className="relative h-screen w-full overflow-hidden">
       {/* Background Video */}
@@ -53,7 +23,7 @@ const HeroSection = () => {
         <source src="/hero-video.mp4" type="video/mp4" />
       </video>
 
-      {/* Gradient Overlay — left heavy + bottom heavy */}
+      {/* Gradient Overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/45 to-black/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20" />
 
@@ -61,36 +31,55 @@ const HeroSection = () => {
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto">
 
         {/* Brand label */}
-        <p className="text-white/55 text-[11px] font-mono tracking-[0.22em] uppercase mb-6">
-          웰니스 아키텍트 오승우 · WELLNESS ARCHITECT
+        <p className="text-white/40 text-[10px] font-mono tracking-[0.3em] uppercase mb-6">
+          Biology by Design · WELLNESS ARCHITECT
         </p>
 
         {/* Headline */}
-        <h1 className="text-[26px] sm:text-[38px] md:text-[50px] lg:text-[60px] font-bold text-white leading-[1.25] tracking-[-0.045em] mb-6 whitespace-nowrap">
-          기초가 단단해야,<br />
-          내일이 흔들리지 않습니다.
+        <h1 className="text-[32px] sm:text-[46px] md:text-[58px] lg:text-[68px] font-bold text-white leading-[1.2] tracking-[-0.03em] mb-8">
+          몸의 기초를<br />다시 설계합니다.
         </h1>
 
         {/* Sub copy */}
-        <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10">
-          19년 동안 1만 명의 몸을 설계했습니다.<br />
-          <strong className="text-white font-bold">지금은 단 한 사람, 엄마의 하루를 설계합니다.</strong>
+        <p className="text-white/60 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
+          19년간 1만 명의 몸을 설계했습니다.<br />
+          지금은 단 한 사람, 엄마의 하루를 설계합니다.
         </p>
 
         {/* CTAs */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-3">
+          {/* 출시 이벤트 버튼 */}
+          <a
+            href="https://superimmune-premier-film.netlify.app/?ch=kakao"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-bold px-8 py-3.5 transition-all duration-200 hover:scale-[1.03] active:scale-100"
+            style={{
+              background: "linear-gradient(135deg, #b8860b 0%, #f0c040 50%, #b8860b 100%)",
+              color: "#1a0f00",
+              boxShadow: "0 0 20px rgba(240,192,64,0.35)",
+            }}
+          >
+            <Sparkles className="w-4 h-4" />
+            슈퍼이뮨 프리미어 출시 이벤트 구매하기
+          </a>
+        </div>
+
         <div className="flex flex-col sm:flex-row gap-3">
-          <button
-            onClick={openLongevityScore}
+          <Link
+            to="/products"
             className="inline-flex items-center justify-center rounded-full bg-white text-black text-sm font-semibold px-8 py-3.5 hover:bg-white/90 transition-all duration-200"
           >
-            무료 · 나의 롱제비티 스코어 셀프 체크
-          </button>
-          <Link
-            to="/about"
+            설계 시작하기 →
+          </Link>
+          <a
+            href={KAKAO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center rounded-full border border-white/40 text-white text-sm font-medium px-8 py-3.5 hover:bg-white/10 transition-all duration-200"
           >
-            브랜드 스토리 보기
-          </Link>
+            1:1 상담 신청
+          </a>
         </div>
 
         {/* Stats row — pinned to bottom */}
