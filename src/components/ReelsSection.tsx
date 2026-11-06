@@ -1,13 +1,13 @@
 import { Instagram, Play } from "lucide-react";
 
 const reels = [
-  { url: "https://www.instagram.com/reel/Deq5X2mB-SI/", label: "바이오해킹이란 무엇인가" },
-  { url: "https://www.instagram.com/reel/DWi0lRtAY5c/", label: "장이 먼저입니다" },
-  { url: "https://www.instagram.com/reel/DebtKp6B1WK/", label: "면역의 기초" },
-  { url: "https://www.instagram.com/reel/DegnRdbBiEH/", label: "수면과 회복" },
-  { url: "https://www.instagram.com/reel/DeZGzs-BrvQ/", label: "미네랄 균형" },
-  { url: "https://www.instagram.com/reel/Dd0_KOhygck/", label: "19년의 현장" },
-  { url: "https://www.instagram.com/reel/DdqxfXhBGne/", label: "청춘리셋 후기" },
+  { url: "https://www.instagram.com/reel/Deq5X2mB-SI/", label: "소금이 약이 됩니다" },
+  { url: "https://www.instagram.com/reel/DWi0lRtAY5c/", label: "치매 어머니의 회복" },
+  { url: "https://www.instagram.com/reel/DebtKp6B1WK/", label: "어르신과 밥심" },
+  { url: "https://www.instagram.com/reel/DegnRdbBiEH/", label: "다리 힘이 뇌를 지킵니다" },
+  { url: "https://www.instagram.com/reel/DeZGzs-BrvQ/", label: "약봉지를 열어보세요" },
+  { url: "https://www.instagram.com/reel/Dd0_KOhygck/", label: "7cm가 1cm로" },
+  { url: "https://www.instagram.com/reel/DdqxfXhBGne/", label: "면역 원료 4가지" },
 ];
 
 // 카드마다 미묘하게 다른 그라디언트

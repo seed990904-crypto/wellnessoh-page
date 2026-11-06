@@ -31,20 +31,32 @@ const HeroSection = () => {
       <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto">
 
         {/* Brand label */}
-        <p className="text-white/40 text-[10px] font-mono tracking-[0.3em] uppercase mb-6">
-          Biology by Design · WELLNESS ARCHITECT
-        </p>
+        <div className="flex items-center gap-3 mb-8">
+          <div className="w-6 h-px bg-primary/70" />
+          <p className="text-white/40 text-[10px] font-mono tracking-[0.3em] uppercase">
+            Biology by Design · WELLNESS ARCHITECT
+          </p>
+        </div>
 
         {/* Headline */}
-        <h1 className="text-[32px] sm:text-[46px] md:text-[58px] lg:text-[68px] font-bold text-white leading-[1.2] tracking-[-0.03em] mb-8">
-          몸의 기초를<br />다시 설계합니다.
+        <h1 className="mb-8" style={{ textShadow: "0 2px 24px rgba(0,0,0,0.35)" }}>
+          <span className="block text-[32px] sm:text-[46px] md:text-[58px] lg:text-[68px] font-light text-white/70 leading-[1.15] tracking-[-0.02em]">
+            몸의 기초를
+          </span>
+          <span className="block text-[32px] sm:text-[46px] md:text-[58px] lg:text-[68px] font-black text-white leading-[1.15] tracking-[-0.04em]">
+            다시 설계합니다.
+          </span>
         </h1>
 
         {/* Sub copy */}
-        <p className="text-white/60 text-sm md:text-base leading-relaxed mb-10 max-w-sm">
-          19년간 1만 명의 몸을 설계했습니다.<br />
-          지금은 단 한 사람, 엄마의 하루를 설계합니다.
-        </p>
+        <div className="border-l-2 border-primary/60 pl-4 mb-10 max-w-sm">
+          <p className="text-white/45 text-sm leading-relaxed">
+            19년간 1만 명의 몸을 설계했습니다.
+          </p>
+          <p className="text-white/80 text-sm leading-relaxed font-medium mt-0.5">
+            지금은 단 한 사람, 엄마의 하루를 설계합니다.
+          </p>
+        </div>
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 mb-3">

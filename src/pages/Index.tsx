@@ -11,6 +11,7 @@ import OfferSection from "@/components/OfferSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import PromoPopup from "@/components/PromoPopup";
 import { useJsonLd } from "@/hooks/useJsonLd";
 import { brandSchemas } from "@/data/brandSchemas";
 import { useSEO } from "@/hooks/useSEO";
@@ -39,6 +40,7 @@ const Index = () => {
       <ContactSection />
       <Footer />
       <FloatingCTA />
+      <PromoPopup />
     </div>
   );
 };
