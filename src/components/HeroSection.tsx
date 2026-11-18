@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ChevronDown, Sparkles } from "lucide-react";
+import { ChevronDown, Tag } from "lucide-react";
 
 const KAKAO_URL = "http://pf.kakao.com/_VxdWxhG";
 
@@ -60,20 +60,21 @@ const HeroSection = () => {
 
         {/* CTAs */}
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
-          {/* 출시 이벤트 버튼 */}
+          {/* 블랙프라이데이 버튼 */}
           <a
-            href="https://superimmune-premier-film.netlify.app/?ch=kakao"
+            href="https://smartstore.naver.com/call2life"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-bold px-8 py-3.5 transition-all duration-200 hover:scale-[1.03] active:scale-100"
             style={{
-              background: "linear-gradient(135deg, #b8860b 0%, #f0c040 50%, #b8860b 100%)",
-              color: "#1a0f00",
-              boxShadow: "0 0 20px rgba(240,192,64,0.35)",
+              background: "linear-gradient(135deg, #0f0f1a 0%, #1a1aff 50%, #0f0f1a 100%)",
+              color: "#ffffff",
+              boxShadow: "0 0 24px rgba(100,100,255,0.45)",
+              border: "1px solid rgba(100,100,255,0.4)",
             }}
           >
-            <Sparkles className="w-4 h-4" />
-            슈퍼이뮨 프리미어 출시 이벤트 구매하기
+            <Tag className="w-4 h-4" />
+            블랙프라이데이 최대 33% 할인
           </a>
         </div>
 
