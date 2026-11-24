@@ -25,6 +25,7 @@ interface Product {
   path: string;
   isPhoto?: boolean;
   imgPos?: string;
+  newBadge?: string;
 }
 
 const products: Product[] = [
@@ -53,11 +54,12 @@ const products: Product[] = [
     image: productSuperZyme,
     name: "슈퍼자임",
     engName: "SUPER ZYME",
-    subtitle: "점심과 저녁, 발효로 시작되는 5일",
+    subtitle: "오토파지 · 17가지 천연 초본 발효",
     price: 125000,
     cornerstones: ["C3", "C4"],
     path: "/products/super-zyme",
     isPhoto: true,
+    newBadge: "NEW",
   },
   {
     image: productSuperGClean,
@@ -73,11 +75,12 @@ const products: Product[] = [
     image: productBetterSalt,
     name: "베러솔트",
     engName: "BETTER SALT",
-    subtitle: "미네랄 소금",
+    subtitle: "40종 활성 미네랄 · 1200도 열처리",
     price: 88000,
     cornerstones: ["C2", "C4"],
     path: "/products/better-salt",
     isPhoto: true,
+    newBadge: "NEW",
   },
 ];
 
@@ -97,7 +100,7 @@ const ProductCard = ({ product }: { product: Product }) => {
       className="group bg-white rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200 cursor-pointer flex flex-col"
     >
       {/* 이미지 */}
-      <div className="aspect-[4/3] bg-muted/20 overflow-hidden">
+      <div className="aspect-[4/3] bg-muted/20 overflow-hidden relative">
         <img
           src={product.image}
           alt={product.name}
@@ -108,6 +111,11 @@ const ProductCard = ({ product }: { product: Product }) => {
           }`}
           loading="lazy"
         />
+        {product.newBadge && (
+          <span className="absolute top-3 left-3 text-[10px] font-bold bg-primary text-primary-foreground px-2 py-0.5 rounded-full tracking-wide">
+            {product.newBadge}
+          </span>
+        )}
       </div>
 
       {/* 정보 */}

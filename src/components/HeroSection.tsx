@@ -62,7 +62,7 @@ const HeroSection = () => {
         <div className="flex flex-col sm:flex-row gap-3 mb-3">
           {/* 블랙프라이데이 버튼 */}
           <a
-            href="https://smartstore.naver.com/call2life"
+            href="https://mkt.shopping.naver.com/link/6afe9182bcaa3e6fdff48c4c"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 rounded-full text-sm font-bold px-8 py-3.5 transition-all duration-200 hover:scale-[1.03] active:scale-100"

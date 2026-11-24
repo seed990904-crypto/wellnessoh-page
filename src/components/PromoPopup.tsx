@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 
-const BF_URL = "https://smartstore.naver.com/call2life";
+const BF_URL = "https://mkt.shopping.naver.com/link/6afe9182bcaa3e6fdff48c4c";
 const SESSION_KEY = "black-friday-2026-popup-closed";
 
 const PromoPopup = () => {
@@ -41,7 +41,7 @@ const PromoPopup = () => {
         </button>
 
         {/* 이미지 — 제품 사진 아래에서 크롭 */}
-        <div style={{ height: 420, overflow: "hidden", position: "relative" }}>
+        <div style={{ height: 560, overflow: "hidden", position: "relative" }}>
           <img
             src="/black-friday-2026.png"
             alt="Black Friday 2026 최대 33% 할인"

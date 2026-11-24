@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import PurchaseSection from "@/components/PurchaseSection";
 import type { ProductConfig } from "@/components/PurchaseSection";
+import { DEFAULT_SUBSCRIPTION_PLANS } from "@/config/subscriptionPlans";
 import { BuyButton } from "@/components/BuyButton";
 import { cornerstones } from "@/data/cornerstones";
 import { useSEO } from "@/hooks/useSEO";
@@ -13,6 +14,7 @@ import type { ProductSlug } from "@/config/mall";
 
 const product: ProductConfig = {
   id: "super-immune",
+  cafe24ProductNo: 13,
   image: "/super-immune-premier-main.jpg",
   brand: "청춘리셋",
   name: "슈퍼이뮨 프리미어",
@@ -23,6 +25,7 @@ const product: ProductConfig = {
   shippingFee: 0,
   origin: "미국",
   manufacturer: "라이벌 랩스",
+  subscriptionPlans: DEFAULT_SUBSCRIPTION_PLANS,
 };
 
 const gallery = [

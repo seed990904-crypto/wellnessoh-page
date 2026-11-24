@@ -1,6 +1,7 @@
 import { Leaf, Clock, Recycle } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
+import { DEFAULT_SUBSCRIPTION_PLANS } from "@/config/subscriptionPlans";
 import productImg from "@/assets/product-super-gclean.png";
 import { useSEO } from "@/hooks/useSEO";
 
@@ -17,6 +18,7 @@ const product: ProductConfig = {
   shippingFee: 3000,
   origin: "국산",
   manufacturer: "(주)효소세상",
+  subscriptionPlans: DEFAULT_SUBSCRIPTION_PLANS,
 };
 
 const SuperGClean = () => {

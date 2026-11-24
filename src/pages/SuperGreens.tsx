@@ -1,6 +1,7 @@
 import { Sprout, Sparkles, Zap } from "lucide-react";
 import ProductPage from "@/components/ProductPage";
 import { ProductConfig } from "@/components/PurchaseSection";
+import { DEFAULT_SUBSCRIPTION_PLANS } from "@/config/subscriptionPlans";
 import productImg from "@/assets/product-super-greens.png";
 import { useSEO } from "@/hooks/useSEO";
 
@@ -17,6 +18,7 @@ const product: ProductConfig = {
   shippingFee: 0,
   origin: "미국",
   manufacturer: "텐액스랩스",
+  subscriptionPlans: DEFAULT_SUBSCRIPTION_PLANS,
 };
 
 const SuperGreens = () => {

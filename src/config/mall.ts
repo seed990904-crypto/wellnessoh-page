@@ -16,10 +16,10 @@ export type ProductSlug =
  */
 export const PRODUCT_NO: Record<ProductSlug, string> = {
   "super-gclean":     "11",
-  "super-immune":     "",
+  "super-immune":     "13",
   "super-greens":     "",
-  "super-zyme":       "",
-  "better-salt":      "",
+  "super-zyme":       "14",
+  "better-salt":      "15",
   "super-longe-vita": "COMING_SOON",
   "core-routine":     "COMING_SOON",
 };

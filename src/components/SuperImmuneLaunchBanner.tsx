@@ -2,7 +2,7 @@ import { Tag, ArrowRight } from "lucide-react";
 
 const SuperImmuneLaunchBanner = () => (
   <a
-    href="https://smartstore.naver.com/call2life"
+    href="https://mkt.shopping.naver.com/link/6afe9182bcaa3e6fdff48c4c"
     target="_blank"
     rel="noopener noreferrer"
     className="group block w-full bg-[#08081a] hover:bg-[#0d0d2a] transition-colors duration-200"
