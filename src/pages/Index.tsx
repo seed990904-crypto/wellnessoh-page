@@ -12,6 +12,7 @@ import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
 import PromoPopup from "@/components/PromoPopup";
+import BenefitBanner from "@/components/BenefitBanner";
 import { useJsonLd } from "@/hooks/useJsonLd";
 import { brandSchemas } from "@/data/brandSchemas";
 import { useSEO } from "@/hooks/useSEO";
@@ -31,6 +32,7 @@ const Index = () => {
     <div className="min-h-screen bg-background">
       <Header />
       <HeroSection />
+      <BenefitBanner />
       <AboutSection />
       <ScienceSection />
       <ReelsSection />
