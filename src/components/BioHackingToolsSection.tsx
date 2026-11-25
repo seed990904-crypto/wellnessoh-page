@@ -1,29 +1,31 @@
-import { Link } from "react-router-dom";
-import { ArrowRight, Gift, ShoppingCart } from "lucide-react";
+import { useNavigate, Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
 import productSuperImmune from "@/assets/product-super-immune.jpg";
 import productSuperGreens from "@/assets/product-super-greens.png";
-import productSuperZyme   from "@/assets/product-super-zyme.jpg";
-import productBetterSalt  from "@/assets/product-better-salt.jpg";
-import productSuperGClean from "@/assets/product-super-gclean.png";
-import { MALL_BASE, PRODUCT_NO } from "@/config/mall";
+const productSuperGClean = "/super-gclean-main.jpg";
+import productSuperZyme from "@/assets/product-super-zyme.jpg";
+import productBetterSalt from "@/assets/product-better-salt.jpg";
 
-function cafe24Url(slug: string) {
-  const no = PRODUCT_NO[slug as keyof typeof PRODUCT_NO];
-  if (!no || no === "COMING_SOON") return null;
-  return `${MALL_BASE}/product/detail.html?product_no=${no}`;
-}
+const csColors = {
+  C1: { dot: "bg-blue-500",   badge: "bg-blue-50 text-blue-700",   border: "border-blue-200" },
+  C2: { dot: "bg-teal-500",   badge: "bg-teal-50 text-teal-700",   border: "border-teal-200" },
+  C3: { dot: "bg-violet-500", badge: "bg-violet-50 text-violet-700", border: "border-violet-200" },
+  C4: { dot: "bg-amber-500",  badge: "bg-amber-50 text-amber-700",  border: "border-amber-200" },
+} as const;
+
+type CsKey = keyof typeof csColors;
 
 interface Product {
   image: string;
   name: string;
   engName: string;
-  bullets: string[];
+  subtitle: string;
   price: number;
-  slug: string;
+  cornerstones: CsKey[];
   path: string;
-  badge?: string;
-  badgeColor?: string;
+  isPhoto?: boolean;
   imgPos?: string;
+  newBadge?: string;
 }
 
 const products: Product[] = [
@@ -31,132 +33,123 @@ const products: Product[] = [
     image: productSuperImmune,
     name: "슈퍼이뮨 프리미어",
     engName: "SUPER IMMUNE PREMIER",
-    bullets: ["2가지 원료 · 5가지 기능성", "에이슈레브넌 SUPERVERA7®", "구아바잎 천연 아연 141%"],
+    subtitle: "2가지 원료 · 5가지 기능성",
     price: 160000,
-    slug: "super-immune",
+    cornerstones: ["C1", "C3"],
     path: "/products/super-immune",
-    badge: "NEW",
-    badgeColor: "bg-emerald-500",
-    imgPos: "object-[center_20%]",
+    isPhoto: true,
+    imgPos: "object-[center_25%]",
+  },
+  {
+    image: productSuperGreens,
+    name: "슈퍼그린",
+    engName: "SUPER GREENS",
+    subtitle: "유기농 엽록소 블렌드",
+    price: 150000,
+    cornerstones: ["C2", "C3"],
+    path: "/products/super-greens",
+    isPhoto: true,
   },
   {
     image: productSuperZyme,
     name: "슈퍼자임",
     engName: "SUPER ZYME",
-    bullets: ["오토파지 촉진", "17가지 천연 초본 발효", "간헐적 단식 효율 극대화"],
+    subtitle: "오토파지 · 17가지 천연 초본 발효",
     price: 125000,
-    slug: "super-zyme",
+    cornerstones: ["C3", "C4"],
     path: "/products/super-zyme",
-    badge: "NEW",
-    badgeColor: "bg-emerald-500",
-  },
-  {
-    image: productBetterSalt,
-    name: "베러솔트",
-    engName: "BETTER SALT",
-    bullets: ["40종 활성 미네랄", "1200°C 열처리 · 중금속 0%", "0.9% 세포 항상성"],
-    price: 88000,
-    slug: "better-salt",
-    path: "/products/better-salt",
-    badge: "NEW",
-    badgeColor: "bg-emerald-500",
+    isPhoto: true,
+    newBadge: "NEW",
   },
   {
     image: productSuperGClean,
     name: "슈퍼지클린",
     engName: "SUPER G.CLEAN",
-    bullets: ["900일 자연배양 발효 효소", "장 환경 리셋", "독소 흡착 배출"],
+    subtitle: "900일 자연배양 발효 효소",
     price: 27000,
-    slug: "super-gclean",
+    cornerstones: ["C3", "C4"],
     path: "/products/super-gclean",
-    badge: "BEST",
-    badgeColor: "bg-amber-500",
+    isPhoto: true,
   },
   {
-    image: productSuperGreens,
-    name: "슈퍼그린스",
-    engName: "SUPER GREENS",
-    bullets: ["유기농 엽록소 블렌드", "세포 항산화", "23종 슈퍼푸드 복합"],
-    price: 150000,
-    slug: "super-greens",
-    path: "/products/super-greens",
+    image: productBetterSalt,
+    name: "베러솔트",
+    engName: "BETTER SALT",
+    subtitle: "40종 활성 미네랄 · 1200도 열처리",
+    price: 88000,
+    cornerstones: ["C2", "C4"],
+    path: "/products/better-salt",
+    isPhoto: true,
+    newBadge: "NEW",
   },
 ];
 
+const legend = [
+  { cs: "C1" as CsKey, name: "통신과 방어 · 면역" },
+  { cs: "C2" as CsKey, name: "보존과 영양 · 항산화" },
+  { cs: "C3" as CsKey, name: "제어와 연결 · 장뇌축" },
+  { cs: "C4" as CsKey, name: "정화와 재생 · 대사" },
+];
+
 const ProductCard = ({ product }: { product: Product }) => {
-  const buyUrl = cafe24Url(product.slug);
+  const navigate = useNavigate();
 
   return (
-    <div className="group bg-white rounded-2xl overflow-hidden border border-zinc-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer flex flex-col">
-
-      {/* 이미지 — 세로형 2:3 */}
-      <Link to={product.path} className="block relative overflow-hidden" style={{ aspectRatio: "2/3" }}>
+    <div
+      onClick={() => navigate(product.path)}
+      className="group bg-white rounded-2xl overflow-hidden border border-border/50 hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200 cursor-pointer flex flex-col"
+    >
+      {/* 이미지 */}
+      <div className="aspect-[4/3] bg-muted/20 overflow-hidden relative">
         <img
           src={product.image}
           alt={product.name}
-          className={`w-full h-full object-cover transition-transform duration-500 group-hover:scale-[1.06] ${product.imgPos ?? "object-center"}`}
+          className={`w-full h-full transition-transform duration-300 group-hover:scale-105 ${
+            product.isPhoto
+              ? `object-cover ${product.imgPos ?? ""}`
+              : "object-contain p-4"
+          }`}
           loading="lazy"
         />
-        {/* 그라디언트 — 하단 텍스트 가독성 */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-
-        {/* 뱃지 */}
-        {product.badge && (
-          <span className={`absolute top-3 left-3 ${product.badgeColor ?? "bg-zinc-800"} text-white text-[10px] font-black px-2.5 py-1 rounded-full tracking-widest`}>
-            {product.badge}
+        {product.newBadge && (
+          <span className="absolute top-3 left-3 text-[10px] font-bold bg-primary text-primary-foreground px-2 py-0.5 rounded-full tracking-wide">
+            {product.newBadge}
           </span>
         )}
-      </Link>
+      </div>
 
-      {/* 카드 본문 */}
+      {/* 정보 */}
       <div className="p-5 flex flex-col flex-1">
-        <div className="flex-1">
-          <p className="text-[9px] font-mono font-bold tracking-[0.2em] text-zinc-400 mb-1 uppercase">
-            {product.engName}
-          </p>
-          <h3 className="font-black text-zinc-900 text-[17px] leading-tight mb-3">
-            {product.name}
-          </h3>
-          <ul className="space-y-1 mb-4">
-            {product.bullets.map((b) => (
-              <li key={b} className="flex items-start gap-2 text-[12px] text-zinc-500 leading-relaxed">
-                <span className="text-zinc-300 mt-0.5 shrink-0">→</span>
-                {b}
-              </li>
-            ))}
-          </ul>
+        {/* 코너스톤 배지 */}
+        <div className="flex flex-wrap gap-1.5 mb-3">
+          {product.cornerstones.map((cs) => (
+            <span
+              key={cs}
+              className={`inline-flex items-center gap-1.5 text-[10px] font-mono font-bold px-2 py-1 rounded-md ${csColors[cs].badge}`}
+            >
+              <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${csColors[cs].dot}`} />
+              {cs}
+            </span>
+          ))}
         </div>
 
-        {/* 가격 + 버튼 */}
-        <div className="border-t border-zinc-100 pt-4 flex items-center justify-between gap-2">
-          <span className="font-black text-zinc-900 text-base">
+        <h3 className="font-bold text-foreground text-lg leading-snug mb-0.5">
+          {product.name}
+        </h3>
+        <p className="text-[11px] font-mono text-muted-foreground/50 mb-2 tracking-wide">
+          {product.engName}
+        </p>
+        <p className="text-xs text-muted-foreground leading-relaxed mb-5 flex-1">
+          {product.subtitle}
+        </p>
+
+        <div className="flex items-center justify-between pt-4 border-t border-border/40">
+          <span className="text-base font-bold text-foreground">
             {product.price.toLocaleString()}원
           </span>
-
-          <div className="flex items-center gap-2">
-            <Link
-              to={product.path}
-              className="text-[11px] font-semibold text-zinc-400 hover:text-zinc-700 flex items-center gap-1 transition-colors"
-            >
-              상세 <ArrowRight className="w-3 h-3" />
-            </Link>
-            {buyUrl ? (
-              <a
-                href={buyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center gap-1.5 bg-zinc-900 hover:bg-zinc-700 text-white text-[11px] font-bold px-3.5 py-2 rounded-full transition-colors"
-              >
-                <ShoppingCart className="w-3 h-3" />
-                구매
-              </a>
-            ) : (
-              <span className="inline-flex items-center text-[10px] font-bold bg-zinc-100 text-zinc-400 px-3 py-1.5 rounded-full">
-                출시 예정
-              </span>
-            )}
-          </div>
+          <span className="flex items-center gap-1 text-xs font-semibold text-primary group-hover:gap-2 transition-all">
+            자세히 보기 <ArrowRight className="w-3.5 h-3.5" />
+          </span>
         </div>
       </div>
     </div>
@@ -164,69 +157,71 @@ const ProductCard = ({ product }: { product: Product }) => {
 };
 
 const BioHackingToolsSection = () => (
-  <section id="biohacking-tools" className="py-16 md:py-24 bg-white">
+  <section id="biohacking-tools" className="py-16 md:py-24 bg-muted/25">
     <div className="max-w-6xl mx-auto px-6 md:px-12">
 
       {/* 헤더 */}
-      <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-12">
+      <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
         <div>
-          <p className="text-[10px] font-mono tracking-[0.25em] text-emerald-600 uppercase mb-3">
+          <p className="text-[11px] font-mono tracking-[0.2em] text-primary uppercase mb-3">
             Biohacking Tools
           </p>
-          <h2 className="text-3xl md:text-4xl font-black text-zinc-900 leading-tight tracking-tight">
-            바이오해킹 솔루션
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-snug">
+            바이오해킹 제품
           </h2>
-          <p className="mt-2 text-sm text-zinc-500">
-            장 정화 → 미네랄 복원 → 면역 활성화 → 오토파지
-          </p>
         </div>
-        <div className="flex flex-col sm:flex-row gap-2 items-start sm:items-center">
-          <span className="text-[11px] font-mono bg-emerald-50 text-emerald-700 border border-emerald-200 px-3 py-1.5 rounded-full">
-            🆕 2026.11 신제품 3종 출시
-          </span>
-          <Link
-            to="/products"
-            className="text-sm font-semibold text-zinc-500 hover:text-zinc-900 flex items-center gap-1 transition-colors"
-          >
-            전체 보기 <ArrowRight className="w-3.5 h-3.5" />
-          </Link>
-        </div>
+        <p className="text-sm text-muted-foreground max-w-xs leading-relaxed md:text-right">
+          매일의 기초를 위해 설계한<br className="hidden md:block" />
+          5가지 제품
+        </p>
       </div>
 
-      {/* 제품 그리드 — 세로형 카드 */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-5">
-        {products.map((p) => (
-          <ProductCard key={p.name} product={p} />
+      {/* 코너스톤 범례 */}
+      <div className="flex flex-wrap gap-2 mb-10">
+        {legend.map(({ cs, name }) => (
+          <span
+            key={cs}
+            className={`inline-flex items-center gap-2 text-xs font-medium px-3 py-1.5 rounded-full ${csColors[cs].badge}`}
+          >
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${csColors[cs].dot}`} />
+            <span className="font-mono font-bold">{cs}</span>
+            <span className="opacity-70">· {name}</span>
+          </span>
         ))}
       </div>
 
-      {/* 하단 혜택 띠 */}
-      <div className="mt-10 rounded-2xl bg-zinc-900 p-6 md:p-8 flex flex-col md:flex-row items-center justify-between gap-5">
-        <div>
-          <p className="text-white font-black text-lg md:text-xl leading-tight">
-            정기구독으로 최대 25% 절약하세요
+      {/* 제품 그리드 */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        {products.map((p) => (
+          <ProductCard key={p.name} product={p} />
+        ))}
+
+        {/* Coming Soon */}
+        <Link
+          to="/products"
+          className="rounded-2xl border border-dashed border-border/50 bg-muted/20 flex flex-col items-center justify-center p-10 text-center gap-4 min-h-[260px] hover:shadow-xl hover:-translate-y-1.5 transition-all duration-200 cursor-pointer"
+        >
+          <span className="text-[10px] font-mono font-bold px-2.5 py-1 rounded-md bg-muted text-muted-foreground tracking-widest">
+            COMING SOON
+          </span>
+          <div className="space-y-1.5">
+            <p className="font-bold text-foreground text-sm">슈퍼롱제비타</p>
+            <p className="font-bold text-foreground text-sm">코어루틴</p>
+          </div>
+          <p className="text-xs text-muted-foreground leading-relaxed">
+            출시 예정 — 전체 목록에서 확인
           </p>
-          <p className="text-zinc-400 text-sm mt-1">
-            1·3·6개월 플랜 자유 선택 · 언제든 해지 가능
-          </p>
-        </div>
-        <div className="flex gap-3 flex-shrink-0">
-          <a
-            href={`${MALL_BASE}/member/join.html`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-400 text-white font-bold text-sm px-6 py-3 rounded-full transition-colors"
-          >
-            <Gift className="w-4 h-4" />
-            회원가입 · 첫 구매 10%
-          </a>
-          <Link
-            to="/products"
-            className="inline-flex items-center gap-2 border border-white/20 text-white/80 hover:bg-white/10 font-semibold text-sm px-6 py-3 rounded-full transition-colors"
-          >
-            제품 보기
-          </Link>
-        </div>
+        </Link>
+      </div>
+
+      {/* 전체 제품 보기 CTA */}
+      <div className="mt-10 text-center">
+        <Link
+          to="/products"
+          className="inline-flex items-center gap-2 bg-primary text-white font-semibold text-sm px-6 py-3 rounded-xl hover:bg-primary/90 transition-colors"
+        >
+          전체 제품 보기 <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
 
     </div>
