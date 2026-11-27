@@ -15,6 +15,7 @@ import SuperGreens from "./pages/SuperGreens";
 import SuperZyme from "./pages/SuperZyme";
 import BetterSalt from "./pages/BetterSalt";
 import YouthReset from "./pages/YouthReset";
+import FiveDayReset from "./pages/FiveDayReset";
 import BrandStory from "./pages/BrandStory";
 import Products from "./pages/Products";
 import SuperLongeVita from "./pages/SuperLongeVita";
@@ -46,6 +47,7 @@ const App = () => (
           <Route path="/products/super-longe-vita" element={<SuperLongeVita />} />
           <Route path="/products/core-routine" element={<CoreRoutine />} />
           <Route path="/youth-reset" element={<YouthReset />} />
+          <Route path="/youth-reset/five-day-reset" element={<FiveDayReset />} />
           <Route path="/about" element={<BrandStory />} />
           <Route path="/consulting" element={<Consulting />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

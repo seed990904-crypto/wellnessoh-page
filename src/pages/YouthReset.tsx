@@ -181,9 +181,10 @@ export default function YouthReset() {
           alt="청춘리셋 — 함께하는 건강한 삶"
           className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        {/* 노을 쪽(오른쪽 아래)이 밝으므로 왼쪽+위쪽+아래쪽에 그라디언트 */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/10" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-transparent to-black/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-black/25" />
+        {/* 하단 → 섹션2(어두운 배경)와 끊김 없이 연결 */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent" />
 
         <div className="relative z-10 h-full flex flex-col justify-center px-6 md:px-16 lg:px-24 max-w-[1400px] mx-auto">
 
@@ -245,23 +246,16 @@ export default function YouthReset() {
         </div>
       </section>
 
-      {/* ══ 2. 핵심 메시지 (식물 배경) ══════════════════════════ */}
-      <section className="relative py-24 md:py-36 overflow-hidden">
-        <img
-          src="/youth-reset-nature.jpg"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-center"
-        />
-        <div className="absolute inset-0 bg-black/65" />
-        <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 text-center">
-          <p className="font-mono text-[11px] tracking-[0.25em] text-white/40 uppercase mb-6">The Core Philosophy</p>
+      {/* ══ 2. 핵심 메시지 ════════════════════════════════════ */}
+      <section className="relative -mt-20 overflow-hidden" style={{ background: "linear-gradient(to bottom, #000000 0%, #0a0a0a 40%, #111111 70%, hsl(var(--background)) 100%)" }}>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 md:px-12 text-center pt-28 pb-16 md:pt-40 md:pb-24">
+          <p className="font-mono text-[11px] tracking-[0.25em] text-white/35 uppercase mb-6">The Core Philosophy</p>
           <h2 className="text-3xl md:text-5xl font-bold text-white leading-[1.3] mb-8">
             비우고<span className="text-primary mx-3">·</span>채우고<span className="text-primary mx-3">·</span>습관이 됩니다
           </h2>
-          <p className="text-white/65 text-base md:text-lg leading-relaxed">
+          <p className="text-white/60 text-base md:text-lg leading-relaxed">
             몸이 아픈 이유는 대부분 단순합니다.<br />
-            <strong className="text-white">쌓인 것을 비우지 못하고, 필요한 것을 채우지 못하는 것.</strong><br /><br />
+            <strong className="text-white/90">쌓인 것을 비우지 못하고, 필요한 것을 채우지 못하는 것.</strong><br /><br />
             청춘리셋은 이 순서를 바로잡는 6주 루틴입니다.<br />
             어렵지 않습니다. 하루 한 가지씩 바꾸면 됩니다.
           </p>
@@ -269,7 +263,9 @@ export default function YouthReset() {
       </section>
 
       {/* ══ 3. 청춘리셋이 다른 이유 ══════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-background">
+      <section className="relative py-20 md:py-28 bg-background overflow-hidden">
+        {/* 하단: 어두운 섹션4로 자연스럽게 전환 */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-foreground/10 to-transparent pointer-events-none" />
         <div className="max-w-5xl mx-auto px-6 md:px-12">
           <div className="text-center mb-14">
             <p className="font-mono text-[11px] tracking-[0.25em] text-primary uppercase mb-4">What Makes It Different</p>
@@ -286,26 +282,22 @@ export default function YouthReset() {
             {[
               {
                 step: "01",
-                icon: "🌱",
                 title: "먼저 비웁니다",
                 desc: "장에 쌓인 노폐물과 독소를 먼저 내보냅니다. 좋은 것을 넣기 전에 먼저 청소해야 효과가 납니다.",
               },
               {
                 step: "02",
-                icon: "🌿",
                 title: "제대로 채웁니다",
                 desc: "미네랄, 효소, 엽록소 — 몸이 진짜 필요로 하는 영양을 제대로 채워드립니다.",
               },
               {
                 step: "03",
-                icon: "🔄",
                 title: "습관으로 만듭니다",
                 desc: "6주가 지나면 따로 노력하지 않아도 몸이 스스로 움직이는 루틴이 완성됩니다.",
               },
             ].map((item) => (
-              <div key={item.step} className="bg-muted/30 border border-border/40 rounded-2xl p-8 text-center">
-                <p className="text-4xl mb-5">{item.icon}</p>
-                <p className="font-mono text-[10px] text-primary font-bold mb-2 tracking-widest">{item.step}</p>
+              <div key={item.step} className="border border-border/50 rounded-2xl p-8">
+                <p className="font-mono text-[11px] tracking-[0.2em] text-primary font-bold mb-5">{item.step}</p>
                 <h3 className="font-bold text-foreground text-lg mb-3">{item.title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
               </div>
@@ -315,7 +307,9 @@ export default function YouthReset() {
       </section>
 
       {/* ══ 4. 공감 섹션 ════════════════════════════════════════ */}
-      <section className="py-20 md:py-28 bg-foreground text-background">
+      <section className="relative py-20 md:py-28 bg-foreground text-background overflow-hidden">
+        {/* 하단: 밝은 섹션5로 페이드 */}
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-muted/40 to-transparent pointer-events-none" />
         <div className="max-w-4xl mx-auto px-6 md:px-12">
           <div className="text-center mb-12">
             <p className="font-mono text-[11px] tracking-[0.25em] text-background/35 uppercase mb-4">Does This Sound Familiar?</p>
@@ -424,21 +418,27 @@ export default function YouthReset() {
       </section>
 
       {/* ══ 6. 에너지 이미지 배너 ════════════════════════════════ */}
-      <section className="relative h-64 md:h-80 overflow-hidden">
+      <section className="relative h-72 md:h-96 overflow-hidden">
         <img
           src="/youth-reset-energy.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover object-[center_75%]"
         />
-        <div className="absolute inset-0 bg-black/50" />
-        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 gap-3">
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6 gap-4">
           <p className="text-white font-bold text-2xl md:text-4xl leading-snug drop-shadow">
             5일이면 몸이 반응합니다.
           </p>
-          <p className="text-white/65 text-sm md:text-base leading-relaxed">
-            5일 비움 챌린지 · 2주 · 4주 · 6주 — 지금 시작할 수 있는 방법이 있습니다.
+          <p className="text-white/60 text-sm md:text-base leading-relaxed">
+            먼저 비워야 채울 수 있습니다. 5일부터 시작하세요.
           </p>
+          <Link
+            to="/youth-reset/five-day-reset"
+            className="mt-2 inline-flex items-center gap-2 px-7 py-3 rounded-full bg-white text-foreground text-sm font-semibold hover:bg-white/90 transition-colors"
+          >
+            5일 비움챌린지 시작하기 <ArrowRight size={14} />
+          </Link>
         </div>
       </section>
 
@@ -599,13 +599,12 @@ export default function YouthReset() {
               href="https://www.instagram.com/youthreset_official"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2.5 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#FCAF45] text-white text-sm font-semibold px-7 py-3.5 rounded-full hover:opacity-90 transition-opacity shadow-md"
+              className="inline-flex items-center gap-2.5 border border-border text-foreground text-sm font-medium px-7 py-3.5 rounded-full hover:bg-muted/40 transition-colors"
             >
-              <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor" aria-hidden="true">
                 <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
               </svg>
-              청춘리셋 인스타그램 보기
-              <span className="text-white/75 font-normal">@youthreset_official</span>
+              인스타그램 @youthreset_official
             </a>
             <p className="text-muted-foreground text-xs mt-3">
               청춘리셋 프로그램 일정, 일상 루틴, 건강 정보를 먼저 공유합니다.
