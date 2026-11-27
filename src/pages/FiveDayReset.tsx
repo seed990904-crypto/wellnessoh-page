@@ -32,6 +32,7 @@ const products = [
     spec: "4g × 30포",
     bgColor: "bg-[#f5f3ee]",
     accentColor: "text-amber-700",
+    borderAccent: "border-l-amber-400",
     badgeBg: "bg-amber-50 border-amber-200 text-amber-700",
     why: "비우기 시작하면 수분과 미네랄이 같이 빠져나갑니다. 물만 마시면 오히려 더 빠져나가요. 소금과 미네랄이 함께 있어야 마신 물이 몸에 머뭅니다.",
     points: [
@@ -52,6 +53,7 @@ const products = [
     spec: "120ml × 3병",
     bgColor: "bg-[#f0f4f1]",
     accentColor: "text-emerald-700",
+    borderAccent: "border-l-emerald-400",
     badgeBg: "bg-emerald-50 border-emerald-200 text-emerald-700",
     why: "900일을 길러 낸 발효 효소가 장 속에 오래 머문 찌꺼기를 비워 냅니다. 장이 비워진 자리에서 비로소 회복이 시작됩니다.",
     points: [
@@ -72,6 +74,7 @@ const products = [
     spec: "200ml × 10포",
     bgColor: "bg-[#f7f0ee]",
     accentColor: "text-orange-700",
+    borderAccent: "border-l-orange-400",
     badgeBg: "bg-orange-50 border-orange-200 text-orange-700",
     why: "오토파지(세포 청소)는 몸이 비어 있을 때만 일어납니다. 단백질이나 인슐린이 올라오면 멈춥니다. 슈퍼자임은 오토파지 흐름을 유지하면서 필수 미량영양소를 채우기 위해 설계됐습니다.",
     points: [
@@ -92,6 +95,7 @@ const products = [
     spec: "60캡슐 × 1",
     bgColor: "bg-[#edf0f7]",
     accentColor: "text-blue-700",
+    borderAccent: "border-l-blue-400",
     badgeBg: "bg-blue-50 border-blue-200 text-blue-700",
     why: "비워낸 장벽을 회복하고 면역 시스템을 되살리는 역할입니다. 에이스매넌은 세포 간 신호 체계(당사슬)를 복원해 면역이 제대로 작동하도록 돕습니다.",
     points: [
@@ -109,7 +113,7 @@ const routine = [
     sub: "일어나자마자 ~ 9시",
     steps: [
       { label: "베러솔트 소금물", detail: "따뜻한 물 500ml + 베러솔트 1포" },
-      { label: "그린 스무디",    detail: "사과 ½ · 셀러리 · 쌈케일 · 물 250ml (아보카도 추천)" },
+      { label: "그린 스무디",    detail: "슈퍼그린 1스쿱 + 사과 ½ · 셀러리 · 쌈케일 · 물 250ml (아보카도 추천)" },
       { label: "슈퍼이뮨 2캡슐", detail: "" },
     ],
   },
@@ -286,9 +290,10 @@ export default function FiveDayReset() {
             <h2 className="text-3xl md:text-4xl font-bold text-foreground leading-snug mb-3">
               5일 안에 켜지는 두 개의 스위치
             </h2>
-            <p className="text-muted-foreground max-w-lg mx-auto text-sm leading-relaxed">
-              비어 있는 시간이 길어지면 몸은 '들어온 것을 쓰는 모드'에서<br />
-              '가진 것을 꺼내 쓰고 정리하는 모드'로 전환됩니다
+            <p className="max-w-xl mx-auto text-sm leading-relaxed text-foreground/70">
+              비어 있는 시간이 길어지면 몸은{" "}
+              <strong className="text-foreground font-bold">'들어온 것을 쓰는 모드'</strong>에서<br />
+              <strong className="text-foreground font-bold">'가진 것을 꺼내 쓰고 정리하는 모드'</strong>로 전환됩니다
             </p>
           </div>
 
@@ -356,19 +361,19 @@ export default function FiveDayReset() {
           </div>
 
           {/* 타임라인 바 */}
-          <div className="bg-white rounded-2xl border border-border/40 p-6">
-            <div className="grid grid-cols-5 gap-2">
+          <div className="bg-white rounded-2xl border border-border/40 px-6 py-7">
+            <div className="grid grid-cols-5 gap-3">
               {[
-                { d: "DAY 1", e: "포도당 소모 시작", c: "bg-stone-200" },
-                { d: "DAY 2", e: "케톤 · 오토파지 시작", c: "bg-amber-300" },
-                { d: "DAY 3", e: "지방 연소 가속", c: "bg-emerald-400" },
-                { d: "DAY 4", e: "머리 맑아짐", c: "bg-sky-400" },
-                { d: "DAY 5", e: "기준선 완성", c: "bg-violet-400" },
+                { d: "DAY 1", e: "포도당 소모 시작",    c: "bg-stone-300",   t: "text-stone-500" },
+                { d: "DAY 2", e: "케톤 · 오토파지 시작", c: "bg-amber-400",   t: "text-amber-600" },
+                { d: "DAY 3", e: "지방 연소 가속",       c: "bg-emerald-400", t: "text-emerald-600" },
+                { d: "DAY 4", e: "머리 맑아짐",          c: "bg-sky-400",     t: "text-sky-600" },
+                { d: "DAY 5", e: "기준선 완성",          c: "bg-violet-400",  t: "text-violet-600" },
               ].map((t) => (
                 <div key={t.d} className="text-center">
-                  <div className={`h-1.5 rounded-full mb-2.5 ${t.c}`} />
-                  <p className="text-[10px] font-bold text-foreground mb-1">{t.d}</p>
-                  <p className="text-[10px] text-muted-foreground leading-snug">{t.e}</p>
+                  <div className={`h-2 rounded-full mb-3 ${t.c}`} />
+                  <p className={`text-xs font-bold mb-1.5 ${t.t}`}>{t.d}</p>
+                  <p className="text-xs text-foreground/70 leading-snug font-medium">{t.e}</p>
                 </div>
               ))}
             </div>
@@ -550,13 +555,13 @@ export default function FiveDayReset() {
                   <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-0.5">{p.name}</h3>
                   <p className="text-xs text-muted-foreground tracking-widest mb-5">{p.eng}</p>
 
-                  {/* 왜 이 제품인가 */}
-                  <div className="bg-[#f7f7f5] rounded-xl px-5 py-4 mb-5 border border-border/30">
-                    <p className="text-sm text-foreground leading-relaxed">{p.why}</p>
+                  {/* 왜 이 제품인가 — 왼쪽 색상 보더 */}
+                  <div className={`border-l-4 pl-4 py-1 mb-5 ${p.borderAccent}`}>
+                    <p className="text-sm text-foreground/80 leading-relaxed">{p.why}</p>
                   </div>
 
                   {/* 성분 */}
-                  <ul className="flex flex-col gap-1.5 mb-5">
+                  <ul className="flex flex-col gap-1.5 mb-6">
                     {p.points.map((pt, j) => (
                       <li key={j} className="flex items-start gap-2 text-sm text-muted-foreground">
                         <Check size={13} className={`shrink-0 mt-0.5 ${p.accentColor}`} />
@@ -565,10 +570,10 @@ export default function FiveDayReset() {
                     ))}
                   </ul>
 
-                  {/* 사용법 */}
-                  <div className="flex items-start gap-2 text-sm bg-[#f7f7f5] border border-border/30 rounded-xl px-4 py-3">
-                    <span className="text-muted-foreground shrink-0 font-medium">섭취</span>
-                    <span className="text-foreground">{p.when}</span>
+                  {/* 섭취 방법 — 구분된 스타일 */}
+                  <div className="flex items-start gap-3">
+                    <span className={`font-mono text-[10px] tracking-[0.15em] uppercase font-bold shrink-0 mt-0.5 ${p.accentColor}`}>WHEN</span>
+                    <span className="text-sm text-foreground/75 leading-relaxed">{p.when}</span>
                   </div>
                 </div>
               </div>
